@@ -1,7 +1,7 @@
 {
   "name": "covid19-checkin",
   "version": "0.1.0",
-  "homepage": "http://TheGhoul21.github.io/covid19-checkin",
+  "homepage": "http://TheGhoul21.github.io",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
