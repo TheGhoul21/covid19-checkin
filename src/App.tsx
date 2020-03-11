@@ -56,24 +56,24 @@ function App(props: {} & GeolocatedProps) {
               <Grid.Row>
                 <Grid.Column>
                   <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Basilicata</Grid.Row>
+                  <Grid.Row>Calabria</Grid.Row>
+                  <Grid.Row>Campania</Grid.Row>
+                  <Grid.Row>Emilia-Romagna</Grid.Row>
+                  <Grid.Row>Friuli-Venezia Giulia</Grid.Row>
+                  <Grid.Row>Lazio</Grid.Row>
+                  <Grid.Row>Liguria</Grid.Row>
+                  <Grid.Row>Lomnardia</Grid.Row>
+                  <Grid.Row>Marche</Grid.Row>
+                  <Grid.Row>Molise</Grid.Row>
+                  <Grid.Row>Piemonte</Grid.Row>
+                  <Grid.Row>Puglia</Grid.Row>
+                  <Grid.Row>Sardegna</Grid.Row>
+                  <Grid.Row>Sicilia</Grid.Row>
+                  <Grid.Row>Toscana</Grid.Row>
+                  <Grid.Row>Trentino-Alto Adige</Grid.Row>
+                  <Grid.Row>Valle d'Aosta</Grid.Row>
+                  <Grid.Row>Veneto</Grid.Row>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
