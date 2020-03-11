@@ -1,4 +1,4 @@
-##Perchè?
+## Perchè?
 Il Covid-19 ci sta facendo vivere qualcosa di nuovo e di temuto, portando ansia e insicurezza. Questo progetto è stato pensato per lanciare un messaggio: "Non sei solo!". Tutti insieme possiamo contribuire ad alleggerire la tensione per trascorrere più serenamente questo periodo.
 Le mappe che riguardano il Covid-19, giustamente, ci aggiornano su decessi, nuovi contagi, mortalità; è per questo abbiamo pensato che sarebbe stato bello avere una mappa alternativa che mostri dati che ci aiutino a farci coraggio e ad allietare la complessa situazione che stiamo vivendo: chi sta a casa e come trascorre il proprio tempo.
 Creiamo un’unica grande casa virtuale! Facendo check-in diventi parte della comunità; facciamo crescere quanto più velocemente possibile il numero di check-in e alleggeriamo questo momento!
