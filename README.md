@@ -1,3 +1,16 @@
+## Perchè?
+
+Il covid ci sta facendo vivere qualcosa di nuovo e di temuto, portando ansia e insicurezza. Questo progetto è stato pensato per lanciare un messaggio "non sei solo!", tutti insieme possiamo allegerire questa situazione e trascorlerla.
+
+Le mappe che riguardano il Covid-19 (giustamente) ci aggiornano sui decessi, nuovi contaggi, mortalità e per questo abbiamo pensato che sarebbe stato bello veere una mappa dove vengono mostrati dati "positivi": chi sta a casa, come te e me, cosa fare per allietare questa situazione.
+
+Speriamo sia utile!
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
