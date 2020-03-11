@@ -2,8 +2,10 @@ import React, { Ref } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './Map';
-import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card } from 'semantic-ui-react'
-function App() {
+import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input } from 'semantic-ui-react'
+import { geolocated, GeolocatedProps } from "react-geolocated";
+
+function App(props:{} & GeolocatedProps) {
   const [visible, setVisible] = React.useState(false);
   return (
     <Sidebar.Pushable as={Segment}>
@@ -19,16 +21,15 @@ function App() {
         fluid
 
       >
-        <Grid style={{ height:'100vh'}}>
-          <Grid.Row style={{ height: '30vh' }}></Grid.Row>
-          <Grid.Row>
+        <Grid style={{ height:'100vh', marginTop:'30vh'}}>
+          <Grid.Row style={{}}>
             <Grid
               textAlign='center' style={{ height: '100vh', backgroundColor: 'white' }}
             >
 
               <Grid.Row columns={1}>
                 <Grid.Column>
-                  <Header as='h3'>New Content Awaits</Header>
+                  <Header as='h3' onClick={() => setVisible(false)}>Feed</Header>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
@@ -77,9 +78,12 @@ function App() {
           </Grid.Row></Grid>
       </Sidebar>
       <Sidebar.Pusher>
-        <Container>
+        <Container style={{ width:'100vw', height:'100vh', overflow:'none'}} >
+          <Header  textAlign='center'>Nome progetto</Header>
+          <Segment><Icon name='home'/> Caterina è a casa a Treviso</Segment>
+          <Segment> <Input icon='searchengin' iconPosition='left' placeholder='Cerca e fai check-in' fluid /></Segment>
           <Map />
-          <Button onClick={() => setVisible(true)}>Feed</Button>
+          <Button fluid onClick={() => setVisible(true)}>Guarda feed</Button>
         </Container>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
@@ -87,4 +91,4 @@ function App() {
   );
 }
 
-export default App;
+export default geolocated({})(App);
