@@ -19,57 +19,62 @@ function App() {
         fluid
 
       >
-        <Grid
-          textAlign='center' style={{ height: '100vh', backgroundColor: 'white' }}
-        >
-          <Grid.Row columns={1}>
-            <Grid.Column>
-              <Header as='h3'>New Content Awaits</Header>
-            </Grid.Column>
-          </Grid.Row>
+        <Grid style={{ height:'100vh'}}>
+          <Grid.Row style={{ height: '30vh' }}></Grid.Row>
           <Grid.Row>
-            <Grid columns={2} divided>
-              <Grid.Column>
-                <Card>
-                  <Card.Header>Oggi</Card.Header>
-                  <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                  <Card.Content>5.000 sono a casa</Card.Content>
-                </Card>
-              </Grid.Column>
-              <Grid.Column>
-                <Card>
-                  <Card.Header>Totale</Card.Header>
-                  <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                  <Card.Content>100.000 sono a casa</Card.Content>
-                </Card>
-              </Grid.Column>
+            <Grid
+              textAlign='center' style={{ height: '100vh', backgroundColor: 'white' }}
+            >
+
+              <Grid.Row columns={1}>
+                <Grid.Column>
+                  <Header as='h3'>New Content Awaits</Header>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid columns={2} divided>
+                  <Grid.Column>
+                    <Card>
+                      <Card.Header>Oggi</Card.Header>
+                      <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
+                      <Card.Content>5.000 sono a casa</Card.Content>
+                    </Card>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Card>
+                      <Card.Header>Totale</Card.Header>
+                      <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
+                      <Card.Content>100.000 sono a casa</Card.Content>
+                    </Card>
+                  </Grid.Column>
+                </Grid>
+              </Grid.Row>
+              <Grid.Row>Regioni</Grid.Row>
+              <Grid.Row>
+                <Grid.Column>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                  <Grid.Row>Abruzzo</Grid.Row>
+                </Grid.Column>
+              </Grid.Row>
             </Grid>
-          </Grid.Row>
-          <Grid.Row>Regioni</Grid.Row>
-          <Grid.Row>
-            <Grid.Column>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-              <Grid.Row>Abruzzo</Grid.Row>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+          </Grid.Row></Grid>
       </Sidebar>
       <Sidebar.Pusher>
         <Container>
