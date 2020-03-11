@@ -81,7 +81,7 @@ function App(props: {} & GeolocatedProps) {
       </Sidebar>
       <Sidebar.Pusher>
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
-          <Header textAlign='center'>Nome progetto</Header>
+          <Header textAlign='center'>Siamo a casa, insieme!</Header>
 
           <Dimmer.Dimmable  blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} />
