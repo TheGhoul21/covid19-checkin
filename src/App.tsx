@@ -1,12 +1,14 @@
-import React, { Ref } from 'react';
+import React, { Ref, ChangeEvent } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './Map';
-import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input } from 'semantic-ui-react'
+import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
+import CheckinDimmer from './CheckinDimmer';
 
-function App(props:{} & GeolocatedProps) {
+function App(props: {} & GeolocatedProps) {
   const [visible, setVisible] = React.useState(false);
+  const [active, setActive] = React.useState(true);
   return (
     <Sidebar.Pushable as={Segment}>
       <Sidebar
@@ -21,7 +23,7 @@ function App(props:{} & GeolocatedProps) {
         fluid
 
       >
-        <Grid style={{ height:'100vh', marginTop:'30vh'}}>
+        <Grid style={{ height: '100vh', marginTop: '30vh' }}>
           <Grid.Row style={{}}>
             <Grid
               textAlign='center' style={{ height: '100vh', backgroundColor: 'white' }}
@@ -78,11 +80,27 @@ function App(props:{} & GeolocatedProps) {
           </Grid.Row></Grid>
       </Sidebar>
       <Sidebar.Pusher>
-        <Container style={{ width:'100vw', height:'100vh', overflow:'none'}} >
-          <Header  textAlign='center'>Nome progetto</Header>
-          <Segment><Icon name='home'/> Caterina è a casa a Treviso</Segment>
-          <Segment> <Input icon='searchengin' iconPosition='left' placeholder='Cerca e fai check-in' fluid /></Segment>
-          <Map />
+        <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
+          <Header textAlign='center'>Nome progetto</Header>
+
+          <Dimmer.Dimmable  blurring={true} dimmed={active}>
+            <CheckinDimmer setActive={setActive} active={active} />
+            <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment>
+            <Segment>
+              <Form onSubmit={() => {
+                setActive(true)
+              }}>
+                <Form.Input icon='searchengin' iconPosition='left' placeholder='Cerca e fai check-in' fluid
+
+                  onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+                    console.log(evt.target.value)
+
+                  }}
+                />
+              </Form>
+            </Segment>
+            <Map />
+          </Dimmer.Dimmable>
           <Button fluid onClick={() => setVisible(true)}>Guarda feed</Button>
         </Container>
       </Sidebar.Pusher>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Icon, Segment } from 'semantic-ui-react'
+import { Icon, Segment, Dimmer } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from 'react-geolocated';
 function Map(props: {} & GeolocatedProps) {
 
