@@ -1,10 +1,15 @@
-## Perchè?
+##Perchè?
+Il Covid-19 ci sta facendo vivere qualcosa di nuovo e di temuto, portando ansia e insicurezza. Questo progetto è stato pensato per lanciare un messaggio: "Non sei solo!". Tutti insieme possiamo contribuire ad alleggerire la tensione per trascorrere più serenamente questo periodo.
+Le mappe che riguardano il Covid-19, giustamente, ci aggiornano su decessi, nuovi contagi, mortalità; è per questo abbiamo pensato che sarebbe stato bello avere una mappa alternativa che mostri dati che ci aiutino a farci coraggio e ad allietare la complessa situazione che stiamo vivendo: chi sta a casa e come trascorre il proprio tempo.
+Creiamo un’unica grande casa virtuale! Facendo check-in diventi parte della comunità; facciamo crescere quanto più velocemente possibile il numero di check-in e alleggeriamo questo momento!
+## Come?
+Il progetto è semplice, l’abbiamo creato prima e dopo il lavoro (da casa, ovviamente): inserendo dei semplici dati - nome, email e CAP - registri la tua presenza su insiemeacasa.it. I dati non verranno utilizzati per nessun altro scopo: quando il sito non avrà più ragione d’esistere (speriamo presto) verrà cancellato. Tutto il codice è open source e lo trovi qui; se pensi di poter contribuire aggiungendo o migliorando funzionalità: fai pure!
+## Ringraziamenti
+L’idea è nata al mattino, intorno alle 06:50; alle 07:15 Luca aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi Caterina ci ha aiutato a immaginarlo graficamente e con l’aiuto di Luca e Andrea abbiamo messo insieme quello che mancava. Speriamo possa essere utile in qualche modo!
 
-Il covid ci sta facendo vivere qualcosa di nuovo e di temuto, portando ansia e insicurezza. Questo progetto è stato pensato per lanciare un messaggio "non sei solo!", tutti insieme possiamo allegerire questa situazione e trascorlerla.
+Ciao
+Francesco 
 
-Le mappe che riguardano il Covid-19 (giustamente) ci aggiornano sui decessi, nuovi contaggi, mortalità e per questo abbiamo pensato che sarebbe stato bello veere una mappa dove vengono mostrati dati "positivi": chi sta a casa, come te e me, cosa fare per allietare questa situazione.
-
-Speriamo sia utile!
 
 
 
