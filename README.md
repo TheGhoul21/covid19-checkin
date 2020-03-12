@@ -5,10 +5,10 @@ Creiamo un’unica grande casa virtuale! Facendo check-in diventi parte della co
 ## Come?
 Il progetto è semplice, l’abbiamo creato prima e dopo il lavoro (da casa, ovviamente): inserendo dei semplici dati - nome, email e CAP - registri la tua presenza su insiemeacasa.it. I dati non verranno utilizzati per nessun altro scopo: quando il sito non avrà più ragione d’esistere (speriamo presto) verrà cancellato. Tutto il codice è open source e lo trovi qui; se pensi di poter contribuire aggiungendo o migliorando funzionalità: fai pure!
 ## Ringraziamenti
-L’idea è nata al mattino, intorno alle 06:50; alle 07:15 [Luca](https://www.linkedin.com/in/luca-simonetti/) aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi [Caterina] (https://www.linkedin.com/in/caterina-marzolla-b5a575a3) ci ha aiutato a immaginarlo graficamente e con l’aiuto di [Luca] (https://www.linkedin.com/in/lucalorenzinivittorio/) e [Andrea] (https://www.instagram.com/andreaferraroyo/) abbiamo messo insieme quello che mancava. Speriamo possa essere utile in qualche modo!
+L’idea è nata al mattino, intorno alle 06:50; alle 07:15 [Luca](https://www.linkedin.com/in/luca-simonetti/) aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi [Caterina](https://www.linkedin.com/in/caterina-marzolla-b5a575a3) ci ha aiutato a immaginarlo graficamente e con l’aiuto di [Luca](https://www.linkedin.com/in/lucalorenzinivittorio/) e [Andrea](https://www.instagram.com/andreaferraroyo/) abbiamo messo insieme quello che mancava. Speriamo possa essere utile in qualche modo!
 
 Ciao
-[Francesco] https://www.linkedin.com/in/frastab/
+[Francesco](https://www.linkedin.com/in/frastab/)
 
 
 
