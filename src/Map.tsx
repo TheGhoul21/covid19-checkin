@@ -138,7 +138,7 @@ function Map(props: { currentProvinces:{[key:string]:number},  markers: Array<{ 
         if (props.coords)
             setViewport({
                 width: 400,
-                height: 600,
+                height: 500,
                 latitude: 41.89193,
                 longitude:  12.51133,
                 zoom: 4.4

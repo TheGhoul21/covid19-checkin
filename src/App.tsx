@@ -110,6 +110,9 @@ function App(props: {} & GeolocatedProps) {
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
             <Segment>
+            Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti.
+              </Segment>
+            <Segment>
               <Form onSubmit={() => {
                 // setActive(true)
 
