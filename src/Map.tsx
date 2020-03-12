@@ -132,16 +132,16 @@ const layer: LayerProps = {
 function Map(props: { currentProvinces:{[key:string]:number},  markers: Array<{ name: String, lat: string, long: string, province: string }> } & GeolocatedProps) {
 
 
-    const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 0, longitude: 0, zoom: 16 });
+    const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 0, longitude: 0, zoom: 3 });
 
     React.useEffect(() => {
         if (props.coords)
             setViewport({
                 width: 400,
                 height: 600,
-                latitude: props.coords?.latitude,
-                longitude: props.coords?.longitude,
-                zoom: 16
+                latitude: 41.89193,
+                longitude:  12.51133,
+                zoom: 4.4
             })
     }, [props.coords])
 

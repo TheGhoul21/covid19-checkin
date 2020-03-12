@@ -7,9 +7,9 @@ const axios = require('axios').default;
 interface ICheckinDimmerProps {
     active: boolean,
     setActive: (val: boolean) => any,
-    data: {nome:String, sigla:String, cap:Array<String>},
+    data: { nome: String, sigla: String, cap: Array<String> },
     zipCode: String,
-} 
+}
 
 function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
@@ -21,13 +21,13 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
         setZipCode(props.zipCode)
     }, [props.zipCode]);
 
-    
+
 
     return <Dimmer active={props.active}>
 
         <Grid columns={1}>
             <Grid.Column>
-                <Grid.Row fluid style={{ height: '5vh'}}>
+                <Grid.Row fluid style={{ height: '5vh' }}>
                     <Header textAlign='left' inverted>
 
                         <Icon onClick={() => props.setActive(false)} name='arrow left' />Stai a casa con noi!
@@ -59,12 +59,12 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             cap: zipCode,
                             lat: props.coords?.latitude,
                             long: props.coords?.longitude,
-                            province:props.data.sigla,
-                            city:props.data.nome,
-                            state:'Italy'
+                            province: props.data.sigla,
+                            city: props.data.nome,
+                            state: 'Italy'
                         }).then(() => {
                             alert("ok")
-                        }).catch((err:Error)=>{
+                        }).catch((err: Error) => {
                             console.error(err.message);
                         })
 

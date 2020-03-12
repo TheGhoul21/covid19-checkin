@@ -7,8 +7,9 @@ import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 const comuni = require('./comuni.json');
 
-const regions = comuni.reduce((acc:any, curr:any) => {
-  return ({...acc, [curr.regione.nome]:{...acc[curr.regione.nome], [curr.sigla]:1} })}, {})
+const regions = comuni.reduce((acc: any, curr: any) => {
+  return ({ ...acc, [curr.regione.nome]: { ...acc[curr.regione.nome], [curr.sigla]: 1 } })
+}, {})
 const axios = require('axios').default;
 function App(props: {} & GeolocatedProps) {
   const [visible, setVisible] = React.useState(false);
@@ -19,23 +20,23 @@ function App(props: {} & GeolocatedProps) {
   const [markerInterval, setMarkerInterval] = React.useState<any>();
   React.useEffect(() => {
     setMarkerInterval(setInterval(() => {
-      axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp:any) => {
+      axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
         setMarkers(resp.data);
       })
     }, 5000));
-    return ()=> {
+    return () => {
       clearInterval(markerInterval)
     }
   }, [])
 
   const [zipCode, setZipCode] = React.useState('');
-  const [data, setData] = React.useState<{nome:String, sigla:String, cap:Array<String>}>({nome:'', sigla:'', cap:[]});
+  const [data, setData] = React.useState<{ nome: String, sigla: String, cap: Array<String> }>({ nome: '', sigla: '', cap: [] });
   const [currentProvinces, setCurrentProvinces] = React.useState<{ [key: string]: number }>({});
   const d = new Date();
-  const todayAtMidnight = d.setHours(0,0,0,0);
+  const todayAtMidnight = d.setHours(0, 0, 0, 0);
 
-  const [counters, setCounters] = React.useState([0,0]);
-  
+  const [counters, setCounters] = React.useState([0, 0]);
+
   React.useEffect(() => {
 
     setCounters([markers.filter((item) => {
@@ -90,10 +91,10 @@ function App(props: {} & GeolocatedProps) {
               <Grid.Row>
                 <Grid.Column>
                   <List>
-                    
-                  {Object.keys(regions).sort().map(regionName => <List.Item  onClick={() => {
-                    setCurrentProvinces(regions[regionName])
-                  }}><List.Content >{regionName}</List.Content></List.Item>)}
+
+                    {Object.keys(regions).sort().map(regionName => <List.Item onClick={() => {
+                      setCurrentProvinces(regions[regionName])
+                    }}><List.Content >{regionName}</List.Content></List.Item>)}
 
                   </List>
                 </Grid.Column>
@@ -105,15 +106,15 @@ function App(props: {} & GeolocatedProps) {
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
           <Header textAlign='center'>Siamo a casa, insieme!</Header>
 
-          <Dimmer.Dimmable  blurring={true} dimmed={active}>
+          <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
             <Segment>
               <Form onSubmit={() => {
                 // setActive(true)
 
-                comuni.map((data:{nome:String, cap:Array<String>, sigla:String}) => {
-                  if(data.cap.indexOf(zipCode) != -1) {
+                comuni.map((data: { nome: String, cap: Array<String>, sigla: String }) => {
+                  if (data.cap.indexOf(zipCode) != -1) {
                     setActive(true);
                     setData(data)
                   }
