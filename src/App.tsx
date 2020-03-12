@@ -2,10 +2,13 @@ import React, { Ref, ChangeEvent } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './Map';
-import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form } from 'semantic-ui-react'
+import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 const comuni = require('./comuni.json');
+
+const regions = comuni.reduce((acc:any, curr:any) => {
+  return ({...acc, [curr.regione.nome]:{...acc[curr.regione.nome], [curr.sigla]:1} })}, {})
 const axios = require('axios').default;
 function App(props: {} & GeolocatedProps) {
   const [visible, setVisible] = React.useState(false);
@@ -27,6 +30,18 @@ function App(props: {} & GeolocatedProps) {
 
   const [zipCode, setZipCode] = React.useState('');
   const [data, setData] = React.useState<{nome:String, sigla:String, cap:Array<String>}>({nome:'', sigla:'', cap:[]});
+  const [currentProvinces, setCurrentProvinces] = React.useState<{ [key: string]: number }>({});
+  const d = new Date();
+  const todayAtMidnight = d.setHours(0,0,0,0);
+
+  const [counters, setCounters] = React.useState([0,0]);
+  
+  React.useEffect(() => {
+
+    setCounters([markers.filter((item) => {
+      return item['createdAt'] > todayAtMidnight
+    }).length, markers.length])
+  }, [markers])
 
   return (
     <Sidebar.Pushable as={Segment}>
@@ -59,14 +74,14 @@ function App(props: {} & GeolocatedProps) {
                     <Card>
                       <Card.Header>Oggi</Card.Header>
                       <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                      <Card.Content>5.000 sono a casa</Card.Content>
+                      <Card.Content>{counters[0]} sono a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                   <Grid.Column>
                     <Card>
                       <Card.Header>Totale</Card.Header>
                       <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                      <Card.Content>100.000 sono a casa</Card.Content>
+                      <Card.Content>{counters[1]} sono a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                 </Grid>
@@ -74,25 +89,13 @@ function App(props: {} & GeolocatedProps) {
               <Grid.Row>Regioni</Grid.Row>
               <Grid.Row>
                 <Grid.Column>
-                  <Grid.Row>Abruzzo</Grid.Row>
-                  <Grid.Row>Basilicata</Grid.Row>
-                  <Grid.Row>Calabria</Grid.Row>
-                  <Grid.Row>Campania</Grid.Row>
-                  <Grid.Row>Emilia-Romagna</Grid.Row>
-                  <Grid.Row>Friuli-Venezia Giulia</Grid.Row>
-                  <Grid.Row>Lazio</Grid.Row>
-                  <Grid.Row>Liguria</Grid.Row>
-                  <Grid.Row>Lomnardia</Grid.Row>
-                  <Grid.Row>Marche</Grid.Row>
-                  <Grid.Row>Molise</Grid.Row>
-                  <Grid.Row>Piemonte</Grid.Row>
-                  <Grid.Row>Puglia</Grid.Row>
-                  <Grid.Row>Sardegna</Grid.Row>
-                  <Grid.Row>Sicilia</Grid.Row>
-                  <Grid.Row>Toscana</Grid.Row>
-                  <Grid.Row>Trentino-Alto Adige</Grid.Row>
-                  <Grid.Row>Valle d'Aosta</Grid.Row>
-                  <Grid.Row>Veneto</Grid.Row>
+                  <List>
+                    
+                  {Object.keys(regions).sort().map(regionName => <List.Item  onClick={() => {
+                    setCurrentProvinces(regions[regionName])
+                  }}><List.Content >{regionName}</List.Content></List.Item>)}
+
+                  </List>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -104,7 +107,7 @@ function App(props: {} & GeolocatedProps) {
 
           <Dimmer.Dimmable  blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
-            <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment>
+            {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
             <Segment>
               <Form onSubmit={() => {
                 // setActive(true)
@@ -125,7 +128,7 @@ function App(props: {} & GeolocatedProps) {
                 />
               </Form>
             </Segment>
-            <Map markers={markers} />
+            <Map markers={markers} currentProvinces={currentProvinces} />
           </Dimmer.Dimmable>
           <Button fluid onClick={() => setVisible(true)}>Guarda feed</Button>
         </Container>

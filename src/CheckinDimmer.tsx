@@ -8,7 +8,7 @@ interface ICheckinDimmerProps {
     active: boolean,
     setActive: (val: boolean) => any,
     data: {nome:String, sigla:String, cap:Array<String>},
-    zipCode: String
+    zipCode: String,
 } 
 
 function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
