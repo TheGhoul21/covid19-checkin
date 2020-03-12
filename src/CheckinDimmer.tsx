@@ -46,7 +46,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                 <Grid.Row>
 
 
-                    <Header as='h2'>OPPURE COMPILA I CAMPI QUI SOTTO</Header>
+                    <Header inverted as='h2'>OPPURE COMPILA I CAMPI QUI SOTTO</Header>
                     <Form onSubmit={() => {
                         //console.log(name, email, zipCode, props.coords)
 

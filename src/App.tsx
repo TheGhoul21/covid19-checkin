@@ -16,12 +16,8 @@ function App(props: {} & GeolocatedProps) {
   const [markerInterval, setMarkerInterval] = React.useState<any>();
   React.useEffect(() => {
     setMarkerInterval(setInterval(() => {
-      axios.get('https://checkin-covid19-stage.herokuapp.com/user', {
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:3000',
-        },
-      }).then((data:any) => {
-        console.log(data);
+      axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp:any) => {
+        setMarkers(resp.data);
       })
     }, 5000));
     return ()=> {
@@ -129,7 +125,7 @@ function App(props: {} & GeolocatedProps) {
                 />
               </Form>
             </Segment>
-            <Map />
+            <Map markers={markers} />
           </Dimmer.Dimmable>
           <Button fluid onClick={() => setVisible(true)}>Guarda feed</Button>
         </Container>

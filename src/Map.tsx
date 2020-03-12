@@ -1,8 +1,8 @@
 import * as React from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import { Icon, Segment, Dimmer } from 'semantic-ui-react'
+import { Icon, Segment, Dimmer, Label } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from 'react-geolocated';
-function Map(props: {} & GeolocatedProps) {
+function Map(props: {markers:Array<{name:String, lat:string, long:string}>} & GeolocatedProps) {
 
 
     const [viewport, setViewport] = React.useState({ width:400, height:600, latitude:0, longitude:0, zoom:16});
@@ -27,10 +27,9 @@ function Map(props: {} & GeolocatedProps) {
             onViewportChange={setViewport}
             mapStyle="https://api.maptiler.com/maps/basic/style.json?key=4S1PQcbnY3BJl06SPrhW"
         >
-            <Marker latitude={37.78} longitude={-122.41} offsetLeft={-0} offsetTop={-0}>
-                <Icon color="red" name="map marker" size="big" />
-
-            </Marker>
+            {props.markers && props.markers.map((marker) => <Marker latitude={parseFloat(marker.lat)} longitude={parseFloat(marker.long)} 
+            offsetLeft={0} offsetTop={0}
+            ><Icon name='map marker' color='red' size='big' /><Label>{marker.name} è a casa</Label> </Marker>)}
         </ReactMapGL>
 
     );
