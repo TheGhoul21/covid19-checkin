@@ -61,6 +61,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             long: props.coords?.longitude,
                             province:props.data.sigla,
                             city:props.data.nome,
+                            state:'Italy'
                         }).then(() => {
                             alert("ok")
                         }).catch((err:Error)=>{
