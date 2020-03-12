@@ -18,7 +18,7 @@ function Map(props: {} & GeolocatedProps) {
             })
     }, [props.coords])
 
-    if (!props.coords) return <Segment loading></Segment>
+    //if (!props.coords) return <Segment loading></Segment>
 
 
     return (

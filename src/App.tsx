@@ -8,7 +8,7 @@ import CheckinDimmer from './CheckinDimmer';
 
 function App(props: {} & GeolocatedProps) {
   const [visible, setVisible] = React.useState(false);
-  const [active, setActive] = React.useState(true);
+  const [active, setActive] = React.useState(false);
   return (
     <Sidebar.Pushable as={Segment}>
       <Sidebar
