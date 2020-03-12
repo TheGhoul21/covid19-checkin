@@ -5,10 +5,33 @@ import Map from './Map';
 import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
-
+const comuni = require('./comuni.json');
+const axios = require('axios').default;
 function App(props: {} & GeolocatedProps) {
   const [visible, setVisible] = React.useState(false);
   const [active, setActive] = React.useState(false);
+
+
+  const [markers, setMarkers] = React.useState([]);
+  const [markerInterval, setMarkerInterval] = React.useState<any>();
+  React.useEffect(() => {
+    setMarkerInterval(setInterval(() => {
+      axios.get('https://checkin-covid19-stage.herokuapp.com/user', {
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost:3000',
+        },
+      }).then((data:any) => {
+        console.log(data);
+      })
+    }, 5000));
+    return ()=> {
+      clearInterval(markerInterval)
+    }
+  }, [])
+
+  const [zipCode, setZipCode] = React.useState('');
+  const [data, setData] = React.useState<{nome:String, sigla:String, cap:Array<String>}>({nome:'', sigla:'', cap:[]});
+
   return (
     <Sidebar.Pushable as={Segment}>
       <Sidebar
@@ -84,16 +107,23 @@ function App(props: {} & GeolocatedProps) {
           <Header textAlign='center'>Siamo a casa, insieme!</Header>
 
           <Dimmer.Dimmable  blurring={true} dimmed={active}>
-            <CheckinDimmer setActive={setActive} active={active} />
+            <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment>
             <Segment>
               <Form onSubmit={() => {
-                setActive(true)
+                // setActive(true)
+
+                comuni.map((data:{nome:String, cap:Array<String>, sigla:String}) => {
+                  if(data.cap.indexOf(zipCode) != -1) {
+                    setActive(true);
+                    setData(data)
+                  }
+                })
               }}>
-                <Form.Input icon='searchengin' iconPosition='left' placeholder='Cerca e fai check-in' fluid
+                <Form.Input icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
 
                   onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-                    console.log(evt.target.value)
+                    setZipCode(evt.target.value)
 
                   }}
                 />

@@ -1,20 +1,25 @@
 import * as React from 'react';
 import { Dimmer, Container, Header, Icon, Grid, Divider, Form, FormInput, Label, Loader, Popup } from 'semantic-ui-react';
 import { geolocated, GeolocatedProps } from 'react-geolocated';
+const comuni = require('./comuni.json');
 const axios = require('axios').default;
 
 interface ICheckinDimmerProps {
     active: boolean,
-    setActive: (val: boolean) => any
+    setActive: (val: boolean) => any,
+    data: {nome:String, sigla:String, cap:Array<String>},
+    zipCode: String
 } 
 
 function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
-    const [zipCode, setZipCode] = React.useState('');
+    const [zipCode, setZipCode] = React.useState(props.zipCode);
 
-    
+    React.useEffect(() => {
+        setZipCode(props.zipCode)
+    }, [props.zipCode]);
 
     
 
@@ -43,7 +48,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
                     <Header as='h2'>OPPURE COMPILA I CAMPI QUI SOTTO</Header>
                     <Form onSubmit={() => {
-                        console.log(name, email, zipCode, props.coords)
+                        //console.log(name, email, zipCode, props.coords)
 
                         const url = "https://checkin-covid19-stage.herokuapp.com/user";
                         // name=Luca&email=luca@luca.com&province=Padova&city=Padova&state=Italy&cap=33550&lat=41.666279&long=18.242070
@@ -54,6 +59,8 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             cap: zipCode,
                             lat: props.coords?.latitude,
                             long: props.coords?.longitude,
+                            province:props.data.sigla,
+                            city:props.data.nome,
                         }).then(() => {
                             alert("ok")
                         }).catch((err:Error)=>{
