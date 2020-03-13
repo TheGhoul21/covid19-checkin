@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactMapGL, { Marker, Source, Layer, LayerProps } from 'react-map-gl';
+import ReactMapGL, { Marker, Source, Layer, LayerProps, ContextViewportChangeHandler } from 'react-map-gl';
 import { Icon, Segment, Dimmer, Label } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from 'react-geolocated';
 import { fromJS } from 'immutable';
@@ -132,7 +132,7 @@ const layer: LayerProps = {
 function Map(props: { currentProvinces:{[key:string]:number},  markers: Array<{ name: String, lat: string, long: string, province: string }> } & GeolocatedProps) {
 
 
-    const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 0, longitude: 0, zoom: 3 });
+    const [viewport, setViewport] = React.useState({ width: 400, height: 600,latitude: 41.89193,longitude:  12.51133, zoom: 3 });
 
     React.useEffect(() => {
         if (props.coords)
@@ -167,12 +167,12 @@ function Map(props: { currentProvinces:{[key:string]:number},  markers: Array<{ 
 
     
 
-
-
     return (
         <ReactMapGL
-            {...viewport}
-            onViewportChange={setViewport}
+        {...viewport}
+        width="100vw"
+        height="65vh"
+                onViewportChange={setViewport}
             mapStyle="https://api.maptiler.com/maps/basic/style.json?key=4S1PQcbnY3BJl06SPrhW"
         >
             {geojson && <Source type="geojson" data={geojson}>
