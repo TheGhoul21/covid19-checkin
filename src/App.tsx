@@ -118,7 +118,6 @@ function App(props: {} & GeolocatedProps) {
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
 
           <Header textAlign='center' color='green'>Stiamo a casa, insieme!</Header>
-
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
