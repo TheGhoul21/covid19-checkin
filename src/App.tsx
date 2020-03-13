@@ -2,7 +2,7 @@ import React, { Ref, ChangeEvent } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './Map';
-import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List } from 'semantic-ui-react'
+import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List, Modal } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 const comuni = require('./comuni.json');
@@ -34,6 +34,8 @@ function App(props: {} & GeolocatedProps) {
   const [currentProvinces, setCurrentProvinces] = React.useState<{ [key: string]: number }>({});
   const d = new Date();
   const todayAtMidnight = d.setHours(0, 0, 0, 0);
+
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   const [counters, setCounters] = React.useState([0, 0]);
 
@@ -104,24 +106,34 @@ function App(props: {} & GeolocatedProps) {
       </Sidebar>
       <Sidebar.Pusher>
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
+
           <Header textAlign='center'>Siamo a casa, insieme!</Header>
 
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
             <Segment>
-            Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti.
+              Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti.
               </Segment>
             <Segment>
+
               <Form onSubmit={() => {
                 // setActive(true)
 
-                comuni.map((data: { nome: String, cap: Array<String>, sigla: String }) => {
-                  if (data.cap.indexOf(zipCode) != -1) {
-                    setActive(true);
-                    setData(data)
-                  }
-                })
+                const hasMatch = comuni.filter((data: { nome: String, cap: Array<String>, sigla: String }) => {
+                  return (data.cap.indexOf(zipCode) != -1)
+                }).length > 0
+
+                console.log(hasMatch);
+
+                if (hasMatch) {
+                  setData(data);
+                  setActive(true)
+                } else {
+                  setModalOpen(true);
+                }
+
+                return false;
               }}>
                 <Form.Input icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
 
@@ -130,6 +142,17 @@ function App(props: {} & GeolocatedProps) {
 
                   }}
                 />
+
+                <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
+                  <Modal.Content>
+                    <h3>Errore: Nessun CAP trovato</h3>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='red' onClick={() => setModalOpen(false)} inverted>
+                      <Icon name='checkmark' /> Chiudi
+                    </Button>
+                  </Modal.Actions>
+                </Modal>
               </Form>
             </Segment>
             <Map markers={markers} currentProvinces={currentProvinces} />
