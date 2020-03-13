@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Dimmer, Container, Header, Icon, Grid, Divider, Form, FormInput, Label, Loader, Popup, Modal, Button } from 'semantic-ui-react';
 import { geolocated, GeolocatedProps } from 'react-geolocated';
 const comuni = require('./comuni.json');
+const italy_geo = require('./italy_geo.json');
 const axios = require('axios').default;
 
 interface ICheckinDimmerProps {
@@ -87,12 +88,24 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             return;
                         }
 
+                        const codice = parseInt(data[0].codice);
+                        const coords = {latitude:0, longitude:0};
+                        
+                        for(var i in italy_geo) {
+                            if(italy_geo[i].istat == codice) {
+                                console.log(italy_geo[i].istat, codice)
+                                coords.latitude = italy_geo[i].lat;
+                                coords.longitude = italy_geo[i].lng;
+                                break;
+                            }
+                        }
+
                         axios.post(url, {
                             name,
                             email,
                             cap: zipCode,
-                            lat: props.coords?.latitude,
-                            long: props.coords?.longitude,
+                            lat: coords.latitude,// || props.coords?.latitude,
+                            long: coords.longitude,// || props.coords?.longitude,
                             province: data[0]?.sigla,
                             city: data[0]?.nome,
                             state: 'Italy'
