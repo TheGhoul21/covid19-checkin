@@ -68,23 +68,23 @@ function App(props: {} & GeolocatedProps) {
 
               <Grid.Row columns={1}>
                 <Grid.Column>
-                  <Header as='h3' onClick={() => setVisible(false)}>Feed</Header>
+                  <Header as='h3' onClick={() => setVisible(false)}>Torna alla mappa</Header>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
                 <Grid columns={2} divided>
                   <Grid.Column>
                     <Card>
-                      <Card.Header>Oggi</Card.Header>
+                      <Card.Header>Oggi siamo in</Card.Header>
                       <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                      <Card.Content>{counters[0]} sono a casa</Card.Content>
+                      <Card.Content>{counters[0]}  a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                   <Grid.Column>
                     <Card>
-                      <Card.Header>Totale</Card.Header>
+                      <Card.Header>In totale siamo</Card.Header>
                       <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                      <Card.Content>{counters[1]} sono a casa</Card.Content>
+                      <Card.Content>{counters[1]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                 </Grid>
@@ -156,7 +156,7 @@ function App(props: {} & GeolocatedProps) {
             </Segment>
             <Map markers={markers} currentProvinces={currentProvinces} />
           </Dimmer.Dimmable>
-          <Button fluid onClick={() => setVisible(true)}>Guarda feed</Button>
+          <Button fluid onClick={() => setVisible(true)}>Clicca e guarda in quanti siamo!</Button>
         </Container>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
