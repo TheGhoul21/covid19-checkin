@@ -117,7 +117,7 @@ function App(props: {} & GeolocatedProps) {
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
         <Divider horizontal />
           <Header textAlign='center' color='green'>Stiamo a casa, insieme!</Header>
-         <Label color='green'> <Icon name='home' /> Veronika è a casa insieme a {counters[1]}</Label>
+          <Label textAlign='center' color='green' pointing> <Icon name='home' /> Veronika è a casa</Label>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
