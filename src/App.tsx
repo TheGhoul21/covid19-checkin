@@ -77,7 +77,7 @@ function App(props: {} & GeolocatedProps) {
                     <Card>
                       <Card.Header>Oggi siamo in</Card.Header>
                       <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                      <Card.Content>{counters[0]}  a casa</Card.Content>
+                      <Card.Content>{counters[0]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                   <Grid.Column>
@@ -108,7 +108,6 @@ function App(props: {} & GeolocatedProps) {
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
 
           <Header textAlign='center' color='green'>Stiamo a casa, insieme!</Header>
-
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
