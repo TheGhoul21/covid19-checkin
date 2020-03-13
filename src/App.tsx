@@ -120,14 +120,13 @@ function App(props: {} & GeolocatedProps) {
               <Form onSubmit={() => {
                 // setActive(true)
 
-                const hasMatch = comuni.filter((data: { nome: String, cap: Array<String>, sigla: String }) => {
+                const data = comuni.filter((data: { nome: String, cap: Array<String>, sigla: String }) => {
                   return (data.cap.indexOf(zipCode) != -1)
-                }).length > 0
-
-                console.log(hasMatch);
+                })
+                const hasMatch = data.length > 0
 
                 if (hasMatch) {
-                  setData(data);
+                  setData(data[0]);
                   setActive(true)
                 } else {
                   setModalOpen(true);

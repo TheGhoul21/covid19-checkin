@@ -31,7 +31,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
     const [modalOpen, setModalOpen] = React.useState(false);
     const [modalMessage, setModalMessage] = React.useState('');
-
+console.log(props.data);
 
     return <Dimmer active={props.active}>
 
