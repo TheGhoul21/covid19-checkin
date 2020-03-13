@@ -105,7 +105,7 @@ function App(props: {} & GeolocatedProps) {
           </Grid.Row></Grid>
       </Sidebar>
       <Sidebar.Pusher>
-        <Container style={{ width: '100vw', height: '200vh', overflow: 'none' }} >
+        <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
 
           <Header textAlign='center' color='green'>Stiamo a casa, insieme!</Header>
 
