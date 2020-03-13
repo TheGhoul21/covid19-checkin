@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimmer, Container, Header, Icon, Grid, Divider, Form, FormInput, Label, Loader, Popup } from 'semantic-ui-react';
+import { Dimmer, Container, Header, Icon, Grid, Divider, Form, FormInput, Label, Loader, Popup, Modal, Button } from 'semantic-ui-react';
 import { geolocated, GeolocatedProps } from 'react-geolocated';
 const comuni = require('./comuni.json');
 const axios = require('axios').default;
@@ -11,6 +11,14 @@ interface ICheckinDimmerProps {
     zipCode: String,
 }
 
+function validateEmail(mail:string) 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+  {
+    return (true)
+  }
+    return (false)
+}
 function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
     const [name, setName] = React.useState('');
@@ -21,6 +29,8 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
         setZipCode(props.zipCode)
     }, [props.zipCode]);
 
+    const [modalOpen, setModalOpen] = React.useState(false);
+    const [modalMessage, setModalMessage] = React.useState('');
 
 
     return <Dimmer active={props.active}>
@@ -44,7 +54,16 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                     </ol>
                 </Grid.Row>
                 <Grid.Row>
-
+                <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
+                  <Modal.Content>
+                    <h3>{ modalMessage}</h3>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button color='red' onClick={() => setModalOpen(false)} inverted>
+                      <Icon name='checkmark' /> Chiudi
+                    </Button>
+                  </Modal.Actions>
+                </Modal>
 
                     <Header inverted as='h2'>OPPURE COMPILA I CAMPI QUI SOTTO</Header>
                     <Form onSubmit={() => {
@@ -53,13 +72,24 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                         const url = "https://checkin-covid19-stage.herokuapp.com/user";
                         // name=Luca&email=luca@luca.com&province=Padova&city=Padova&state=Italy&cap=33550&lat=41.666279&long=18.242070
 
+                        if(!validateEmail(email)) {
+
+                            setModalMessage('Email non valida');
+                            setModalOpen(true);
+
+                            return;
+                        } 
+
+                        const province = comuni.filter((data:{cap:Array<String>} )=> data.cap.indexOf(zipCode) >= 0)[0]?.sigla
+                        console.log(props.data.nome);
+
                         axios.post(url, {
                             name,
                             email,
                             cap: zipCode,
                             lat: props.coords?.latitude,
                             long: props.coords?.longitude,
-                            province: props.data.sigla,
+                            province: province,
                             city: props.data.nome,
                             state: 'Italy'
                         }).then(() => {
