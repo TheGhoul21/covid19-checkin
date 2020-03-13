@@ -1,5 +1,6 @@
 import React, { Ref, ChangeEvent } from 'react';
 import logo from './logo.svg';
+import home from './home.jpg'
 import './App.css';
 import Map from './Map';
 import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List, Modal } from 'semantic-ui-react'
@@ -85,7 +86,7 @@ function App(props: {} & GeolocatedProps) {
                   <Grid.Column>
                     <Card>
                       <Card.Header>Oggi siamo in</Card.Header>
-                      <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
+                      <Image src={home} wrapped ui={false} />
                       <Card.Content>{counters[0]}  a casa</Card.Content>
                     </Card>
                   </Grid.Column>
