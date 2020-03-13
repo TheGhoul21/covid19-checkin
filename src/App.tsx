@@ -88,15 +88,15 @@ function App(props: {} & GeolocatedProps) {
                 <Grid columns={2} divided centered >
                   <Grid.Column>
                     <Card centered>
-                      <Card.Header textAlign='center'>Oggi siamo in</Card.Header>
-                      <Image src={home} wrapped ui={false} />
-                      <Card.Content textAlign='center'>{counters[0]}  a casa</Card.Content>
+                      <Card.Header textAlign='center' as='h1'>Oggi siamo in</Card.Header>
+                      {/*<Image src={home} wrapped ui={false} /> */}
+                      <Card.Content textAlign='center'> {counters[0]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                   <Grid.Column>
                     <Card centered>
-                      <Card.Header textAlign='center'>In totale siamo</Card.Header>
-                      <Image src={home} wrapped ui={false} />
+                      <Card.Header textAlign='center' as='h1'>In totale siamo</Card.Header>
+                      {/*<Image src={home} wrapped ui={false} /> */}
                       <Card.Content textAlign='center'>{counters[1]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
@@ -119,7 +119,7 @@ function App(props: {} & GeolocatedProps) {
       <Sidebar.Pusher>
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
         <Divider horizontal />
-          <Header textAlign='center' color='green'>Stiamo a casa, insieme! <p> </p>
+          <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
           <Label textAlign='center' color='green' pointing> <Icon name='home' /> Veronika è a casa</Label></Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
@@ -172,53 +172,72 @@ function App(props: {} & GeolocatedProps) {
           <Button fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo!</Button>
         </Container>
         <Segment>
-        <Divider horizontal />
-        <Grid.Row textAlign="center">
-        <Header textAlign='center' color='green'>Cosa si può fare? </Header>
-        </Grid.Row>
-        <Divider horizontal />
-        <Grid>
-        <Grid.Row columns={4}>
->
-                  <Grid.Column>
-                  <Card>
-                      <Card.Header textAlign='center'>Esercizi Caslinghi</Card.Header>
-                      <Image src={fitness} wrapped ui={false} />
-                      <Card.Content textAlign='center'> 
-                        <Button color='green'> <a href ="https://www.google.it/search?sxsrf=ALeKk00EmlJXKgQ5ZjTkfGFWODnF1Lnu-A%3A1584116257561&ei=IbJrXuzuIYuC1fAPjemkiAY&q=esercizi+da+fare+a+casa&oq=esercizi+da+fare&gs_l=psy-ab.3.0.0i131l4j0j0i131l2j0l3.671448.672907..675570...0.5..0.134.1533.12j4......0....1..gws-wiz.......0i71j35i39j0i131i67j0i67.BqhXKNPyJIM" target="_blank">Fatti ispirare!</a> </Button>
-                        </Card.Content>
-                   </Card>
-                    </Grid.Column>
-                    <Grid.Column>
-                      <Card>
-                      <Card.Header textAlign='center'>Leggi!</Card.Header>
-                      <Image src={book} wrapped ui={false} />
-                      <Card.Content textAlign='center'> 
-                        <Button color='green'> <a href ="https://www.google.com/search?q=libri+da+leggere&oq=libri+da+&aqs=chrome.0.69i59j0j69i57j0l5.1432j0j4&sourceid=chrome&ie=UTF-8" target="_blank">Cercane qualcuna!</a> </Button>
-                        </Card.Content>
-                    </Card>
-                    </Grid.Column>
-                    <Grid.Column>
-                    <Card>
-                      <Card.Header textAlign='center'>Serie TV</Card.Header>
-                      <Image src={movie} wrapped ui={false} />
-                      <Card.Content textAlign='center'> 
-                        <Button color='green'> <a href ="https://www.google.it/search?sxsrf=ALeKk01qWfRDptACJxM_RnQWLmr6CVwHMQ%3A1584116248385&source=hp&ei=GLJrXvWCFYqtrgSy5yQ&q=Serie+TV+da+vedere&oq=Serie+TV+da+vedere&gs_l=psy-ab.3..0i131l5j0i3j0j0i131l2j0.3743.7820..8052...6.0..0.135.1823.19j2......0....1..gws-wiz.....10..35i362i39j35i39.TOE4sBTFtq8&ved=0ahUKEwj17o_y7JfoAhWKlosKHbIzCQAQ4dUDCAg&uact=5" target="_blank">Cercane qualcuna!</a> </Button>
-                        </Card.Content>
-                    </Card>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Card>
-                      <Card.Header textAlign='center'>Tieniti informato</Card.Header>
-                      <Image src={ministero} wrapped ui={false} />
-                      <Card.Content textAlign='center'> 
-                        <Button color='green'> <a href ="http://www.salute.gov.it/nuovocoronavirus" target="_blank">Leggi le novità!</a> </Button>
-                        </Card.Content>
-                    </Card>
-                  </Grid.Column>
-          </Grid.Row>
-                </Grid>
-          </Segment>
+          <Divider horizontal />
+            <Grid.Row textAlign="center">
+              <Header textAlign='center' color='green'>Cosa si può fare a casa? Qualche idea </Header>
+            </Grid.Row>
+          <Divider horizontal />
+          <Card.Group centered>
+        <Card>
+         <Card.Content>
+          <Image
+            floated='right'
+            size='mini'
+            src={fitness}
+          />
+        <Card.Header>Un pò di allenamento</Card.Header>
+        <Card.Meta>Ci si allena anche in casa</Card.Meta>
+        <Card.Description>
+          Hai pensato che potresti toranre in forma<strong>chiuso in casa?</strong>
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+          <Button basic color='green'>
+            <a href="https://www.youtube.com/playlist?list=PLkbcqe_maYrEoRoVSuo5PO_lM4HX8FYLm" target="blank"> Guarda la playlist</a>
+          </Button>
+      </Card.Content>
+    </Card>
+    <Card>
+      <Card.Content>
+        <Image
+          floated='right'
+          size='mini'
+          src={book}
+        />
+        <Card.Header>Qualche libro?</Card.Header>
+        <Card.Meta>Nutriamo la mente</Card.Meta>
+        <Card.Description>
+          Cosa c'è di meglio da fare sul <strong>divano?</strong>
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <Button basic color='green'>
+            <a href="https://www.open.online/2020/03/11/coronavirus-10-libri-da-leggere-durante-la-quarantena/" target="blank"> Cercane un pò</a>
+          </Button>
+      </Card.Content>
+    </Card>
+    <Card>
+      <Card.Content>
+        <Image
+          floated='right'
+          size='mini'
+          src={movie}
+        />
+        <Card.Header>Binge watching</Card.Header>
+        <Card.Meta>E' ora di guardare serie TV!</Card.Meta>
+        <Card.Description>
+          Probabilmente è la prima cosa che hai pensato, e si, <strong>fallo!</strong>
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+      <Button basic color='green'>
+            <a href="https://www.google.it/search?sxsrf=ALeKk009Gi4tpoheTdKqKeOn9my1KtQMVA%3A1584125708787&source=hp&ei=DNdrXrrcLa76qwGnlozQAg&q=serie+tv+da+vedere&oq=serie+TV&gs_l=psy-ab.1.0.35i39j0i131l4j0j0i131l4.1378.2283..3045...1.0..0.91.629.8......0....1..gws-wiz.Ved1WWvePrM" target="blank"> Fatti ispirare</a>
+          </Button>
+      </Card.Content>
+    </Card>
+  </Card.Group>
+
+        </Segment>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
   );
