@@ -11,12 +11,10 @@ interface ICheckinDimmerProps {
     zipCode: String,
 }
 
-function validateEmail(mail:string) 
-{
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-  {
-    return (true)
-  }
+function validateEmail(mail: string) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return (true)
+    }
     return (false)
 }
 function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
@@ -31,7 +29,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
     const [modalOpen, setModalOpen] = React.useState(false);
     const [modalMessage, setModalMessage] = React.useState('');
-console.log(props.data);
+    console.log(props.data);
 
     return <Dimmer active={props.active}>
 
@@ -54,16 +52,16 @@ console.log(props.data);
                     </ol>
                 </Grid.Row>
                 <Grid.Row>
-                <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
-                  <Modal.Content>
-                    <h3>{ modalMessage}</h3>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button color='red' onClick={() => setModalOpen(false)} inverted>
-                      <Icon name='checkmark' /> Chiudi
+                    <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
+                        <Modal.Content>
+                            <h3>{modalMessage}</h3>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button color='red' onClick={() => setModalOpen(false)} inverted>
+                                <Icon name='checkmark' /> Chiudi
                     </Button>
-                  </Modal.Actions>
-                </Modal>
+                        </Modal.Actions>
+                    </Modal>
 
                     <Header inverted as='h2'>OPPURE COMPILA I CAMPI QUI SOTTO</Header>
                     <Form onSubmit={() => {
@@ -72,16 +70,23 @@ console.log(props.data);
                         const url = "https://checkin-covid19-stage.herokuapp.com/user";
                         // name=Luca&email=luca@luca.com&province=Padova&city=Padova&state=Italy&cap=33550&lat=41.666279&long=18.242070
 
-                        if(!validateEmail(email)) {
+                        if (!validateEmail(email)) {
 
                             setModalMessage('Email non valida');
                             setModalOpen(true);
 
                             return;
-                        } 
+                        }
 
-                        const province = comuni.filter((data:{cap:Array<String>} )=> data.cap.indexOf(zipCode) >= 0)[0]?.sigla
-                        console.log(props.data.nome);
+                        const data = comuni.filter((data: { cap: Array<String> }) => data.cap.indexOf(zipCode) >= 0)[0];
+
+                        const hasMatch = data.length > 0
+
+                        if (!hasMatch) {
+                            setModalMessage('CAP non trovato');
+                            setModalOpen(true)
+                            return;
+                        }
 
                         axios.post(url, {
                             name,
@@ -89,8 +94,8 @@ console.log(props.data);
                             cap: zipCode,
                             lat: props.coords?.latitude,
                             long: props.coords?.longitude,
-                            province: province,
-                            city: props.data.nome,
+                            province: data?.sigla,
+                            city: data?.nome,
                             state: 'Italy'
                         }).then(() => {
                             setModalOpen(true);
@@ -104,7 +109,7 @@ console.log(props.data);
                     }}>
                         <Form.Input placeholder="Nome" value={name} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setName(evt.target.value) }} />
                         <Form.Input placeholder="Email" value={email} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setEmail(evt.target.value) }} />
-                        <Form.Input placeholder="CAP" value={zipCode} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setZipCode(evt.target.value) }} />
+                        <Form.Input disabled placeholder="CAP" value={zipCode} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setZipCode(evt.target.value) }} />
                         <Form.Button  >Checkin</Form.Button>
                     </Form>
                 </Grid.Row>
