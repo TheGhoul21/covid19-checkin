@@ -105,15 +105,15 @@ function App(props: {} & GeolocatedProps) {
           </Grid.Row></Grid>
       </Sidebar>
       <Sidebar.Pusher>
-        <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
+        <Container style={{ width: '100vw', height: '200vh', overflow: 'none' }} >
 
-          <Header textAlign='center'>Siamo a casa, insieme!</Header>
+          <Header textAlign='center' color='green'>Stiamo a casa, insieme!</Header>
 
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
             <Segment>
-              Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti.
+              Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti. Facciamo diventare tutta l'italia Verde!
               </Segment>
             <Segment>
 

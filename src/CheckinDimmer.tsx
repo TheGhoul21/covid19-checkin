@@ -58,7 +58,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             <h3>{modalMessage}</h3>
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button color='red' onClick={() => setModalOpen(false)} inverted>
+                            <Button color='green' onClick={() => setModalOpen(false)} inverted>
                                 <Icon name='checkmark' /> Chiudi
                     </Button>
                         </Modal.Actions>
