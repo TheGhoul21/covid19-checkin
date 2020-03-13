@@ -28,6 +28,20 @@ function App(props: {} & GeolocatedProps) {
       clearInterval(markerInterval)
     }
   }, [])
+  const [countersPerRegion, setCountersPerRegion] = React.useState<{[key:string]:number}>({});
+
+  React.useEffect(() => {
+    setCountersPerRegion(markers.reduce((acc:any, curr) => {
+      Object.keys(regions).map(regionName => {
+        if(regions[regionName][curr['province']]) {
+          acc[regionName] = acc[regionName] ? acc[regionName]+1 : 1;
+        }
+      })
+      return acc;
+
+    }, {}));
+
+  }, [markers]);
 
   const [zipCode, setZipCode] = React.useState('');
   const [data, setData] = React.useState<{ nome: String, sigla: String, cap: Array<String> }>({ nome: '', sigla: '', cap: [] });
@@ -96,7 +110,7 @@ function App(props: {} & GeolocatedProps) {
 
                     {Object.keys(regions).sort().map(regionName => <List.Item onClick={() => {
                       setCurrentProvinces(regions[regionName])
-                    }}><List.Content >{regionName}</List.Content></List.Item>)}
+                    }}><List.Content >{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</List.Content></List.Item>)}
 
                   </List>
                 </Grid.Column>
