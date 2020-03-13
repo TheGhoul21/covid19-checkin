@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import home from './home.jpg'
 import './App.css';
 import Map from './Map';
-import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List, Modal } from 'semantic-ui-react'
+import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List, Modal, Divider } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 const comuni = require('./comuni.json');
@@ -70,7 +70,7 @@ function App(props: {} & GeolocatedProps) {
         fluid
 
       >
-        <Grid style={{ height: '100vh', marginTop: '30vh' }}>
+        <Grid style={{ height: '150vh', marginTop: '30vh' }}>
           <Grid.Row style={{}}>
             <Grid
               textAlign='center' style={{ height: '100vh', backgroundColor: 'white' }}
@@ -78,23 +78,23 @@ function App(props: {} & GeolocatedProps) {
 
               <Grid.Row columns={1}>
                 <Grid.Column>
-                  <Header as='h3' onClick={() => setVisible(false)}>Torna alla mappa</Header>
+                  <Header as='h3' onClick={() => setVisible(false)}><Icon name='arrow down' />Torna alla mappa</Header>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
-                <Grid columns={2} divided>
+                <Grid columns={2} divided centered >
                   <Grid.Column>
-                    <Card>
-                      <Card.Header>Oggi siamo in</Card.Header>
+                    <Card centered>
+                      <Card.Header textAlign='center'>Oggi siamo in</Card.Header>
                       <Image src={home} wrapped ui={false} />
-                      <Card.Content>{counters[0]}  a casa</Card.Content>
+                      <Card.Content textAlign='center'>{counters[0]}  a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                   <Grid.Column>
-                    <Card>
-                      <Card.Header>In totale siamo</Card.Header>
-                      <Image src='https://semantic-ui.com/images/avatar/large/elliot.jpg' wrapped ui={false} />
-                      <Card.Content>{counters[1]} a casa</Card.Content>
+                    <Card centered>
+                      <Card.Header textAlign='center'>In totale siamo</Card.Header>
+                      <Image src={home} wrapped ui={false} />
+                      <Card.Content textAlign='center'>{counters[1]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                 </Grid>
@@ -103,7 +103,6 @@ function App(props: {} & GeolocatedProps) {
               <Grid.Row>
                 <Grid.Column>
                   <List>
-
                     {Object.keys(regions).sort().map(regionName => <List.Item onClick={() => {
                       setCurrentProvinces(regions[regionName])
                     }}><List.Content >{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</List.Content></List.Item>)}
@@ -116,14 +115,17 @@ function App(props: {} & GeolocatedProps) {
       </Sidebar>
       <Sidebar.Pusher>
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
-
+        <Divider horizontal />
           <Header textAlign='center' color='green'>Stiamo a casa, insieme!</Header>
+         <Label color='green'> <Icon name='home' /> Veronika è a casa insieme a {counters[1]}</Label>
+          <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
-            {/* <Segment><Icon name='home' /> Caterina è a casa a Treviso</Segment> */}
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti. Facciamo diventare tutta l'italia Verde!
               </Segment>
+              {/*<Segment><Icon name='home' /> user.name è a casa a Treviso</Segment>*/}
+
             <Segment>
 
               <Form onSubmit={() => {
@@ -165,7 +167,7 @@ function App(props: {} & GeolocatedProps) {
             </Segment>
             <Map markers={markers} currentProvinces={currentProvinces} />
           </Dimmer.Dimmable>
-          <Button fluid onClick={() => setVisible(true)}>Clicca e guarda in quanti siamo!</Button>
+          <Button fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo!</Button>
         </Container>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
