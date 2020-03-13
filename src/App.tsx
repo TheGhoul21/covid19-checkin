@@ -56,8 +56,10 @@ function App(props: {} & GeolocatedProps) {
   const [currentCounter, setCurrentCounter] = React.useState(0);
 
   React.useEffect(() => {
-    if (markers.length > 0  && markers[currentCounter]) {
-      console.log(currentCounter, markers[currentCounter]);
+    if(markers.length >0 && currentCounter > markers.length - 1) {
+      setCurrentCounter(0)
+    } else if (markers.length > 0  && markers[currentCounter]) {
+      console.log(currentCounter)
       setCurrentName(markers[currentCounter]['name']);
       setTimeout(() => setCurrentCounter(currentCounter + 1), 3000)
     } 
