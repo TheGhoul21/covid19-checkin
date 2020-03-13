@@ -44,9 +44,11 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                 <Grid.Row>
 
                     <Divider horizontal />
+                    <Header inverted as='h2'>Ecco cosa serve:</Header>
                     <ol>
-                        <li>Inserisci il tuo nome</li>
-                        <li>Inserisci la tua mail (servirà per confermare la partecipazione, non salviamo il dato)</li>
+                        <li>Il tuo nome</li>
+                        <li>La tua mail (servirà per confermare la partecipazione, non salviamo il dato)</li>
+                        <li>Il CAP della tua città</li>
                         {/* <li>Inserisci il CAP così sapremo dove metterti sulla mappa</li> */}
                     </ol>
                 </Grid.Row>
@@ -56,13 +58,13 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             <h3>{modalMessage}</h3>
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button color='red' onClick={() => setModalOpen(false)} inverted>
+                            <Button color='green' onClick={() => setModalOpen(false)} inverted>
                                 <Icon name='checkmark' /> Chiudi
                     </Button>
                         </Modal.Actions>
                     </Modal>
 
-                    <Header inverted as='h2'>OPPURE COMPILA I CAMPI QUI SOTTO</Header>
+                    <Header inverted as='h2'>Inserisci i tuoi dati e partecipa!</Header>
                     <Form onSubmit={() => {
 
                         const url = "https://checkin-covid19-stage.herokuapp.com/user";
