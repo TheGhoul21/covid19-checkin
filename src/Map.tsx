@@ -167,7 +167,7 @@ function Map(props: { currentProvinces:{[key:string]:number},  markers: Array<{ 
         <ReactMapGL
         {...viewport}
         width="100vw"
-        height="65vh"
+        height="50vh"
                 onViewportChange={setViewport}
             mapStyle="https://api.maptiler.com/maps/basic/style.json?key=4S1PQcbnY3BJl06SPrhW"
         >

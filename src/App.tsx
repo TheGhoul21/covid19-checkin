@@ -7,7 +7,7 @@ import fitness from './fitness.png';
 import ministero from './ministero.png';
 import './App.css';
 import Map from './Map';
-import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List, Modal, Divider, CardDescription } from 'semantic-ui-react'
+import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List, Modal, Divider, CardDescription, Sticky, Rail } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 const comuni = require('./comuni.json');
@@ -23,18 +23,22 @@ function App(props: {} & GeolocatedProps) {
 
   const [markers, setMarkers] = React.useState([]);
   React.useEffect(() => {
-      axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
-        setMarkers(resp.data);
-      })
-    
+    axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
+      setMarkers(resp.data.sort((a: any, b: any) => {
+        if(a.createdAt > b.createdAt) return -1;
+        if(a.createdAt < b.createdAt) return 1;
+        return 0;
+      }));
+    })
   }, [])
-  const [countersPerRegion, setCountersPerRegion] = React.useState<{[key:string]:number}>({});
+
+  const [countersPerRegion, setCountersPerRegion] = React.useState<{ [key: string]: number }>({});
 
   React.useEffect(() => {
-    setCountersPerRegion(markers.reduce((acc:any, curr) => {
+    setCountersPerRegion(markers.reduce((acc: any, curr) => {
       Object.keys(regions).map(regionName => {
-        if(regions[regionName][curr['province']]) {
-          acc[regionName] = acc[regionName] ? acc[regionName]+1 : 1;
+        if (regions[regionName][curr['province']]) {
+          acc[regionName] = acc[regionName] ? acc[regionName] + 1 : 1;
         }
       })
       return acc;
@@ -48,6 +52,17 @@ function App(props: {} & GeolocatedProps) {
   const [currentProvinces, setCurrentProvinces] = React.useState<{ [key: string]: number }>({});
   const d = new Date();
   const todayAtMidnight = d.setHours(0, 0, 0, 0);
+  const [currentName, setCurrentName] = React.useState()
+  const [currentCounter, setCurrentCounter] = React.useState(0);
+
+  React.useEffect(() => {
+    if(markers.length >0 && currentCounter > markers.length - 1) {
+      setCurrentCounter(0)
+    } else if (markers.length > 0  && markers[currentCounter]) {
+      setCurrentName(markers[currentCounter]['name']);
+      setTimeout(() => setCurrentCounter(currentCounter + 1), 3000)
+    } 
+  }, [currentCounter, markers])
 
   const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -60,8 +75,13 @@ function App(props: {} & GeolocatedProps) {
     }).length, markers.length])
   }, [markers])
 
-  return (
+  
+
+  return (<div>
+    <Sticky> <Segment inverted style={{ position: "fixed", height: "5vh", zIndex: 99999, top: "95vh", left: 0, width: "100vw" }} vertical> Footer </Segment></Sticky>
     <Sidebar.Pushable as={Segment}>
+
+
       <Sidebar
         as={Container}
         animation='overlay'
@@ -118,16 +138,17 @@ function App(props: {} & GeolocatedProps) {
       </Sidebar>
       <Sidebar.Pusher>
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
-        <Divider horizontal />
+          <Divider horizontal />
           <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
-          <Label textAlign='center' color='green' pointing> <Icon name='home' /> Veronika è a casa</Label></Header>
+          {currentName && <Label textAlign='center' color='green' pointing> <Icon name='home' /> {currentName} è a casa</Label>}
+          </Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti. Facciamo diventare tutta l'italia Verde!
               </Segment>
-              {/*<Segment><Icon name='home' /> user.name è a casa a Treviso</Segment>*/}
+            {/*<Segment><Icon name='home' /> user.name è a casa a Treviso</Segment>*/}
 
             <Segment>
 
@@ -173,73 +194,73 @@ function App(props: {} & GeolocatedProps) {
         </Container>
         <Segment>
           <Divider horizontal />
-            <Grid.Row textAlign="center">
-              <Header textAlign='center' color='green'>Cosa si può fare a casa? Qualche idea </Header>
-            </Grid.Row>
+          <Grid.Row textAlign="center">
+            <Header textAlign='center' color='green'>Cosa si può fare a casa? Qualche idea </Header>
+          </Grid.Row>
           <Divider horizontal />
           <Card.Group centered>
-        <Card>
-         <Card.Content>
-          <Image
-            floated='right'
-            size='mini'
-            src={fitness}
-          />
-        <Card.Header>Un pò di allenamento</Card.Header>
-        <Card.Meta>Ci si allena anche in casa</Card.Meta>
-        <Card.Description>
-          Hai pensato che potresti toranre in forma<strong>chiuso in casa?</strong>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-          <Button basic color='green'>
-            <a href="https://www.youtube.com/playlist?list=PLkbcqe_maYrEoRoVSuo5PO_lM4HX8FYLm" target="blank"> Guarda la playlist</a>
-          </Button>
-      </Card.Content>
-    </Card>
-    <Card>
-      <Card.Content>
-        <Image
-          floated='right'
-          size='mini'
-          src={book}
-        />
-        <Card.Header>Qualche libro?</Card.Header>
-        <Card.Meta>Nutriamo la mente</Card.Meta>
-        <Card.Description>
-          Cosa c'è di meglio da fare sul <strong>divano?</strong>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <Button basic color='green'>
-            <a href="https://www.open.online/2020/03/11/coronavirus-10-libri-da-leggere-durante-la-quarantena/" target="blank"> Cercane un pò</a>
-          </Button>
-      </Card.Content>
-    </Card>
-    <Card>
-      <Card.Content>
-        <Image
-          floated='right'
-          size='mini'
-          src={movie}
-        />
-        <Card.Header>Binge watching</Card.Header>
-        <Card.Meta>E' ora di guardare serie TV!</Card.Meta>
-        <Card.Description>
-          Probabilmente è la prima cosa che hai pensato, e si, <strong>fallo!</strong>
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-      <Button basic color='green'>
-            <a href="https://www.google.it/search?sxsrf=ALeKk009Gi4tpoheTdKqKeOn9my1KtQMVA%3A1584125708787&source=hp&ei=DNdrXrrcLa76qwGnlozQAg&q=serie+tv+da+vedere&oq=serie+TV&gs_l=psy-ab.1.0.35i39j0i131l4j0j0i131l4.1378.2283..3045...1.0..0.91.629.8......0....1..gws-wiz.Ved1WWvePrM" target="blank"> Fatti ispirare</a>
-          </Button>
-      </Card.Content>
-    </Card>
-  </Card.Group>
-
+            <Card>
+              <Card.Content>
+                <Image
+                  floated='right'
+                  size='mini'
+                  src={fitness}
+                />
+                <Card.Header>Un pò di allenamento</Card.Header>
+                <Card.Meta>Ci si allena anche in casa</Card.Meta>
+                <Card.Description>
+                  Hai pensato che potresti toranre in forma<strong>chiuso in casa?</strong>
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Button basic color='green'>
+                  <a href="https://www.youtube.com/playlist?list=PLkbcqe_maYrEoRoVSuo5PO_lM4HX8FYLm" target="blank"> Guarda la playlist</a>
+                </Button>
+              </Card.Content>
+            </Card>
+            <Card>
+              <Card.Content>
+                <Image
+                  floated='right'
+                  size='mini'
+                  src={book}
+                />
+                <Card.Header>Qualche libro?</Card.Header>
+                <Card.Meta>Nutriamo la mente</Card.Meta>
+                <Card.Description>
+                  Cosa c'è di meglio da fare sul <strong>divano?</strong>
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Button basic color='green'>
+                  <a href="https://www.open.online/2020/03/11/coronavirus-10-libri-da-leggere-durante-la-quarantena/" target="blank"> Cercane un pò</a>
+                </Button>
+              </Card.Content>
+            </Card>
+            <Card>
+              <Card.Content>
+                <Image
+                  floated='right'
+                  size='mini'
+                  src={movie}
+                />
+                <Card.Header>Binge watching</Card.Header>
+                <Card.Meta>E' ora di guardare serie TV!</Card.Meta>
+                <Card.Description>
+                  Probabilmente è la prima cosa che hai pensato, e si, <strong>fallo!</strong>
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Button basic color='green'>
+                  <a href="https://www.google.it/search?sxsrf=ALeKk009Gi4tpoheTdKqKeOn9my1KtQMVA%3A1584125708787&source=hp&ei=DNdrXrrcLa76qwGnlozQAg&q=serie+tv+da+vedere&oq=serie+TV&gs_l=psy-ab.1.0.35i39j0i131l4j0j0i131l4.1378.2283..3045...1.0..0.91.629.8......0....1..gws-wiz.Ved1WWvePrM" target="blank"> Fatti ispirare</a>
+                </Button>
+              </Card.Content>
+            </Card>
+          </Card.Group>
         </Segment>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
+  </div>
   );
 }
 
