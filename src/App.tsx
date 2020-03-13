@@ -17,16 +17,11 @@ function App(props: {} & GeolocatedProps) {
 
 
   const [markers, setMarkers] = React.useState([]);
-  const [markerInterval, setMarkerInterval] = React.useState<any>();
   React.useEffect(() => {
-    setMarkerInterval(setInterval(() => {
       axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
         setMarkers(resp.data);
       })
-    }, 5000));
-    return () => {
-      clearInterval(markerInterval)
-    }
+    
   }, [])
   const [countersPerRegion, setCountersPerRegion] = React.useState<{[key:string]:number}>({});
 
