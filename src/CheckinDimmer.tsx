@@ -75,7 +75,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             return;
                         }
 
-                        const data = comuni.filter((data: { cap: Array<String> }) => data.cap.indexOf(zipCode) >= 0)[0];
+                        const data = comuni.filter((data: { cap: Array<String> }) => data.cap.indexOf(zipCode) >= 0);
 
                         const hasMatch = data.length > 0
 
@@ -91,8 +91,8 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             cap: zipCode,
                             lat: props.coords?.latitude,
                             long: props.coords?.longitude,
-                            province: data?.sigla,
-                            city: data?.nome,
+                            province: data[0]?.sigla,
+                            city: data[0]?.nome,
                             state: 'Italy'
                         }).then(() => {
                             setModalOpen(true);
@@ -106,7 +106,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                     }}>
                         <Form.Input placeholder="Nome" value={name} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setName(evt.target.value) }} />
                         <Form.Input placeholder="Email" value={email} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setEmail(evt.target.value) }} />
-                        <Form.Input disabled placeholder="CAP" value={zipCode} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setZipCode(evt.target.value) }} />
+                        <Form.Input placeholder="CAP" value={zipCode} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setZipCode(evt.target.value) }} />
                         <Form.Button  >Checkin</Form.Button>
                     </Form>
                 </Grid.Row>
