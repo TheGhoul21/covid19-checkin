@@ -88,15 +88,15 @@ function App(props: {} & GeolocatedProps) {
                 <Grid columns={2} divided centered >
                   <Grid.Column>
                     <Card centered>
-                      <Card.Header textAlign='center'>Oggi siamo in</Card.Header>
-                      <Image src={home} wrapped ui={false} />
-                      <Card.Content textAlign='center'>{counters[0]}  a casa</Card.Content>
+                      <Card.Header textAlign='center' as='h1'>Oggi siamo in</Card.Header>
+                      {/*<Image src={home} wrapped ui={false} /> */}
+                      <Card.Content textAlign='center'> {counters[0]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
                   <Grid.Column>
                     <Card centered>
-                      <Card.Header textAlign='center'>In totale siamo</Card.Header>
-                      <Image src={home} wrapped ui={false} />
+                      <Card.Header textAlign='center' as='h1'>In totale siamo</Card.Header>
+                      {/*<Image src={home} wrapped ui={false} /> */}
                       <Card.Content textAlign='center'>{counters[1]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
@@ -119,7 +119,7 @@ function App(props: {} & GeolocatedProps) {
       <Sidebar.Pusher>
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
         <Divider horizontal />
-          <Header textAlign='center' color='green'>Stiamo a casa, insieme! <p> </p>
+          <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
           <Label textAlign='center' color='green' pointing> <Icon name='home' /> Veronika è a casa</Label></Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
@@ -174,12 +174,11 @@ function App(props: {} & GeolocatedProps) {
         <Segment>
         <Divider horizontal />
         <Grid.Row textAlign="center">
-        <Header textAlign='center' color='green'>Cosa si può fare? </Header>
+        <Header textAlign='center' color='green'>Cosa si può fare a casa? Qualche idea </Header>
         </Grid.Row>
         <Divider horizontal />
         <Grid>
-        <Grid.Row columns={4}>
->
+        <Grid.Row columns={5}>
                   <Grid.Column>
                   <Card>
                       <Card.Header textAlign='center'>Esercizi Caslinghi</Card.Header>
@@ -194,7 +193,7 @@ function App(props: {} & GeolocatedProps) {
                       <Card.Header textAlign='center'>Leggi!</Card.Header>
                       <Image src={book} wrapped ui={false} />
                       <Card.Content textAlign='center'> 
-                        <Button color='green'> <a href ="https://www.google.com/search?q=libri+da+leggere&oq=libri+da+&aqs=chrome.0.69i59j0j69i57j0l5.1432j0j4&sourceid=chrome&ie=UTF-8" target="_blank">Cercane qualcuna!</a> </Button>
+                        <Button color='green'> <a href ="https://www.google.com/search?q=libri+da+leggere&oq=libri+da+&aqs=chrome.0.69i59j0j69i57j0l5.1432j0j4&sourceid=chrome&ie=UTF-8" target="_blank">Cercali!</a> </Button>
                         </Card.Content>
                     </Card>
                     </Grid.Column>
@@ -212,7 +211,7 @@ function App(props: {} & GeolocatedProps) {
                       <Card.Header textAlign='center'>Tieniti informato</Card.Header>
                       <Image src={ministero} wrapped ui={false} />
                       <Card.Content textAlign='center'> 
-                        <Button color='green'> <a href ="http://www.salute.gov.it/nuovocoronavirus" target="_blank">Leggi le novità!</a> </Button>
+                        <Button color='green'> <a href ="http://www.salute.gov.it/nuovocoronavirus" target="_blank"> Informati</a> </Button>
                         </Card.Content>
                     </Card>
                   </Grid.Column>
