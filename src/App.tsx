@@ -24,10 +24,14 @@ function App(props: {} & GeolocatedProps) {
   const [markers, setMarkers] = React.useState([]);
   React.useEffect(() => {
     axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
-      setMarkers(resp.data);
+      setMarkers(resp.data.sort((a: any, b: any) => {
+        if(a.createdAt > b.createdAt) return -1;
+        if(a.createdAt < b.createdAt) return 1;
+        return 0;
+      }));
     })
-
   }, [])
+
   const [countersPerRegion, setCountersPerRegion] = React.useState<{ [key: string]: number }>({});
 
   React.useEffect(() => {
@@ -48,6 +52,16 @@ function App(props: {} & GeolocatedProps) {
   const [currentProvinces, setCurrentProvinces] = React.useState<{ [key: string]: number }>({});
   const d = new Date();
   const todayAtMidnight = d.setHours(0, 0, 0, 0);
+  const [currentName, setCurrentName] = React.useState()
+  const [currentCounter, setCurrentCounter] = React.useState(0);
+
+  React.useEffect(() => {
+    if (markers.length > 0  && markers[currentCounter]) {
+      console.log(currentCounter, markers[currentCounter]);
+      setCurrentName(markers[currentCounter]['name']);
+      setTimeout(() => setCurrentCounter(currentCounter + 1), 3000)
+    } 
+  }, [currentCounter, markers])
 
   const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -59,6 +73,8 @@ function App(props: {} & GeolocatedProps) {
       return item['createdAt'] > todayAtMidnight
     }).length, markers.length])
   }, [markers])
+
+  
 
   return (<div>
     <Sticky> <Segment inverted style={{ position: "fixed", height: "5vh", zIndex: 99999, top: "95vh", left: 0, width: "100vw" }} vertical> Footer </Segment></Sticky>
@@ -123,7 +139,8 @@ function App(props: {} & GeolocatedProps) {
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
           <Divider horizontal />
           <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
-            <Label textAlign='center' color='green' pointing> <Icon name='home' /> Veronika è a casa</Label></Header>
+          {currentName && <Label textAlign='center' color='green' pointing> <Icon name='home' /> {currentName} è a casa</Label>}
+          </Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
