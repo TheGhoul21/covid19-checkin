@@ -93,9 +93,11 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             city: props.data.nome,
                             state: 'Italy'
                         }).then(() => {
-                            alert("ok")
+                            setModalOpen(true);
+                            setModalMessage('Salvato con successo');
                         }).catch((err: Error) => {
-                            console.error(err.message);
+                            setModalMessage('Errore durante il salvataggio, ritenta.')
+                            setModalOpen(true);
                         })
 
 
