@@ -29,7 +29,6 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
     const [modalOpen, setModalOpen] = React.useState(false);
     const [modalMessage, setModalMessage] = React.useState('');
-    console.log(props.data);
 
     return <Dimmer active={props.active}>
 
@@ -65,10 +64,8 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
                     <Header inverted as='h2'>OPPURE COMPILA I CAMPI QUI SOTTO</Header>
                     <Form onSubmit={() => {
-                        //console.log(name, email, zipCode, props.coords)
 
                         const url = "https://checkin-covid19-stage.herokuapp.com/user";
-                        // name=Luca&email=luca@luca.com&province=Padova&city=Padova&state=Italy&cap=33550&lat=41.666279&long=18.242070
 
                         if (!validateEmail(email)) {
 

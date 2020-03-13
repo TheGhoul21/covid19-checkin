@@ -151,10 +151,6 @@ function Map(props: { currentProvinces:{[key:string]:number},  markers: Array<{ 
     React.useEffect(() => {
 
         const provinces = Object.keys(props.currentProvinces);
-        console.log(provinces,
-            
-            props.markers.filter(({province}) => {
-                return provinces.length == 0  || provinces.indexOf(province) >= 0}));
         const geojson: GeoJSON.FeatureCollection<GeoJSON.Geometry> = {
             type: "FeatureCollection",
             features:
