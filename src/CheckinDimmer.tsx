@@ -111,7 +111,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             state: 'Italy'
                         }).then(() => {
                             setModalOpen(true);
-                            setModalMessage('Salvato con successo');
+                            setModalMessage('Grazie! Abbiamo salvato la tua registrazione, controlla la mail per far apparire il tuo nome sul sito, controlla anche in SPAM.');
                         }).catch((err: Error) => {
                             setModalMessage('Errore durante il salvataggio, ritenta.')
                             setModalOpen(true);

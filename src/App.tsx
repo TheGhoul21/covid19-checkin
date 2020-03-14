@@ -143,7 +143,7 @@ function App(props: {} & GeolocatedProps) {
       <Sidebar.Pusher style={{ overflowY: visible ? 'none' : 'auto', height: '100vh', paddingBottom: '10vh' }}>
         <Container style={{ width: '100vw', overflow: 'none' }} >
           <Divider horizontal />
-          <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme!! <p> </p>
+          <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
             {currentName && <Label textAlign='center' color='green' pointing > <Icon name='home' /> {currentName} è a casa</Label>}
           </Header>
           <Divider horizontal />
@@ -308,8 +308,6 @@ function App(props: {} & GeolocatedProps) {
         <Label as='a' color='black' image>
           <img alt='love' src={love} />
           <Label.Detail>Made with love by</Label.Detail>
-          <Label.Detail><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a>   and </Label.Detail>
-          <Label.Detail><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label.Detail>
         </Label>
         <Label><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a></Label>
         <Label><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label>
