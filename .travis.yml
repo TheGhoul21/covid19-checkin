@@ -8,8 +8,8 @@ branches:
 script:
  - echo "Deploy!!"
 install:
-  - npm install
-  - npm run build
+  - yarn
+  - yarn build
 deploy:
   provider: firebase
   token:
