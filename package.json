@@ -12,10 +12,14 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-map-gl": "^5.2.0",
+    "axios": "^0.19.2",
+    "immutable": "^4.0.0-rc.12",
+    "r-dom": "^2.4.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-geolocated": "^3.0.1",
     "react-map-gl": "^5.2.3",
+    "react-map-gl-heatmap-overlay": "^1.1.4",
     "react-scripts": "3.4.0",
     "semantic-ui-react": "^0.88.2",
     "typescript": "~3.7.2"
@@ -27,7 +31,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-    },
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
