@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimmer, Container, Header, Icon, Grid, Divider, Form, FormInput, Label, Loader, Popup, Modal, Button } from 'semantic-ui-react';
+import { Dimmer, Header, Icon, Grid, Divider, Form, Modal, Button } from 'semantic-ui-react';
 import { geolocated, GeolocatedProps } from 'react-geolocated';
 const comuni = require('./comuni.json');
 const italy_geo = require('./italy_geo.json');
@@ -13,7 +13,7 @@ interface ICheckinDimmerProps {
 }
 
 function validateEmail(mail: string) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
         return (true)
     }
     return (false)
@@ -89,10 +89,10 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                         }
 
                         const codice = parseInt(data[0].codice);
-                        const coords = {latitude:0, longitude:0};
-                        
-                        for(var i in italy_geo) {
-                            if(italy_geo[i].istat == codice) {
+                        const coords = { latitude: 0, longitude: 0 };
+
+                        for (var i in italy_geo) {
+                            if (parseInt(italy_geo[i].istat) === codice) {
                                 console.log(italy_geo[i].istat, codice)
                                 coords.latitude = italy_geo[i].lat;
                                 coords.longitude = italy_geo[i].lng;

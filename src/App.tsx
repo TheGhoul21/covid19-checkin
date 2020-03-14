@@ -1,16 +1,13 @@
-import React, { Ref, ChangeEvent } from 'react';
-import logo from './logo.svg';
-import home from './home.jpg';
+import React, { ChangeEvent } from 'react';
 import movie from './movie.png';
 import book from './book.png';
 import food from './food.png';
 import love from './love.png';
 import pin from './pin.png';
 import fitness from './fitness.png';
-import ministero from './ministero.png';
 import './App.css';
 import Map from './Map';
-import { Feed, Button, Icon, Container, Sidebar, Segment, Menu, Grid, Header, Image, Card, Input, Dimmer, Form, Label, List, Modal, Divider, CardDescription, Sticky, Rail } from 'semantic-ui-react'
+import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 const comuni = require('./comuni.json');
@@ -33,7 +30,7 @@ function App(props: {} & GeolocatedProps) {
         return 0;
       }));
 
-      setTimeout(() => setNextTick(+new Date), 5000);
+      setTimeout(() => setNextTick(+new Date()), 5000);
     })
   }, [nextTick])
 
@@ -45,6 +42,7 @@ function App(props: {} & GeolocatedProps) {
         if (regions[regionName][curr['province']]) {
           acc[regionName] = acc[regionName] ? acc[regionName] + 1 : 1;
         }
+        return 1;
       })
       return acc;
 
@@ -83,7 +81,7 @@ function App(props: {} & GeolocatedProps) {
     setCounters([markers.filter((item) => {
       return item['createdAt'] > todayAtMidnight
     }).length, markers.length])
-  }, [markers])
+  }, [markers, todayAtMidnight])
 
 
 
@@ -163,7 +161,7 @@ function App(props: {} & GeolocatedProps) {
                 // setActive(true)
 
                 const data = comuni.filter((data: { nome: String, cap: Array<String>, sigla: String }) => {
-                  return (data.cap.indexOf(zipCode) != -1)
+                  return (data.cap.indexOf(zipCode) !== -1)
                 })
                 const hasMatch = data.length > 0
 
@@ -308,9 +306,11 @@ function App(props: {} & GeolocatedProps) {
     </Sidebar.Pushable>
     <Sticky>
       <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "91vh", left: 0, width: "100vw" }} vertical>
-        <Label as='a' color='black' image> 
-        Made with love  
-          <img src={love} />
+        <Label as='a' color='black' image>
+          <img alt='love' src={love} />
+          <Label.Detail>Made with love by</Label.Detail>
+          <Label.Detail><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a>   and </Label.Detail>
+          <Label.Detail><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label.Detail>
         </Label>
         <Label><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a></Label>
         <Label><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label>

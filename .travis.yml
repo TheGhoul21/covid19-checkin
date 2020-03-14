@@ -1,13 +1,16 @@
 language: node_js
 node_js:
-  - "7"
+  - "12"
 branches:
   only:
   - master
+  - develop
 script:
  - echo "Deploy!!"
 install:
-  - npm install -g firebase-tools
-after_success:
-  - npm run build
-  - firebase deploy --project covid-19-270712 --token $FIREBASE_TOKEN
+  - yarn
+  - yarn build
+deploy:
+  provider: firebase
+  token:
+    secure: "X0ei7yoip7ap+uzztZo5rx+PbFtkeuNA7UplXv5KmYU9auj0A7FrU/JY6xLSz5g0gXVvt47L7Fhq1xyY3jXhv36R1eURieGA2TnBRD81Ny5z19md9nvYTE2E/t+GbDIEBU9CG65PY36+e7XSDuh8gBEmXhGcEGpskHL8XDXsUHDuaSZAV1t5wBXN+Yv9y4tS4axgmsjxen/t2uxBDJAt2oiinSA/Lu5vToGrhj2jNA5giu6r3EnCND1Zz4/L9y+TpQ/GNPd2fc/PcIfnT+eUP4N8yvQXekdYOBHv9sOdg7yvAGu5tGUtwD55KxoVxRMhoxYHzPkVvKmbduF6ZtYdC1DmRkFSMUp3DidEGpiPssZ6Gvl5tND9xdV30awQXt8cuF3KhQCf0SMak5pI/m46Pg9OCbcEBt15/2QZH+RdYm+16aGiHzL393/wvTr1scKR95lqi1Ni2kBCMQDI6yrE2ZJfprbTEMo/znBuDP4xw3na5mw6CUQC0jAvGKm6auLx5C0pn4PWyFQsaKJU9R/7f/4CcX2s0SsyF0cwfRtzwrwJPbyN92Dm9AoHFjpgJVrUyAnsJ81n4mP7J1mSGtutOTZC9ZDGLcWSDMbfTBydGl/pZTeM3yPQ9UFlGOMeprv1zTTzGCozf0P41goQC3nXpJmj4uV/TY1bwbB8kEIgEiU="
