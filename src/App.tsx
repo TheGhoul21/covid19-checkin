@@ -309,8 +309,6 @@ function App(props: {} & GeolocatedProps) {
         <Label as='a' color='black' image>
           <img alt='love' src={love} />
           <Label.Detail>Made with love by</Label.Detail>
-          <Label.Detail><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a>   and </Label.Detail>
-          <Label.Detail><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label.Detail>
         </Label>
         <Label><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a></Label>
         <Label><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label>
