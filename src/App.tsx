@@ -176,7 +176,7 @@ function App(props: {} & GeolocatedProps) {
 
                 return false;
               }}>
-                <Form.Input icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
+                <Form.Input action="Vai" icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
 
                   onChange={(evt: ChangeEvent<HTMLInputElement>) => {
                     setZipCode(evt.target.value)
