@@ -63,8 +63,13 @@ function App(props: {} & GeolocatedProps) {
     if (markers.length > 0 && currentCounter > markers.length - 1) {
       setCurrentCounter(0)
     } else if (markers.length > 0 && markers[currentCounter]) {
-      setCurrentName(markers[currentCounter]['name']);
-      setTimeout(() => setCurrentCounter(currentCounter + 1), 1500)
+
+      if (markers[currentCounter]['confirmed']) {
+        setCurrentName(markers[currentCounter]['name']);
+        setTimeout(() => setCurrentCounter(currentCounter + 1), 1500)
+      } else {
+        setCurrentCounter(currentCounter + 1);
+      }
     }
   }, [currentCounter, markers])
 
