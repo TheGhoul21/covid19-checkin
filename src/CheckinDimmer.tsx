@@ -10,6 +10,7 @@ interface ICheckinDimmerProps {
     setActive: (val: boolean) => any,
     data: { nome: String, sigla: String, cap: Array<String> },
     zipCode: String,
+    onCheckinSaved: () => any
 }
 
 function validateEmail(mail: string) {
@@ -30,6 +31,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
     const [modalOpen, setModalOpen] = React.useState(false);
     const [modalMessage, setModalMessage] = React.useState('');
+    const [modalAction, setModalAction] = React.useState<() => any>(() => { });
 
     return <Dimmer active={props.active}>
 
@@ -59,7 +61,10 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             <h3>{modalMessage}</h3>
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button color='green' onClick={() => setModalOpen(false)} inverted>
+                            <Button color='green' onClick={() => {
+                                setModalOpen(false);
+                                modalAction && modalAction();
+                            }} inverted>
                                 <Icon name='checkmark' /> Chiudi
                     </Button>
                         </Modal.Actions>
@@ -112,6 +117,9 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                         }).then(() => {
                             setModalOpen(true);
                             setModalMessage('Grazie! Abbiamo salvato la tua registrazione, controlla la mail per far apparire il tuo nome sul sito, controlla anche in SPAM.');
+                            setModalAction(() => {
+                                props.onCheckinSaved();
+                            })
                         }).catch((err: Error) => {
                             setModalMessage('Errore durante il salvataggio, ritenta.')
                             setModalOpen(true);

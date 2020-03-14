@@ -4,13 +4,15 @@ import book from './book.png';
 import food from './food.png';
 import git from './git.png';
 import love from './love.png';
-import pin from './pin.png';
 import fitness from './fitness.png';
 import './App.css';
 import Map from './Map';
-import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky } from 'semantic-ui-react'
+import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky, Popup } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
+import Cookies from 'universal-cookie';
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share'
+import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 
 const regions = comuni.reduce((acc: any, curr: any) => {
@@ -23,6 +25,10 @@ function App(props: {} & GeolocatedProps) {
   const [nextTick, setNextTick] = React.useState(0);
 
   const [markers, setMarkers] = React.useState([]);
+
+  const cookies = new Cookies();
+
+  const COOKIE_NAME = 'Checkin';
   React.useEffect(() => {
     axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
       setMarkers(resp.data.sort((a: any, b: any) => {
@@ -66,7 +72,7 @@ function App(props: {} & GeolocatedProps) {
 
       if (markers[currentCounter]['confirmed']) {
         setCurrentName(markers[currentCounter]['name']);
-        setTimeout(() => setCurrentCounter(currentCounter + 1), 1500)
+        setTimeout(() => setCurrentCounter(currentCounter + 1), 1000)
       } else {
         setCurrentCounter(currentCounter + 1);
       }
@@ -150,7 +156,14 @@ function App(props: {} & GeolocatedProps) {
           </Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
-            <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
+            <CheckinDimmer onCheckinSaved={() => {
+              setActive(false);
+              const tomorrow = new Date();
+              tomorrow.setDate(tomorrow.getDate() + 1)
+              tomorrow.setHours(0, 0, 0, 0)
+              cookies.set(COOKIE_NAME, 1, { path: '/', expires: tomorrow });
+
+            }} setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
               </Segment>
@@ -175,13 +188,15 @@ function App(props: {} & GeolocatedProps) {
 
                 return false;
               }}>
-                <Form.Input action="Vai" icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
+                {!cookies.get(COOKIE_NAME) ?
+                  <Form.Input disabled={cookies.get(COOKIE_NAME)} action="Vai" icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
 
-                  onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-                    setZipCode(evt.target.value)
+                    onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+                      setZipCode(evt.target.value)
 
-                  }}
-                />
+                    }}
+                  /> :
+                  <>Hai già fatto un checkin per oggi torna domani!</>}
                 <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
                   <Modal.Content>
                     <h3>Errore: Nessun CAP trovato</h3>
@@ -214,7 +229,7 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Un pò di allenamento</Card.Header>
                   <Card.Meta>Ci si allena anche in casa</Card.Meta>
                   <Card.Description>
-                  Hai pensato che potresti tornare in forma <strong>chiuso in casa?</strong>
+                    Hai pensato che potresti tornare in forma <strong>chiuso in casa?</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
@@ -233,7 +248,7 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Qualche libro?</Card.Header>
                   <Card.Meta>Nutriamo la mente</Card.Meta>
                   <Card.Description>
-                  Cosa c'è di meglio di leggere sul <strong>divano?</strong>
+                    Cosa c'è di meglio di leggere sul <strong>divano?</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
@@ -296,9 +311,38 @@ function App(props: {} & GeolocatedProps) {
               <Divider horizontal />
               <Header as='h2' color="green">Ringraziamenti</Header>
               <p>
-              L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href=" https://www.linkedin.com/in/luca-simonetti/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto.</p>
+                L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href="https://www.instagram.com/dajeluchino/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto.</p>
               <p> Speriamo possa essere utile in qualche modo, </p>
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
+              <Button.Group>
+                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+                <CopyToClipboard
+                  text={window.location.href}
+                ><Button style={{
+                  width: '50px', height: '50px',
+                  padding: "0px",
+                  cursor: "pointer"
+
+                }} ><Popup trigger={<Icon
+                  style={{
+                    width: '50px', height: '50px',
+                    padding: "0px",
+                    cursor: "pointer",
+                    textAlign: 'center',
+                    display: 'inline'
+                  }}
+
+                  size={'big'} name="linkify" fluid />}
+                  pinned={true}
+                  openOnTriggerClick={true}
+                  openOnTriggerFocus={false}
+                  openOnTriggerMouseEnter={false}
+                  content={'Copiato!'}
+
+                    /></Button>
+                </CopyToClipboard>
+              </Button.Group>
             </Container>
           </Segment>
         </Container>
@@ -310,7 +354,7 @@ function App(props: {} & GeolocatedProps) {
           <img alt='love' src={love} />
           <Label.Detail>Made with love by</Label.Detail>
         </Label>
-        <Label><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a></Label>
+        <Label><a href="https://www.instagram.com/dajeluchino/" target="blank">Luca</a></Label>
         <Label><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label>
         <Label as='a' color='black' image> Open Source
           <img alt='git' src={git} />
