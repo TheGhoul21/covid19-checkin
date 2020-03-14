@@ -215,7 +215,6 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Un pò di allenamento</Card.Header>
                   <Card.Meta>Ci si allena anche in casa</Card.Meta>
                   <Card.Description>
-                    Hai pensato che potresti toranre in forma<strong>chiuso in casa?</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
@@ -234,7 +233,6 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Qualche libro?</Card.Header>
                   <Card.Meta>Nutriamo la mente</Card.Meta>
                   <Card.Description>
-                    Cosa c'è di meglio da fare sul <strong>divano?</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
@@ -297,7 +295,6 @@ function App(props: {} & GeolocatedProps) {
               <Divider horizontal />
               <Header as='h2' color="green">Ringraziamenti</Header>
               <p>
-                L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href=" https://www.linkedin.com/in/luca-simonetti/">Luca</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca</a> per il supporto.</p>
               <p> Speriamo possa essere utile in qualche modo, </p>
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
             </Container>
@@ -308,11 +305,7 @@ function App(props: {} & GeolocatedProps) {
     </Sidebar.Pushable>
     <Sticky>
       <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "91vh", left: 0, width: "100vw" }} vertical>
-        <Label as='a' color='black' image>
           <img src={love} />
-          <Label.Detail>Made with love by</Label.Detail>
-          <Label.Detail><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a>   and </Label.Detail>
-          <Label.Detail><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label.Detail>
         </Label>
         <a href="https://www.iubenda.com/privacy-policy/74415181" title="Privacy Policy " target="blank">Privacy </a>
       </Segment>
