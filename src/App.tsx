@@ -6,11 +6,12 @@ import love from './love.png';
 import fitness from './fitness.png';
 import './App.css';
 import Map from './Map';
-import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky } from 'semantic-ui-react'
+import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky, Popup } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
-
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share'
+import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 
 const regions = comuni.reduce((acc: any, curr: any) => {
@@ -70,7 +71,7 @@ function App(props: {} & GeolocatedProps) {
 
       if (markers[currentCounter]['confirmed']) {
         setCurrentName(markers[currentCounter]['name']);
-        setTimeout(() => setCurrentCounter(currentCounter + 1), 1500)
+        setTimeout(() => setCurrentCounter(currentCounter + 1), 1000)
       } else {
         setCurrentCounter(currentCounter + 1);
       }
@@ -312,6 +313,35 @@ function App(props: {} & GeolocatedProps) {
                 L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href="https://www.instagram.com/dajeluchino/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto.</p>
               <p> Speriamo possa essere utile in qualche modo, </p>
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
+              <Button.Group>
+                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+                <CopyToClipboard
+                  text={window.location.href}
+                ><Button style={{
+                  width: '50px', height: '50px',
+                  padding: "0px",
+                  cursor: "pointer"
+
+                }} ><Popup trigger={<Icon
+                  style={{
+                    width: '50px', height: '50px',
+                    padding: "0px",
+                    cursor: "pointer",
+                    textAlign: 'center',
+                    display: 'inline'
+                  }}
+
+                  size={'big'} name="linkify" fluid />}
+                  pinned={true}
+                  openOnTriggerClick={true}
+                  openOnTriggerFocus={false}
+                  openOnTriggerMouseEnter={false}
+                  content={'Copiato!'}
+
+                    /></Button>
+                </CopyToClipboard>
+              </Button.Group>
             </Container>
           </Segment>
         </Container>
