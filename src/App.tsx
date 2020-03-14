@@ -80,19 +80,7 @@ function App(props: {} & GeolocatedProps) {
   
 
   return (<div>
-    <Sticky> 
-      <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "95vh", left: 0, width: "100vw" }} vertical> 
-      <Label as='a' color='black' image>
-      <img src={love} />
-      <Label.Detail>Made with love by</Label.Detail>
-      <Label.Detail><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a>   and </Label.Detail>
-      <Label.Detail><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label.Detail>
-    </Label> 
-    <a href="https://www.iubenda.com/privacy-policy/74415181" title="Privacy Policy " target="blank">Privacy </a>
-            </Segment>
-    </Sticky>
     <Sidebar.Pushable as={Segment}>
-
 
       <Sidebar
         as={Container}
@@ -106,9 +94,9 @@ function App(props: {} & GeolocatedProps) {
         fluid
 
       >
-        <Grid style={{ height: '150vh', marginTop: '30vh' }}>
+        <Grid style={{ height: '100vh' }}>
           <Grid.Row style={{}}>
-            <Grid textAlign='center' style={{ height: '100vh', backgroundColor: 'white' }}
+            <Grid textAlign='center' style={{ height: '100vh', backgroundColor: 'white', padding: '5vw', paddingBottom:'10vh' }}
             >
 
               <Grid.Row columns={1}>
@@ -203,7 +191,6 @@ function App(props: {} & GeolocatedProps) {
             <Map markers={markers} currentProvinces={currentProvinces} />
           </Dimmer.Dimmable>
           <Button fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo!</Button>
-        </Container>
         <Segment>
           <Divider horizontal />
           <Grid.Row textAlign="center">
@@ -308,8 +295,21 @@ function App(props: {} & GeolocatedProps) {
       <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
     </Container>
          </Segment>
+         </Container>
+        
       </Sidebar.Pusher>
     </Sidebar.Pushable>
+    <Sticky> 
+      <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "91vh", left: 0, width: "100vw" }} vertical> 
+      <Label as='a' color='black' image>
+      <img src={love} />
+      <Label.Detail>Made with love by</Label.Detail>
+      <Label.Detail><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a>   and </Label.Detail>
+      <Label.Detail><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label.Detail>
+    </Label> 
+    <a href="https://www.iubenda.com/privacy-policy/74415181" title="Privacy Policy " target="blank">Privacy </a>
+            </Segment>
+    </Sticky>
   </div>
   );
 }
