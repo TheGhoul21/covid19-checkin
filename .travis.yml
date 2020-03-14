@@ -4,7 +4,6 @@ node_js:
 branches:
   only:
   - master
-  - develop
 script:
  - echo "Deploy!!"
 install:
