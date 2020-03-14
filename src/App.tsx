@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import home from './home.jpg';
 import movie from './movie.png';
 import book from './book.png';
+import food from './food.png';
+import love from './love.png';
 import fitness from './fitness.png';
 import ministero from './ministero.png';
 import './App.css';
@@ -60,7 +62,7 @@ function App(props: {} & GeolocatedProps) {
       setCurrentCounter(0)
     } else if (markers.length > 0  && markers[currentCounter]) {
       setCurrentName(markers[currentCounter]['name']);
-      setTimeout(() => setCurrentCounter(currentCounter + 1), 3000)
+      setTimeout(() => setCurrentCounter(currentCounter + 1), 1500)
     } 
   }, [currentCounter, markers])
 
@@ -78,7 +80,17 @@ function App(props: {} & GeolocatedProps) {
   
 
   return (<div>
-    <Sticky> <Segment inverted style={{ position: "fixed", height: "5vh", zIndex: 99999, top: "95vh", left: 0, width: "100vw" }} vertical> Footer </Segment></Sticky>
+    <Sticky> 
+      <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "95vh", left: 0, width: "100vw" }} vertical> 
+      <Label as='a' color='black' image>
+      <img src={love} />
+      <Label.Detail>Made with love by</Label.Detail>
+      <Label.Detail><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a>   and </Label.Detail>
+      <Label.Detail><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label.Detail>
+    </Label> 
+    <a href="https://www.iubenda.com/privacy-policy/74415181" title="Privacy Policy " target="blank">Privacy </a>
+            </Segment>
+    </Sticky>
     <Sidebar.Pushable as={Segment}>
 
 
@@ -140,13 +152,13 @@ function App(props: {} & GeolocatedProps) {
         <Container style={{ width: '100vw', height: '100vh', overflow: 'none' }} >
           <Divider horizontal />
           <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
-          {currentName && <Label textAlign='center' color='green' pointing> <Icon name='home' /> {currentName} è a casa</Label>}
+          {currentName && <Label textAlign='center' color='green' pointing > <Icon name='home' /> {currentName} è a casa</Label>}
           </Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
             <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
-              Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: non sei l’unico a fare uno sforzo per il bene di tutti. Facciamo diventare tutta l'italia Verde!
+              Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
               </Segment>
             {/*<Segment><Icon name='home' /> user.name è a casa a Treviso</Segment>*/}
 
@@ -256,8 +268,46 @@ function App(props: {} & GeolocatedProps) {
                 </Button>
               </Card.Content>
             </Card>
+            <Card>
+              <Card.Content>
+                <Image
+                  floated='right'
+                  size='mini'
+                  src={food}
+                />
+                <Card.Header>Conosci meglio il cibo!</Card.Header>
+                <Card.Meta>Una collana di video che ti fanno conoscere meglio il cibo</Card.Meta>
+                <Card.Description>
+                  Il canale youtube di Breassani sembra davvero interessante
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Button basic color='green'>
+                  <a href="https://www.youtube.com/user/dariobressanini/videos" target="blank"> Approfondisci</a>
+                </Button>
+              </Card.Content>
+            </Card>
           </Card.Group>
-        </Segment>
+         </Segment>
+         <Segment padded>
+         <Container fluid centered>
+      <Header as='h2' color="green">Perchè?</Header>
+      <p>
+       Il Covid-19 ci sta facendo vivere qualcosa di nuovo e di temuto, portando ansia e insicurezza. Questo progetto è stato pensato per lanciare un messaggio: "Non sei solo!". Tutti insieme possiamo contribuire ad alleggerire la tensione per trascorrere più serenamente questo periodo. Le mappe che riguardano il Covid-19, giustamente, ci aggiornano su decessi, nuovi contagi, mortalità; è per questo abbiamo pensato che sarebbe stato bello avere una mappa alternativa che mostri dati che ci aiutino a farci coraggio e ad allietare la complessa situazione che stiamo vivendo: chi sta a casa e come trascorre il proprio tempo. Creiamo un’unica grande casa virtuale! Facendo check-in diventi parte della comunità; facciamo crescere quanto più velocemente possibile il numero di check-in e alleggeriamo questo momento!
+      </p>
+      <Divider horizontal />
+      <Header as='h2' color="green">Come?</Header>
+      <p>
+      Il progetto è semplice, l’abbiamo creato prima e dopo il lavoro (da casa, ovviamente): inserendo dei semplici dati - nome, email e CAP - registri la tua presenza su insiemeacasa.it. I dati non verranno utilizzati per nessun altro scopo: quando il sito non avrà più ragione d’esistere (speriamo presto) verrà cancellato, ti invieremo una mail per fartelo sapere. Tutto il codice è open source e lo <a href="https://github.com/TheGhoul21/covid19-checkin">trovi qui;</a> se pensi di poter contribuire aggiungendo o migliorando funzionalità: fai pure!
+      </p>
+      <Divider horizontal />
+      <Header as='h2' color="green">Ringraziamenti</Header>
+      <p>
+      L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href=" https://www.linkedin.com/in/luca-simonetti/">Luca</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca</a> per il supporto.</p>
+      <p> Speriamo possa essere utile in qualche modo, </p>
+      <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
+    </Container>
+         </Segment>
       </Sidebar.Pusher>
     </Sidebar.Pushable>
   </div>
