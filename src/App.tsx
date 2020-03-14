@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react';
 import movie from './movie.png';
 import book from './book.png';
 import food from './food.png';
+import git from './git.png';
 import love from './love.png';
 import pin from './pin.png';
 import fitness from './fitness.png';
@@ -311,6 +312,9 @@ function App(props: {} & GeolocatedProps) {
         </Label>
         <Label><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a></Label>
         <Label><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label>
+        <Label as='a' color='black' image> Open Source
+          <img alt='git' src={git} />
+          </Label>
         <a href="https://www.iubenda.com/privacy-policy/74415181" title="Privacy Policy " target="blank">Privacy </a>
       </Segment>
     </Sticky>
