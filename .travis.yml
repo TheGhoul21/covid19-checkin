@@ -10,6 +10,7 @@ script:
 install:
   - yarn
   - yarn build
+  - yarn global add firebase-tools
   - firebase deploy --project covid-19-270712 --token $FIREBASE_TOKEN
 # deploy:
 #   provider: firebase
