@@ -144,7 +144,7 @@ function App(props: {} & GeolocatedProps) {
       <Sidebar.Pusher style={{ overflowY: visible ? 'none' : 'auto', height: '100vh', paddingBottom: '10vh' }}>
         <Container style={{ width: '100vw', overflow: 'none' }} >
           <Divider horizontal />
-          <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme!! <p> </p>
+          <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
             {currentName && <Label textAlign='center' color='green' pointing > <Icon name='home' /> {currentName} è a casa</Label>}
           </Header>
           <Divider horizontal />
