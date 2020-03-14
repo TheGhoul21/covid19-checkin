@@ -9,6 +9,8 @@ import Map from './Map';
 import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky } from 'semantic-ui-react'
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
+import Cookies from 'universal-cookie';
+
 const comuni = require('./comuni.json');
 
 const regions = comuni.reduce((acc: any, curr: any) => {
@@ -21,6 +23,10 @@ function App(props: {} & GeolocatedProps) {
   const [nextTick, setNextTick] = React.useState(0);
 
   const [markers, setMarkers] = React.useState([]);
+
+  const cookies = new Cookies();
+
+  const COOKIE_NAME = 'Checkin';
   React.useEffect(() => {
     axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
       setMarkers(resp.data.sort((a: any, b: any) => {
@@ -148,7 +154,14 @@ function App(props: {} & GeolocatedProps) {
           </Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
-            <CheckinDimmer setActive={setActive} active={active} data={data} zipCode={zipCode} />
+            <CheckinDimmer onCheckinSaved={() => {
+              setActive(false);
+              const tomorrow = new Date();
+              tomorrow.setDate(tomorrow.getDate() + 1)
+              tomorrow.setHours(0, 0, 0, 0)
+              cookies.set(COOKIE_NAME, 1, { path: '/', expires: tomorrow });
+
+            }} setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
               </Segment>
@@ -173,13 +186,15 @@ function App(props: {} & GeolocatedProps) {
 
                 return false;
               }}>
-                <Form.Input action="Vai" icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
+                {!cookies.get(COOKIE_NAME) ?
+                  <Form.Input disabled={cookies.get(COOKIE_NAME)} action="Vai" icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
 
-                  onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-                    setZipCode(evt.target.value)
+                    onChange={(evt: ChangeEvent<HTMLInputElement>) => {
+                      setZipCode(evt.target.value)
 
-                  }}
-                />
+                    }}
+                  /> :
+                  <>Hai già fatto un checkin per oggi torna domani!</>}
                 <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
                   <Modal.Content>
                     <h3>Errore: Nessun CAP trovato</h3>
