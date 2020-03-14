@@ -118,7 +118,6 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             setModalOpen(true);
                             setModalMessage('Grazie! Abbiamo salvato la tua registrazione, controlla la mail per far apparire il tuo nome sul sito, controlla anche in SPAM.');
                             setModalAction(() => {
-                                setModalOpen(false);
                                 props.onCheckinSaved();
                             })
                         }).catch((err: Error) => {
