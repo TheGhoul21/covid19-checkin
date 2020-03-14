@@ -8,6 +8,7 @@ branches:
 script:
  - echo "Deploy!!"
 install:
+  - npm install
   - npm run build
 deploy:
   provider: firebase
