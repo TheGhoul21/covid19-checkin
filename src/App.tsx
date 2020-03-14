@@ -5,6 +5,7 @@ import movie from './movie.png';
 import book from './book.png';
 import food from './food.png';
 import love from './love.png';
+import pin from './pin.png';
 import fitness from './fitness.png';
 import ministero from './ministero.png';
 import './App.css';
@@ -116,7 +117,6 @@ function App(props: {} & GeolocatedProps) {
                   <Grid.Column>
                     <Card centered>
                       <Card.Header textAlign='center' as='h1'>Oggi siamo in</Card.Header>
-                      {/*<Image src={home} wrapped ui={false} /> */}
                       <Card.Content textAlign='center'> {counters[0]} a casa</Card.Content>
                     </Card>
                   </Grid.Column>
@@ -215,6 +215,7 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Un pò di allenamento</Card.Header>
                   <Card.Meta>Ci si allena anche in casa</Card.Meta>
                   <Card.Description>
+                  Hai pensato che potresti tornare in forma <strong>chiuso in casa?</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
@@ -233,6 +234,7 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Qualche libro?</Card.Header>
                   <Card.Meta>Nutriamo la mente</Card.Meta>
                   <Card.Description>
+                  Cosa c'è di meglio di leggere sul <strong>divano?</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
@@ -295,6 +297,7 @@ function App(props: {} & GeolocatedProps) {
               <Divider horizontal />
               <Header as='h2' color="green">Ringraziamenti</Header>
               <p>
+              L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href=" https://www.linkedin.com/in/luca-simonetti/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto.</p>
               <p> Speriamo possa essere utile in qualche modo, </p>
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
             </Container>
@@ -305,8 +308,12 @@ function App(props: {} & GeolocatedProps) {
     </Sidebar.Pushable>
     <Sticky>
       <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "91vh", left: 0, width: "100vw" }} vertical>
+        <Label as='a' color='black' image> 
+        Made with love  
           <img src={love} />
         </Label>
+        <Label><a href="https://www.linkedin.com/in/luca-simonetti/" target="blank">Luca</a></Label>
+        <Label><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label>
         <a href="https://www.iubenda.com/privacy-policy/74415181" title="Privacy Policy " target="blank">Privacy </a>
       </Segment>
     </Sticky>
