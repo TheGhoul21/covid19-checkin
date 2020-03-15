@@ -357,7 +357,7 @@ function App(props: {} & GeolocatedProps) {
         </Label>
         <Label><a href="https://www.instagram.com/dajeluchino/" target="blank">Luca</a></Label>
         <Label><a href="https://www.linkedin.com/in/frastab/" target="blank">Francesco</a></Label>
-        <Label as='a' color='black' image> Open Source
+        <Label as='a' href="https://github.com/TheGhoul21/covid19-checkin" color='black' image> Open Source
           <img alt='git' src={git} />
         </Label>
         <a href="https://www.iubenda.com/privacy-policy/74415181" title="Privacy Policy " target="blank">Privacy </a>
