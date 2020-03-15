@@ -236,12 +236,12 @@ function App(props: {} & GeolocatedProps) {
                   <Button basic color='green'>
                     <a href="https://www.youtube.com/playlist?list=PLkbcqe_maYrEoRoVSuo5PO_lM4HX8FYLm" target="blank"> Guarda la playlist</a>
                   </Button>
-                  <Icon 
+                  {/*<Icon 
                   name='heart outline'
                   color='red' 
                   floated='right' 
                   />
-                  16 
+                  16 */}
                 </Card.Content>
               </Card>
               <Card>
@@ -261,12 +261,12 @@ function App(props: {} & GeolocatedProps) {
                   <Button basic color='green'>
                     <a href="https://www.open.online/2020/03/11/coronavirus-10-libri-da-leggere-durante-la-quarantena/" target="blank"> Cercane un pò</a>
                   </Button>
-                  <Icon 
+                 {/* <Icon 
                   name='heart outline'
                   color='red' 
                   floated='right' 
                   />
-                  16 
+                 16 */}
                 </Card.Content>
               </Card>
               <Card>
@@ -286,12 +286,12 @@ function App(props: {} & GeolocatedProps) {
                   <Button basic color='green'>
                     <a href="https://www.google.it/search?sxsrf=ALeKk009Gi4tpoheTdKqKeOn9my1KtQMVA%3A1584125708787&source=hp&ei=DNdrXrrcLa76qwGnlozQAg&q=serie+tv+da+vedere&oq=serie+TV&gs_l=psy-ab.1.0.35i39j0i131l4j0j0i131l4.1378.2283..3045...1.0..0.91.629.8......0....1..gws-wiz.Ved1WWvePrM" target="blank"> Fatti ispirare</a>
                   </Button>
-                  <Icon 
+                 {/* <Icon 
                   name='heart outline'
                   color='red' 
                   floated='right' 
                   />
-                  16 
+                 16 */}
                 </Card.Content>
               </Card>
               <Card>
@@ -311,12 +311,12 @@ function App(props: {} & GeolocatedProps) {
                   <Button basic color='green'>
                     <a href="https://www.youtube.com/user/dariobressanini/videos" target="blank"> Approfondisci</a>
                   </Button>
-                  <Icon 
+                  {/*<Icon 
                   name='heart outline'
                   color='red' 
                   floated='right' 
                   />
-                  16 
+                  16 */}
                 </Card.Content>
               </Card>
             </Card.Group>

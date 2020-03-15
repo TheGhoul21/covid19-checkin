@@ -53,7 +53,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                     <ol>
                         <li>Il tuo nome</li>
                         <li>La tua mail (servirà per confermare la partecipazione, non salviamo il dato)</li>
-                        <li>Il CAP della tua città</li>
+                        <li>Il CAP, così da mostrare la Città affianco al tuo nome</li>
                         {/* <li>Inserisci il CAP così sapremo dove metterti sulla mappa</li> */}
                     </ol>
                 </Grid.Row>
