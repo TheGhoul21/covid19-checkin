@@ -92,13 +92,13 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
                                         /></Button>
                                 </CopyToClipboard>
+                                <Button color='green' onClick={() => {
+                                    setModalOpen(false);
+                                    modalAction && modalAction();
+                                }} inverted>
+                                    <Icon name='checkmark' /> Chiudi
+                                </Button>
                             </Button.Group>
-                            <Button color='green' onClick={() => {
-                                setModalOpen(false);
-                                modalAction && modalAction();
-                            }} inverted>
-                                <Icon name='checkmark' /> Chiudi
-                    </Button>
                         </Modal.Actions>
                     </Modal>
 
