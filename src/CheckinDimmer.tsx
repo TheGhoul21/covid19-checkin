@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Dimmer, Header, Icon, Grid, Divider, Form, Modal, Button } from 'semantic-ui-react';
+import { Dimmer, Header, Icon, Grid, Divider, Form, Modal, Button, Popup } from 'semantic-ui-react';
 import { geolocated, GeolocatedProps } from 'react-geolocated';
+import { FacebookShareButton, WhatsappShareButton, FacebookIcon, WhatsappIcon } from 'react-share';
+import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 const italy_geo = require('./italy_geo.json');
 const axios = require('axios').default;
@@ -61,6 +63,36 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             <h3>{modalMessage}</h3>
                         </Modal.Content>
                         <Modal.Actions>
+
+                            <Button.Group>
+                                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+                                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+                                <CopyToClipboard
+                                    text={window.location.href}
+                                ><Button style={{
+                                    width: '50px', height: '50px',
+                                    padding: "0px",
+                                    cursor: "pointer"
+
+                                }} ><Popup trigger={<Icon
+                                    style={{
+                                        width: '50px', height: '50px',
+                                        padding: "0px",
+                                        cursor: "pointer",
+                                        textAlign: 'center',
+                                        display: 'inline'
+                                    }}
+
+                                    size={'big'} name="linkify" fluid />}
+                                    pinned={true}
+                                    openOnTriggerClick={true}
+                                    openOnTriggerFocus={false}
+                                    openOnTriggerMouseEnter={false}
+                                    content={'Copiato!'}
+
+                                        /></Button>
+                                </CopyToClipboard>
+                            </Button.Group>
                             <Button color='green' onClick={() => {
                                 setModalOpen(false);
                                 modalAction && modalAction();
