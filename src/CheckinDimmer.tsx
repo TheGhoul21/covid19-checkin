@@ -53,7 +53,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                     <ol>
                         <li>Il tuo nome</li>
                         <li>La tua mail (opzionale) per far far apparire il tuo nome sul sito!</li>
-                        <li>Il CAP della tua città</li>
+                        <li>Il CAP, così da sapere dove mostrare il puntino verede.</li>
                         {/* <li>Inserisci il CAP così sapremo dove metterti sulla mappa</li> */}
                     </ol>
                 </Grid.Row>
@@ -148,7 +148,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                             state: 'Italy'
                         }).then(() => {
                             setModalOpen(true);
-                            setModalMessage('Grazie! Abbiamo salvato la tua registrazione, controlla la mail per far apparire il tuo nome sul sito, controlla anche in SPAM.');
+                            setModalMessage('Grazie! Abbiamo salvato la tua registrazione, controlla la mail per far apparire il tuo nome sul sito, controlla anche in SPAM. Condividi questa pagina con i tuoi amici!');
                             setModalAction(() => {
                                 props.onCheckinSaved();
                             })
