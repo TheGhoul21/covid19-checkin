@@ -160,7 +160,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
                     }}>
                         <Form.Input placeholder="Nome" value={name} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setName(evt.target.value) }} />
-                        <Form.Input placeholder="Email" value={email} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setEmail(evt.target.value) }} />
+                        <Form.Input placeholder="Email (opzionale)" value={email} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setEmail(evt.target.value) }} />
                         <Form.Input placeholder="CAP" value={zipCode} onChange={(evt: React.ChangeEvent<HTMLInputElement>) => { setZipCode(evt.target.value) }} />
                         <Form.Button  >Checkin</Form.Button>
                     </Form>
