@@ -52,7 +52,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
                     <Header inverted as='h2'>Ecco cosa serve:</Header>
                     <ol>
                         <li>Il tuo nome</li>
-                        <li>La tua mail (servirà per confermare la partecipazione, non salviamo il dato)</li>
+                        <li>La tua mail (opzionale) per far far apparire il tuo nome sul sito!</li>
                         <li>Il CAP della tua città</li>
                         {/* <li>Inserisci il CAP così sapremo dove metterti sulla mappa</li> */}
                     </ol>
@@ -107,7 +107,7 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
 
                         const url = "https://checkin-covid19-stage.herokuapp.com/user";
 
-                        if (!validateEmail(email)) {
+                        if (email.trim().length > 0 && !validateEmail(email)) {
 
                             setModalMessage('Email non valida');
                             setModalOpen(true);
