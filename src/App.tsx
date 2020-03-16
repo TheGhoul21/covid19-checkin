@@ -236,6 +236,12 @@ function App(props: {} & GeolocatedProps) {
                   <Button basic color='green'>
                     <a href="https://www.youtube.com/playlist?list=PLkbcqe_maYrEoRoVSuo5PO_lM4HX8FYLm" target="blank"> Guarda la playlist</a>
                   </Button>
+                  {/*<Icon 
+                  name='heart outline'
+                  color='red' 
+                  floated='right' 
+                  />
+                  16 */}
                 </Card.Content>
               </Card>
               <Card>
@@ -255,6 +261,12 @@ function App(props: {} & GeolocatedProps) {
                   <Button basic color='green'>
                     <a href="https://www.open.online/2020/03/11/coronavirus-10-libri-da-leggere-durante-la-quarantena/" target="blank"> Cercane un pò</a>
                   </Button>
+                 {/* <Icon 
+                  name='heart outline'
+                  color='red' 
+                  floated='right' 
+                  />
+                 16 */}
                 </Card.Content>
               </Card>
               <Card>
@@ -274,6 +286,12 @@ function App(props: {} & GeolocatedProps) {
                   <Button basic color='green'>
                     <a href="https://www.google.it/search?sxsrf=ALeKk009Gi4tpoheTdKqKeOn9my1KtQMVA%3A1584125708787&source=hp&ei=DNdrXrrcLa76qwGnlozQAg&q=serie+tv+da+vedere&oq=serie+TV&gs_l=psy-ab.1.0.35i39j0i131l4j0j0i131l4.1378.2283..3045...1.0..0.91.629.8......0....1..gws-wiz.Ved1WWvePrM" target="blank"> Fatti ispirare</a>
                   </Button>
+                 {/* <Icon 
+                  name='heart outline'
+                  color='red' 
+                  floated='right' 
+                  />
+                 16 */}
                 </Card.Content>
               </Card>
               <Card>
@@ -286,13 +304,19 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Conosci meglio il cibo!</Card.Header>
                   <Card.Meta>Una collana di video che ti fanno conoscere meglio il cibo</Card.Meta>
                   <Card.Description>
-                    Il canale youtube di Breassani sembra davvero interessante
+                    Il canale youtube di Bressanini sembra davvero interessante
                 </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                   <Button basic color='green'>
                     <a href="https://www.youtube.com/user/dariobressanini/videos" target="blank"> Approfondisci</a>
                   </Button>
+                  {/*<Icon 
+                  name='heart outline'
+                  color='red' 
+                  floated='right' 
+                  />
+                  16 */}
                 </Card.Content>
               </Card>
             </Card.Group>
@@ -314,6 +338,7 @@ function App(props: {} & GeolocatedProps) {
                 L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href="https://www.instagram.com/dajeluchino/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto.</p>
               <p> Speriamo possa essere utile in qualche modo, </p>
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
+              <Header as='h3'>Condividi con i tuoi amici:</Header>
               <Button.Group>
                 <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
                 <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
