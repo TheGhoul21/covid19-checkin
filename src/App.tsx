@@ -12,7 +12,7 @@ import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, D
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
-import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon, TelegramShareButton, TelegramIcon, LinkedinShareButton, LinkedinButton} from 'react-share'
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon} from 'react-share'
 import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 
