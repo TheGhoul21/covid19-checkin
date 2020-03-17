@@ -12,7 +12,7 @@ import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, D
 import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
-import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share'
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon, TelegramShareButton, TelegramIcon, LinkedinShareButton, LinkedinButton} from 'react-share'
 import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 
@@ -303,7 +303,7 @@ function App(props: {} & GeolocatedProps) {
                 </Card.Content>
                 <Card.Content extra>
                   <Button basic color='green'>
-                    <a href="https://www.open.online/2020/03/11/coronavirus-10-libri-da-leggere-durante-la-quarantena/" target="blank"> Cercane un pò</a>
+                    <a href="https://tg24.sky.it/speciali/libri.html" target="blank"> Cercane un pò</a>
                   </Button>
                  {/* <Icon 
                   name='heart outline'
