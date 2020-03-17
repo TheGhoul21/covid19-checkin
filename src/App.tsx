@@ -373,7 +373,7 @@ function App(props: {} & GeolocatedProps) {
                   <Card.Header>Altro?</Card.Header>
                   <Card.Meta>aiutaci ad inserire altro</Card.Meta>
                   <Card.Description>
-                    se pensi ci sia qualcosa di utile da condividire <strong>scrvimi!</strong>
+                    se pensi ci sia qualcosa di utile da condividire <strong>scrivici!</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
