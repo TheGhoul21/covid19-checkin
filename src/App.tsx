@@ -408,7 +408,35 @@ function App(props: {} & GeolocatedProps) {
               <p> Speriamo possa essere utile in qualche modo, </p>
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
               <Header as='h3'>Condividi con i tuoi amici:</Header>
+              <Button.Group>
+                                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+                                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+                                <CopyToClipboard
+                                    text={window.location.href}
+                                ><Button style={{
+                                    width: '50px', height: '50px',
+                                    padding: "0px",
+                                    cursor: "pointer"
 
+                                }} ><Popup trigger={<Icon
+                                    style={{
+                                        width: '50px', height: '50px',
+                                        padding: "0px",
+                                        cursor: "pointer",
+                                        textAlign: 'center',
+                                        display: 'inline'
+                                    }}
+
+                                    size={'big'} name="linkify" fluid />}
+                                    pinned={true}
+                                    openOnTriggerClick={true}
+                                    openOnTriggerFocus={false}
+                                    openOnTriggerMouseEnter={false}
+                                    content={'Copiato!'}
+
+                                        /></Button>
+                                </CopyToClipboard>
+                            </Button.Group>
             </Container>
           </Segment>
         </Container>
