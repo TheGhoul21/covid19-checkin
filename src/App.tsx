@@ -4,6 +4,7 @@ import book from './book.png';
 import food from './food.png';
 import love from './love.png';
 import git from './git.png';
+import mail from './mail.png';
 import fitness from './fitness.png';
 import './App.css';
 import Map from './Map';
@@ -211,7 +212,50 @@ function App(props: {} & GeolocatedProps) {
             </Segment>
             <Map markers={markers} currentProvinces={currentProvinces} />
           </Dimmer.Dimmable>
-          <Button fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo!</Button>
+          <Button color='green' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
+          <Divider horizontal />
+          <Grid.Row Align ='center'>
+          <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza!" url={window.location.href}><FacebookIcon size={50} round={true}/>
+                <Label as='a' basic pointing='left'>
+                    Condividi
+                  </Label>
+                </FacebookShareButton>
+                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} round={true} />
+                <Label as='a' basic pointing='left'>
+                    Invia!
+                  </Label>
+                </WhatsappShareButton>
+                
+                {/*<CopyToClipboard
+                  text={window.location.href}
+                ><Button style={{
+                  width: '50px', height: '50px',
+                  padding: "0px",
+                  cursor: "pointer"
+                                 
+
+                }} ><Popup trigger={<Icon
+                  style={{
+                    width: '50px', height: '50px',
+                    padding: "0px",
+                    cursor: "pointer",
+                    textAlign: 'center',
+                    display: 'inline'
+                  }}
+
+                  size={'big'} name="linkify" fluid />}
+                  pinned={true}
+                  openOnTriggerClick={true}
+                  openOnTriggerFocus={false}
+                  openOnTriggerMouseEnter={false}
+                  content={'Copiato!'}
+                    />
+                  <Label as='a' basic pointing='left'>
+                   Copia Link
+                  </Label>
+                    </Button>
+                </CopyToClipboard>*/}
+              </Grid.Row>
           <Segment>
             <Divider horizontal />
             <Grid.Row textAlign="center">
@@ -319,6 +363,31 @@ function App(props: {} & GeolocatedProps) {
                   16 */}
                 </Card.Content>
               </Card>
+              <Card>
+                <Card.Content>
+                  <Image
+                    floated='right'
+                    size='mini'
+                    src={mail}
+                  />
+                  <Card.Header>Altro?</Card.Header>
+                  <Card.Meta>aiutaci ad inserire altro</Card.Meta>
+                  <Card.Description>
+                    se pensi ci sia qualcosa di utile da condividire <strong>scrivici!</strong>
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <Button basic color='green'>
+                    <a href="mailto:info@acasainsieme.it" target="blank"> Scrivici!</a>
+                  </Button>
+                  {/*<Icon 
+                  name='heart outline'
+                  color='red' 
+                  floated='right' 
+                  />
+                  16 */}
+                </Card.Content>
+              </Card>
             </Card.Group>
           </Segment>
           <Segment padded>
@@ -340,34 +409,34 @@ function App(props: {} & GeolocatedProps) {
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
               <Header as='h3'>Condividi con i tuoi amici:</Header>
               <Button.Group>
-                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
-                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
-                <CopyToClipboard
-                  text={window.location.href}
-                ><Button style={{
-                  width: '50px', height: '50px',
-                  padding: "0px",
-                  cursor: "pointer"
+                                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+                                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+                                <CopyToClipboard
+                                    text={window.location.href}
+                                ><Button style={{
+                                    width: '50px', height: '50px',
+                                    padding: "0px",
+                                    cursor: "pointer"
 
-                }} ><Popup trigger={<Icon
-                  style={{
-                    width: '50px', height: '50px',
-                    padding: "0px",
-                    cursor: "pointer",
-                    textAlign: 'center',
-                    display: 'inline'
-                  }}
+                                }} ><Popup trigger={<Icon
+                                    style={{
+                                        width: '50px', height: '50px',
+                                        padding: "0px",
+                                        cursor: "pointer",
+                                        textAlign: 'center',
+                                        display: 'inline'
+                                    }}
 
-                  size={'big'} name="linkify" fluid />}
-                  pinned={true}
-                  openOnTriggerClick={true}
-                  openOnTriggerFocus={false}
-                  openOnTriggerMouseEnter={false}
-                  content={'Copiato!'}
+                                    size={'big'} name="linkify" fluid />}
+                                    pinned={true}
+                                    openOnTriggerClick={true}
+                                    openOnTriggerFocus={false}
+                                    openOnTriggerMouseEnter={false}
+                                    content={'Copiato!'}
 
-                    /></Button>
-                </CopyToClipboard>
-              </Button.Group>
+                                        /></Button>
+                                </CopyToClipboard>
+                            </Button.Group>
             </Container>
           </Segment>
         </Container>
