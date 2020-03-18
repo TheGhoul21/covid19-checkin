@@ -11,7 +11,7 @@ import Map from './Map';
 import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky, Popup } from 'semantic-ui-react'
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
-import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon} from 'react-share'
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share'
 import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 
@@ -105,14 +105,14 @@ function App(props: {}) {
         direction='bottom'
         visible={visible}
         fluid
-        style={visible ? {} : { display: 'none' }}
+        style={visible ? { width: '100vw' } : { display: 'none' }}
       >
-        <Grid style={{ height: '100vh' }}>
-          <Grid.Row style={{}}>
-            <Grid textAlign='center' style={{ height: '100vh', padding: '2vh', paddingBottom: '10vh', overflow: 'none', backgroundColor: 'white' }}
+        <Grid style={{ height: '100vh', width: '100vw', zIndex: 99999 }}>
+          <Grid.Row style={{ width: '100vw' }}>
+            <Grid textAlign='center' style={{ height: '100vh', padding: '2vh', width: '100vw', paddingBottom: '10vh', overflow: 'none', backgroundColor: 'white' }}
             >
 
-              <Grid.Row columns={1}>
+              <Grid.Row columns={1} style={{ width: '100vw' }} fluid>
                 <Grid.Column>
                   <Header as='h3' onClick={() => setVisible(false)}><Icon name='arrow down' />Torna alla mappa</Header>
                 </Grid.Column>
@@ -213,19 +213,19 @@ function App(props: {}) {
           </Dimmer.Dimmable>
           <Button color='green' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
           <Divider horizontal />
-          <Grid.Row Align ='center'>
-          <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza!" url={window.location.href}><FacebookIcon size={50} round={true}/>
-                <Label as='a' basic pointing='left'>
-                    Condividi
+          <Grid.Row Align='center'>
+            <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza!" url={window.location.href}><FacebookIcon size={50} round={true} />
+              <Label as='a' basic pointing='left'>
+                Condividi
                   </Label>
-                </FacebookShareButton>
-                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} round={true} />
-                <Label as='a' basic pointing='left'>
-                    Invia!
+            </FacebookShareButton>
+            <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} round={true} />
+              <Label as='a' basic pointing='left'>
+                Invia!
                   </Label>
-                </WhatsappShareButton>
-                
-                {/*<CopyToClipboard
+            </WhatsappShareButton>
+
+            {/*<CopyToClipboard
                   text={window.location.href}
                 ><Button style={{
                   width: '50px', height: '50px',
@@ -254,7 +254,7 @@ function App(props: {}) {
                   </Label>
                     </Button>
                 </CopyToClipboard>*/}
-              </Grid.Row>
+          </Grid.Row>
           <Segment>
             <Divider horizontal />
             <Grid.Row textAlign="center">
@@ -304,7 +304,7 @@ function App(props: {}) {
                   <Button basic color='green'>
                     <a href="https://tg24.sky.it/speciali/libri.html" target="blank"> Cercane un pò</a>
                   </Button>
-                 {/* <Icon 
+                  {/* <Icon 
                   name='heart outline'
                   color='red' 
                   floated='right' 
@@ -329,7 +329,7 @@ function App(props: {}) {
                   <Button basic color='green'>
                     <a href="https://www.google.it/search?sxsrf=ALeKk009Gi4tpoheTdKqKeOn9my1KtQMVA%3A1584125708787&source=hp&ei=DNdrXrrcLa76qwGnlozQAg&q=serie+tv+da+vedere&oq=serie+TV&gs_l=psy-ab.1.0.35i39j0i131l4j0j0i131l4.1378.2283..3045...1.0..0.91.629.8......0....1..gws-wiz.Ved1WWvePrM" target="blank"> Fatti ispirare</a>
                   </Button>
-                 {/* <Icon 
+                  {/* <Icon 
                   name='heart outline'
                   color='red' 
                   floated='right' 
@@ -408,34 +408,34 @@ function App(props: {}) {
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
               <Header as='h3'>Condividi con i tuoi amici:</Header>
               <Button.Group>
-                                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
-                                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
-                                <CopyToClipboard
-                                    text={window.location.href}
-                                ><Button style={{
-                                    width: '50px', height: '50px',
-                                    padding: "0px",
-                                    cursor: "pointer"
+                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+                <CopyToClipboard
+                  text={window.location.href}
+                ><Button style={{
+                  width: '50px', height: '50px',
+                  padding: "0px",
+                  cursor: "pointer"
 
-                                }} ><Popup trigger={<Icon
-                                    style={{
-                                        width: '50px', height: '50px',
-                                        padding: "0px",
-                                        cursor: "pointer",
-                                        textAlign: 'center',
-                                        display: 'inline'
-                                    }}
+                }} ><Popup trigger={<Icon
+                  style={{
+                    width: '50px', height: '50px',
+                    padding: "0px",
+                    cursor: "pointer",
+                    textAlign: 'center',
+                    display: 'inline'
+                  }}
 
-                                    size={'big'} name="linkify" fluid />}
-                                    pinned={true}
-                                    openOnTriggerClick={true}
-                                    openOnTriggerFocus={false}
-                                    openOnTriggerMouseEnter={false}
-                                    content={'Copiato!'}
+                  size={'big'} name="linkify" fluid />}
+                  pinned={true}
+                  openOnTriggerClick={true}
+                  openOnTriggerFocus={false}
+                  openOnTriggerMouseEnter={false}
+                  content={'Copiato!'}
 
-                                        /></Button>
-                                </CopyToClipboard>
-                            </Button.Group>
+                    /></Button>
+                </CopyToClipboard>
+              </Button.Group>
             </Container>
           </Segment>
         </Container>
