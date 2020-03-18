@@ -19,7 +19,6 @@
     "react": "^16.13.0",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.0",
-    "react-geolocated": "^3.0.1",
     "react-map-gl": "^5.2.3",
     "react-map-gl-heatmap-overlay": "^1.1.4",
     "react-scripts": "3.4.0",

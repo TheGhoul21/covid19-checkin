@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Dimmer, Header, Icon, Grid, Divider, Form, Modal, Button, Popup } from 'semantic-ui-react';
-import { geolocated, GeolocatedProps } from 'react-geolocated';
 import { FacebookShareButton, WhatsappShareButton, FacebookIcon, WhatsappIcon } from 'react-share';
 import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
@@ -21,7 +20,7 @@ function validateEmail(mail: string) {
     }
     return (false)
 }
-function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
+function CheckinDimmer(props: ICheckinDimmerProps) {
 
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -172,4 +171,4 @@ function CheckinDimmer(props: ICheckinDimmerProps & GeolocatedProps) {
     </Dimmer>
 }
 
-export default geolocated({})(CheckinDimmer);
+export default CheckinDimmer;

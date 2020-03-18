@@ -9,7 +9,6 @@ import fitness from './fitness.png';
 import './App.css';
 import Map from './Map';
 import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky, Popup } from 'semantic-ui-react'
-import { geolocated, GeolocatedProps } from "react-geolocated";
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon} from 'react-share'
@@ -20,7 +19,7 @@ const regions = comuni.reduce((acc: any, curr: any) => {
   return ({ ...acc, [curr.regione.nome]: { ...acc[curr.regione.nome], [curr.sigla]: 1 } })
 }, {})
 const axios = require('axios').default;
-function App(props: {} & GeolocatedProps) {
+function App(props: {}) {
   const [visible, setVisible] = React.useState(false);
   const [active, setActive] = React.useState(false);
   const [nextTick, setNextTick] = React.useState(0);
@@ -461,4 +460,4 @@ function App(props: {} & GeolocatedProps) {
   );
 }
 
-export default geolocated({})(App);
+export default App;
