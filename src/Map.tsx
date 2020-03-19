@@ -1,6 +1,5 @@
 import * as React from 'react';
 import ReactMapGL, { Source, Layer, LayerProps, } from 'react-map-gl';
-import { geolocated, GeolocatedProps } from 'react-geolocated';
 
 export const heatmapLayer: LayerProps = {
     'id': 'earthquakes-heat',
@@ -123,21 +122,10 @@ const layer: LayerProps = {
 
 
 
-function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<{ name: String, lat: string, long: string, province: string }> } & GeolocatedProps) {
+function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<{ name: String, lat: string, long: string, province: string }> }) {
 
 
     const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 41.89193, longitude: 12.51133, zoom: 3 });
-
-    React.useEffect(() => {
-        if (props.coords)
-            setViewport({
-                width: 400,
-                height: 500,
-                latitude: 41.89193,
-                longitude: 12.51133,
-                zoom: 4.4
-            })
-    }, [props.coords])
 
     //if (!props.coords) return <Segment loading></Segment>
     const [geojson, setGeojson] = React.useState<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
@@ -174,4 +162,4 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
     );
 }
 
-export default geolocated({})(Map);
+export default Map;

@@ -64,6 +64,24 @@ function App(props: {}) {
   const todayAtMidnight = d.setHours(0, 0, 0, 0);
   const [currentName, setCurrentName] = React.useState()
   const [currentCounter, setCurrentCounter] = React.useState(0);
+  const [currentRegion, setCurrentRegion] = React.useState<string | null>(null);
+
+
+  const renderRegion = (regionName: string) => <List.Item
+    onClick={() => {
+
+      if (currentRegion === regionName) {
+        setCurrentProvinces({});
+        setCurrentRegion(null);
+      } else {
+        setCurrentRegion(regionName)
+        setCurrentProvinces(regions[regionName])
+      }
+
+      setVisible(false);
+    }}>
+
+    <List.Content >{regionName === currentRegion ? <Icon name='triangle right' /> : null}{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</List.Content></List.Item>
 
   React.useEffect(() => {
     if (markers.length > 0 && currentCounter > markers.length - 1) {
@@ -135,12 +153,18 @@ function App(props: {}) {
                 </Grid>
               </Grid.Row>
               <Grid.Row>Regioni</Grid.Row>
-              <Grid.Row>
+              <Grid.Row columns={2}>
                 <Grid.Column>
+
                   <List>
-                    {Object.keys(regions).sort().map(regionName => <List.Item onClick={() => {
-                      setCurrentProvinces(regions[regionName])
-                    }}><List.Content >{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</List.Content></List.Item>)}
+                    {Object.keys(regions).slice(0, 10).sort().map(regionName => renderRegion(regionName))}
+
+                  </List>
+                </Grid.Column>
+                <Grid.Column>
+
+                  <List>
+                    {Object.keys(regions).slice(10).sort().map(regionName => renderRegion(regionName))}
 
                   </List>
                 </Grid.Column>
