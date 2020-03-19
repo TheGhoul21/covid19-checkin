@@ -8,7 +8,7 @@ import mail from './mail.png';
 import fitness from './fitness.png';
 import './App.css';
 import Map from './Map';
-import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky, Popup } from 'semantic-ui-react'
+import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, Modal, Divider, Sticky, Popup, Statistic } from 'semantic-ui-react'
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share'
@@ -64,6 +64,23 @@ function App(props: {}) {
   const todayAtMidnight = d.setHours(0, 0, 0, 0);
   const [currentName, setCurrentName] = React.useState()
   const [currentCounter, setCurrentCounter] = React.useState(0);
+  const [currentRegion, setCurrentRegion] = React.useState<string | null>(null);
+
+  const renderRegion = (regionName: string) => <Button
+    active={regionName === currentRegion}
+    onClick={() => {
+
+      if (currentRegion === regionName) {
+        setCurrentProvinces({});
+        setCurrentRegion(null);
+      } else {
+        setCurrentRegion(regionName)
+        setCurrentProvinces(regions[regionName])
+      }
+
+      setVisible(false);
+    }}>
+    {countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</Button>
 
   React.useEffect(() => {
     if (markers.length > 0 && currentCounter > markers.length - 1) {
@@ -119,30 +136,35 @@ function App(props: {}) {
               </Grid.Row>
               <Grid.Row>
                 <Grid columns={2} divided centered >
-                  <Grid.Column>
-                    <Card centered>
-                      <Card.Header textAlign='center' as='h1'>Oggi siamo in</Card.Header>
-                      <Card.Content textAlign='center'> {counters[0]} a casa</Card.Content>
-                    </Card>
+                  <Grid.Column textAlign='center'>
+                    <Statistic>
+                      <Statistic.Value>
+                        {counters[0]}
+                      </Statistic.Value>
+                      <Statistic.Label>a casa oggi</Statistic.Label>
+                    </Statistic>
                   </Grid.Column>
-                  <Grid.Column>
-                    <Card centered>
-                      <Card.Header textAlign='center' as='h1'>In totale siamo</Card.Header>
-                      {/*<Image src={home} wrapped ui={false} /> */}
-                      <Card.Content textAlign='center'>{counters[1]} a casa</Card.Content>
-                    </Card>
+                  <Grid.Column textAlign='center'>
+                    <Statistic>
+                      <Statistic.Value>
+                        {counters[1]}
+                      </Statistic.Value>
+                      <Statistic.Label>a casa in totale</Statistic.Label>
+                    </Statistic>
                   </Grid.Column>
                 </Grid>
               </Grid.Row>
-              <Grid.Row>Regioni</Grid.Row>
-              <Grid.Row>
+              <Grid.Row><strong>Regioni </strong>  (clicca su una regione per evidenziarla) </Grid.Row>
+              <Grid.Row columns={2}>
                 <Grid.Column>
-                  <List>
-                    {Object.keys(regions).sort().map(regionName => <List.Item onClick={() => {
-                      setCurrentProvinces(regions[regionName])
-                    }}><List.Content >{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</List.Content></List.Item>)}
-
-                  </List>
+                  <Button.Group vertical>
+                    {Object.keys(regions).slice(0, 10).sort().map(regionName => renderRegion(regionName))}
+                  </Button.Group>
+                </Grid.Column>
+                <Grid.Column>
+                  <Button.Group vertical>
+                    {Object.keys(regions).slice(10).sort().map(regionName => renderRegion(regionName))}
+                  </Button.Group>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -189,7 +211,7 @@ function App(props: {}) {
                 return false;
               }}>
                 {!cookies.get(COOKIE_NAME) ?
-                  <Form.Input disabled={cookies.get(COOKIE_NAME)} action="Vai" icon='searchengin' iconPosition='left' placeholder='Cerca CAP e fai check-in' fluid
+                  <Form.Input disabled={cookies.get(COOKIE_NAME)} action="Fai Check-in" icon='searchengin' iconPosition='left' placeholder='Cerca CAP' fluid
 
                     onChange={(evt: ChangeEvent<HTMLInputElement>) => {
                       setZipCode(evt.target.value)
