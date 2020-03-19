@@ -142,16 +142,13 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
         setGeojson(geojson)
 
     }, [props.markers, props.currentProvinces])
-
-
-
     return (
         <ReactMapGL
             {...viewport}
             width="100vw"
             height="50vh"
             onViewportChange={setViewport}
-            mapStyle="https://api.maptiler.com/maps/basic/style.json?key=4S1PQcbnY3BJl06SPrhW"
+            mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
         >
             {geojson && <Source type="geojson" data={geojson}>
                 <Layer {...heatmapLayer} />
