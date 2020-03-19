@@ -8,7 +8,7 @@ import mail from './mail.png';
 import fitness from './fitness.png';
 import './App.css';
 import Map from './Map';
-import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, List, Modal, Divider, Sticky, Popup, Statistic } from 'semantic-ui-react'
+import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, Modal, Divider, Sticky, Popup, Statistic } from 'semantic-ui-react'
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share'
