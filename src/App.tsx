@@ -66,8 +66,8 @@ function App(props: {}) {
   const [currentCounter, setCurrentCounter] = React.useState(0);
   const [currentRegion, setCurrentRegion] = React.useState<string | null>(null);
 
-
-  const renderRegion = (regionName: string) => <List.Item
+  const renderRegion = (regionName: string) => <Button
+    active={regionName === currentRegion}
     onClick={() => {
 
       if (currentRegion === regionName) {
@@ -80,8 +80,7 @@ function App(props: {}) {
 
       setVisible(false);
     }}>
-
-    <List.Content >{regionName === currentRegion ? <Icon name='triangle right' /> : null}{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</List.Content></List.Item>
+    {countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</Button>
 
   React.useEffect(() => {
     if (markers.length > 0 && currentCounter > markers.length - 1) {
@@ -138,17 +137,17 @@ function App(props: {}) {
               <Grid.Row>
                 <Grid columns={2} divided centered >
                   <Grid.Column textAlign='center'>
-                  <Statistic>
-                    <Statistic.Value>
-                      {counters[0]}
+                    <Statistic>
+                      <Statistic.Value>
+                        {counters[0]}
                       </Statistic.Value>
                       <Statistic.Label>a casa oggi</Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                   <Grid.Column textAlign='center'>
-                  <Statistic>
-                    <Statistic.Value>
-                      {counters[1]}
+                    <Statistic>
+                      <Statistic.Value>
+                        {counters[1]}
                       </Statistic.Value>
                       <Statistic.Label>a casa in totale</Statistic.Label>
                     </Statistic>
@@ -158,22 +157,14 @@ function App(props: {}) {
               <Grid.Row><strong>Regioni </strong>  (clicca su una regione per evidenziarla) </Grid.Row>
               <Grid.Row columns={2}>
                 <Grid.Column>
-                  <List>
-                    <Button.Group vertical>
-                    {Object.keys(regions).slice(0, 10).sort().map(regionName => <Button onClick={(renderRegion) => {
-                      setCurrentProvinces(regions[regionName])
-                    }}>{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</Button>)}
-                    </Button.Group>
-                  </List>
+                  <Button.Group vertical>
+                    {Object.keys(regions).slice(0, 10).sort().map(regionName => renderRegion(regionName))}
+                  </Button.Group>
                 </Grid.Column>
                 <Grid.Column>
-                  <List>
-                    <Button.Group vertical>
-                    {Object.keys(regions).slice(10).sort().map(regionName => <Button onClick={(renderRegion) => {
-                      setCurrentProvinces(regions[regionName])
-                    }}>{countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</Button>)}
-                    </Button.Group>
-                  </List>
+                  <Button.Group vertical>
+                    {Object.keys(regions).slice(10).sort().map(regionName => renderRegion(regionName))}
+                  </Button.Group>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
