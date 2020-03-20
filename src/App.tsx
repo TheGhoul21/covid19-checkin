@@ -1,5 +1,4 @@
 import React, { ChangeEvent } from 'react';
-import movie from './movie.png';
 import book from './book.png';
 import food from './food.png';
 import love from './love.png';
@@ -174,7 +173,7 @@ function App(props: {}) {
       <Sidebar.Pusher style={{ overflowY: visible ? 'none' : 'auto', height: '100vh', paddingBottom: '10vh' }}>
         <Container style={{ width: '100vw', overflow: 'none' }} >
           <Divider horizontal />
-          <Header textAlign='center' color='green' as='h1'>A casa, insieme! 
+          <Header textAlign='center' color='green' as='h1'>A casa, insieme!
             {currentName && <Label textAlign='center' color='green' pointing='left' > <Icon name='home' /> {currentName} è a casa</Label>}
           </Header>
           <Divider horizontal />
@@ -188,7 +187,7 @@ function App(props: {}) {
 
             }} setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
-            <Progress progress='value' value={counters[1]} total={10000} label='Arriviamo a 10.000 entro il 22 Marzo' active color = 'green' />
+              <Progress progress='value' value={counters[1]} total={10000} label='Arriviamo a 10.000 entro il 22 Marzo' active color='green' />
             </Segment>
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
@@ -234,7 +233,7 @@ function App(props: {}) {
               </Form>
             </Segment>
             <Grid.Row align='center'>
-            <Map markers={markers} currentProvinces={currentProvinces} />
+              <Map markers={markers} currentProvinces={currentProvinces} />
             </Grid.Row>
           </Dimmer.Dimmable>
           <Button color='grey' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
@@ -251,7 +250,7 @@ function App(props: {}) {
                   </Label>
             </WhatsappShareButton>
             <TwitterShareButton url={window.location.href} title="Stiamo a casa, insieme. Fai check-in e colora l'italia #acasainsieme"><TwitterIcon size={50} round={true} />
-            <Label as='a' basic pointing='left'>
+              <Label as='a' basic pointing='left'>
                 Twitta!
                   </Label>
             </TwitterShareButton>
@@ -353,7 +352,7 @@ function App(props: {}) {
                   <Card.Header>Parla con qualcuno</Card.Header>
                   <Card.Meta>Una bella iniziativa per chi si sente solo!</Card.Meta>
                   <Card.Description>
-                  Una bella iniziativa delle volontarie e volontari dell’Osservatorio  <strong>“Roma! Puoi dirlo forte”.</strong>
+                    Una bella iniziativa delle volontarie e volontari dell’Osservatorio  <strong>“Roma! Puoi dirlo forte”.</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>

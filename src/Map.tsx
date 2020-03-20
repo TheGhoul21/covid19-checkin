@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactMapGL, { Source, Layer, LayerProps, NavigationControl} from 'react-map-gl';
+import ReactMapGL, { Source, Layer, LayerProps } from 'react-map-gl';
 
 export const heatmapLayer: LayerProps = {
     'id': 'earthquakes-heat',
