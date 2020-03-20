@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Dimmer, Header, Icon, Grid, Divider, Form, Modal, Button, Popup } from 'semantic-ui-react';
+import { Dimmer, Header, Icon, Grid, Divider, Form, Modal, Button, Popup, Image } from 'semantic-ui-react';
 import { FacebookShareButton, WhatsappShareButton, FacebookIcon, WhatsappIcon } from 'react-share';
+import logo_def from './logo_def.png'; 
 import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 const italy_geo = require('./italy_geo.json');
@@ -57,49 +58,63 @@ function CheckinDimmer(props: ICheckinDimmerProps) {
                     </ol>
                 </Grid.Row>
                 <Grid.Row>
-                    <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
-                        <Modal.Content>
-                            <h3>{modalMessage}</h3>
-                        </Modal.Content>
-                        <Modal.Actions>
+            
+             <Modal open={modalOpen} onClose={() => setModalOpen(false)} inverted>
+                     <Modal.Header as='h1'> Grazie!</Modal.Header>
+                     <Modal.Content image>
+                          <Image
+                           wrapped
+                           size='medium'
+                          src={logo_def}
+                     />
+                   <Modal.Description>
+                  <Header>Ora spargi la voce</Header>
+              <p>
+                Grazie per aver preso parte a questa iniziativa, in questo momento è importante sentirsi vicini, vogliamo che tutta Italia partecipi così da colorare ogni singolo punto sulla mappa.
+              </p>
+              <Button.Group  floated='left'>
+    <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+    <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+    <CopyToClipboard
+        text={window.location.href}
+    ><Button style={{
+        width: '50px', height: '50px',
+        padding: "0px",
+        cursor: "pointer"
+    }} ><Popup trigger={<Icon
+        style={{
+            width: '50px', height: '50px',
+            padding: "0px",
+            cursor: "pointer",
+            textAlign: 'center',
+            display: 'inline'
+        }}
 
-                            <Button.Group>
-                                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
-                                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
-                                <CopyToClipboard
-                                    text={window.location.href}
-                                ><Button style={{
-                                    width: '50px', height: '50px',
-                                    padding: "0px",
-                                    cursor: "pointer"
+        size={'big'} name="linkify" fluid />}
+        pinned={true}
+        openOnTriggerClick={true}
+        openOnTriggerFocus={false}
+        openOnTriggerMouseEnter={false}
+        content={'Copiato!'}
 
-                                }} ><Popup trigger={<Icon
-                                    style={{
-                                        width: '50px', height: '50px',
-                                        padding: "0px",
-                                        cursor: "pointer",
-                                        textAlign: 'center',
-                                        display: 'inline'
-                                    }}
-
-                                    size={'big'} name="linkify" fluid />}
-                                    pinned={true}
-                                    openOnTriggerClick={true}
-                                    openOnTriggerFocus={false}
-                                    openOnTriggerMouseEnter={false}
-                                    content={'Copiato!'}
-
-                                        /></Button>
-                                </CopyToClipboard>
-                                <Button color='green' onClick={() => {
-                                    setModalOpen(false);
-                                    modalAction && modalAction();
-                                }} inverted>
-                                    <Icon name='checkmark' /> Chiudi
-                                </Button>
-                            </Button.Group>
-                        </Modal.Actions>
-                    </Modal>
+            /></Button>
+            </CopyToClipboard>
+            </Button.Group>
+              <p> <strong>Ci aiuti a farlo conoscere a tutti?</strong></p>
+              <p><strong>Condividi Ora con i tuoi amici e familiari!</strong></p>
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Actions>
+          <Modal.Actions>
+    <Button color='red' onClick={() => {
+        setModalOpen(false);
+        modalAction && modalAction();
+    }} inverted>
+        <Icon name='checkmark' /> Chiudi
+    </Button>
+</Modal.Actions>
+          </Modal.Actions>
+          </Modal>
 
                     <Header inverted as='h2'>Inserisci i tuoi dati e partecipa!</Header>
                     <Form onSubmit={() => {
