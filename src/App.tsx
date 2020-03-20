@@ -187,7 +187,7 @@ function App(props: {}) {
 
             }} setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
-            <Progress progress='value' value={counters[1]} total={7000} label='Arriviamo a 7.000 entro il 22 Marzo' active color = 'green' />
+            <Progress progress='value' value={counters[1]} total={10000} label='Arriviamo a 10.000 entro il 22 Marzo' active color = 'green' />
             </Segment>
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
