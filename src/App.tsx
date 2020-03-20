@@ -6,6 +6,7 @@ import love from './love.png';
 import git from './git.png';
 import mail from './mail.png';
 import fitness from './fitness.png';
+import phone from './phone.png'
 import './App.css';
 import Map from './Map';
 import { Progress, Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, Modal, Divider, Sticky, Popup, Statistic } from 'semantic-ui-react'
@@ -239,7 +240,7 @@ function App(props: {}) {
           <Button color='grey' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
           <Divider horizontal />
           <Grid.Row Align='center'>
-            <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza!" url={window.location.href}><FacebookIcon size={50} round={true} />
+            <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza e coloriamo l'italia, insieme!" url={window.location.href}><FacebookIcon size={50} round={true} />
               <Label as='a' basic pointing='left'>
                 Condividi
                   </Label>
@@ -347,17 +348,17 @@ function App(props: {}) {
                   <Image
                     floated='right'
                     size='mini'
-                    src={movie}
+                    src={phone}
                   />
-                  <Card.Header>Binge watching</Card.Header>
-                  <Card.Meta>E' ora di guardare serie TV!</Card.Meta>
+                  <Card.Header>Parla con qualcuno</Card.Header>
+                  <Card.Meta>Una bella iniziativa per chi si sente solo!</Card.Meta>
                   <Card.Description>
-                    Probabilmente è la prima cosa che hai pensato, e si, <strong>fallo!</strong>
+                  Una bella iniziativa delle volontarie e volontari dell’Osservatorio  <strong>“Roma! Puoi dirlo forte”.</strong>
                   </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                   <Button basic color='green'>
-                    <a href="https://www.google.it/search?sxsrf=ALeKk009Gi4tpoheTdKqKeOn9my1KtQMVA%3A1584125708787&source=hp&ei=DNdrXrrcLa76qwGnlozQAg&q=serie+tv+da+vedere&oq=serie+TV&gs_l=psy-ab.1.0.35i39j0i131l4j0j0i131l4.1378.2283..3045...1.0..0.91.629.8......0....1..gws-wiz.Ved1WWvePrM" target="blank"> Fatti ispirare</a>
+                    <a href="https://iorestoinsieme.it/" target="blank"> Scopri l'iniziativa</a>
                   </Button>
                   {/* <Icon 
                   name='heart outline'
