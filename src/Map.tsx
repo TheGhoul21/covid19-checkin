@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ReactMapGL, { Source, Layer, LayerProps, } from 'react-map-gl';
+import ReactMapGL, { Source, Layer, LayerProps, NavigationControl} from 'react-map-gl';
 
 export const heatmapLayer: LayerProps = {
     'id': 'earthquakes-heat',
@@ -56,7 +56,7 @@ export const heatmapLayer: LayerProps = {
             0,
             2,
             9,
-            20
+            10
         ],
         // Transition from heatmap to circle layer by zoom level
         'heatmap-opacity': [
@@ -75,7 +75,7 @@ const layer: LayerProps = {
     'id': 'earthquakes-point',
     'type': 'circle',
     'source': 'earthquakes',
-    'minzoom': 7,
+    'minzoom': 4,
     'paint': {
         // Size circle radius by earthquake magnitude and zoom level
         'circle-radius': [
@@ -105,8 +105,7 @@ const layer: LayerProps = {
             6,
             'rgb(178,24,43)'
         ],
-        'circle-stroke-color': 'white',
-        'circle-stroke-width': 1,
+
         // Transition from heatmap to circle layer by zoom level
         'circle-opacity': [
             'interpolate',
@@ -125,7 +124,7 @@ const layer: LayerProps = {
 function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<{ name: String, lat: string, long: string, province: string }> }) {
 
 
-    const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 41.89193, longitude: 12.51133, zoom: 3 });
+    const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
 
     //if (!props.coords) return <Segment loading></Segment>
     const [geojson, setGeojson] = React.useState<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
