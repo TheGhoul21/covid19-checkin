@@ -8,10 +8,10 @@ import mail from './mail.png';
 import fitness from './fitness.png';
 import './App.css';
 import Map from './Map';
-import { Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, Modal, Divider, Sticky, Popup, Statistic } from 'semantic-ui-react'
+import { Progress, Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, Modal, Divider, Sticky, Popup, Statistic } from 'semantic-ui-react'
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
-import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share'
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from 'react-share'
 import CopyToClipboard from "react-copy-to-clipboard";
 const comuni = require('./comuni.json');
 
@@ -89,7 +89,7 @@ function App(props: {}) {
 
       if (markers[currentCounter]['confirmed']) {
         setCurrentName(markers[currentCounter]['name']);
-        setTimeout(() => setCurrentCounter(currentCounter + 1), 1000)
+        setTimeout(() => setCurrentCounter(currentCounter + 1), 1200)
       } else {
         setCurrentCounter(currentCounter + 1);
       }
@@ -173,8 +173,8 @@ function App(props: {}) {
       <Sidebar.Pusher style={{ overflowY: visible ? 'none' : 'auto', height: '100vh', paddingBottom: '10vh' }}>
         <Container style={{ width: '100vw', overflow: 'none' }} >
           <Divider horizontal />
-          <Header textAlign='center' color='green' as='h1'>Stiamo a casa, insieme! <p> </p>
-            {currentName && <Label textAlign='center' color='green' pointing > <Icon name='home' /> {currentName} è a casa</Label>}
+          <Header textAlign='center' color='green' as='h1'>A casa, insieme! 
+            {currentName && <Label textAlign='center' color='green' pointing='left' > <Icon name='home' /> {currentName} è a casa</Label>}
           </Header>
           <Divider horizontal />
           <Dimmer.Dimmable blurring={true} dimmed={active}>
@@ -187,10 +187,11 @@ function App(props: {}) {
 
             }} setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
-              Facciamo squadra, sosteniamoci, attraverso questa piattaforma. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
+            <Progress progress='value' value={counters[1]} total={7000} label='Arriviamo a 7.000 entro il 22 Marzo' active color = 'green' />
+            </Segment>
+            <Segment>
+              Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
               </Segment>
-            {/*<Segment><Icon name='home' /> user.name è a casa a Treviso</Segment>*/}
-
             <Segment>
 
               <Form onSubmit={() => {
@@ -218,7 +219,7 @@ function App(props: {}) {
 
                     }}
                   /> :
-                  <>Hai già fatto un checkin per oggi torna domani!</>}
+                  <>Hai già fatto un checkin per oggi, ora invita i tuoi amici e torna domani!</>}
                 <Modal open={modalOpen} onClose={() => setModalOpen(false)} basic>
                   <Modal.Content>
                     <h3>Errore: Nessun CAP trovato</h3>
@@ -231,9 +232,11 @@ function App(props: {}) {
                 </Modal>
               </Form>
             </Segment>
+            <Grid.Row align='center'>
             <Map markers={markers} currentProvinces={currentProvinces} />
+            </Grid.Row>
           </Dimmer.Dimmable>
-          <Button color='green' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
+          <Button color='grey' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
           <Divider horizontal />
           <Grid.Row Align='center'>
             <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza!" url={window.location.href}><FacebookIcon size={50} round={true} />
@@ -246,6 +249,11 @@ function App(props: {}) {
                 Invia!
                   </Label>
             </WhatsappShareButton>
+            <TwitterShareButton url={window.location.href} title="Stiamo a casa, insieme. Fai check-in e colora l'italia #acasainsieme"><TwitterIcon size={50} round={true} />
+            <Label as='a' basic pointing='left'>
+                Twitta!
+                  </Label>
+            </TwitterShareButton>
 
             {/*<CopyToClipboard
                   text={window.location.href}
