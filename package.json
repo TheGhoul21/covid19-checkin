@@ -23,6 +23,7 @@
     "react-map-gl-heatmap-overlay": "^1.1.4",
     "react-scripts": "3.4.0",
     "react-share": "^4.1.0",
+    "react-sharingbuttons": "^1.0.0",
     "semantic-ui-react": "^0.88.2",
     "typescript": "~3.7.2",
     "universal-cookie": "^4.0.3"
