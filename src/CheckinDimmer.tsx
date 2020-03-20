@@ -70,7 +70,7 @@ function CheckinDimmer(props: ICheckinDimmerProps) {
                    <Modal.Description>
                   <Header>Ora spargi la voce</Header>
               <p>
-                Grazie per aver preso parte a questa iniziativa, in questo momento è importante sentirsi vicini, vogliamo che tutta Italia partecipi così da colorare ogni singolo punto sulla mappa.
+                Grazie per aver preso parte a questa iniziativa, in questo momento è importante sentirsi vicini, vogliamo che tutta Italia partecipi così da colorare ogni singolo punto sulla mappa. Se hai inserito la tua mail controlla la tua posta per confermare la registrazione e far apparire il tuo nome (controlla anche in SPAM)
               </p>
               <Button.Group  floated='left'>
     <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
