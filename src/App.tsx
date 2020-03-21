@@ -173,7 +173,7 @@ function App(props: {}) {
       <Sidebar.Pusher style={{ overflowY: visible ? 'none' : 'auto', height: '100vh', paddingBottom: '10vh' }}>
         <Container style={{ width: '100vw', overflow: 'none' }} >
           <Divider horizontal />
-          <Header textAlign='center' color='green' as='h1'>A casa, insieme!
+          <Header textAlign='center' color='green' as='h1'> #IoRestoaCasa
             {currentName && <Label textAlign='center' color='green' pointing='left' > <Icon name='home' /> {currentName} è a casa</Label>}
           </Header>
           <Divider horizontal />
@@ -187,10 +187,10 @@ function App(props: {}) {
 
             }} setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
-              <Progress progress='value' value={counters[1]} total={10000} label='Arriviamo a 10.000 entro il 22 Marzo' active color='green' />
+              <Progress progress='value' value={counters[1]} total={20000} label='Primo obiettivo: 20.000' active color='green' />
             </Segment>
             <Segment>
-              Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa!
+              Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa, <strong>#iorestoacasa e non da solo  </strong>
               </Segment>
             <Segment>
 
