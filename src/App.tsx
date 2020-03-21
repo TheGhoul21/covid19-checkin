@@ -187,7 +187,7 @@ function App(props: {}) {
 
             }} setActive={setActive} active={active} data={data} zipCode={zipCode} />
             <Segment>
-              <Progress progress='value' value={counters[1]} total={20000} label='Primo obiettivo: 20.000' active color='green' />
+              <Progress progress='value' value={counters[1]} total={20000} label='Prossimo obiettivo: 20.000' active color='green' />
             </Segment>
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa, <strong>#iorestoacasa e non da solo  </strong>
