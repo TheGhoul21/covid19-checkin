@@ -292,6 +292,31 @@ function App(props: {}) {
             </Grid.Row>
             <Divider horizontal />
             <Card.Group centered>
+            <Card>
+                <Card.Content>
+                  <Image
+                    floated='right'
+                    size='mini'
+                    src={love}
+                  />
+                  <Card.Header>Aiutiamo la Protezione civile</Card.Header>
+                  <Card.Meta>Doniamo</Card.Meta>
+                  <Card.Description>
+                    La rai raccoglie i fondi per la  <strong>Protezione Civile</strong>
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <Button basic color='green'>
+                    <a href="https://www.rai.it/ufficiostampa/assets/template/us-articolo.html?ssiPath=/articoli/2020/03/Coronavirus-Rai-raccolta-fondi-con-Protezione-Civile-b2ff16f1-56dc-4bfa-8ed5-ed63319a1641-ssi.html" target="blank"> Leggi e dona!</a>
+                  </Button>
+                  {/*<Icon 
+                  name='heart outline'
+                  color='red' 
+                  floated='right' 
+                  />
+                  16 */}
+                </Card.Content>
+              </Card>
               <Card>
                 <Card.Content>
                   <Image
