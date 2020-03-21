@@ -108,7 +108,7 @@ function CheckinDimmer(props: ICheckinDimmerProps) {
                             </Modal.Content>
                             <Modal.Actions>
                                 <Modal.Actions>
-                                    <Button color='red' onClick={() => {
+                                    <Button floated='left' color='red' onClick={() => {
                                         setModalOpen(false);
                                         modalAction && modalAction();
                                     }} inverted>
