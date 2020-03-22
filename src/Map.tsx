@@ -142,11 +142,12 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
                 Object.values(props.markers.filter(({ province }) => provinces.length === 0 || provinces.indexOf(province) >= 0)
 
 
-                    .reduce<{ [key: string]: { count: number } & MarkerProps }>((acc, { cap, ...item }) => {
-                        if (!acc[cap]) {
-                            acc[cap] = { count: 1, cap, ...item }
+                    .reduce<{ [key: string]: { count: number } & MarkerProps }>((acc, { city, ...item }) => {
+
+                        if (!acc[city]) {
+                            acc[city] = { count: 1, city, ...item }
                         } else {
-                            acc[cap] = { count: acc[cap].count + 1, cap, ...item };
+                            acc[city] = { count: acc[city].count + 1, city, ...item };
                         }
                         return acc
 
