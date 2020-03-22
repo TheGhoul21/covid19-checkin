@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Source, Layer, LayerProps, InteractiveMap, Popup } from 'react-map-gl';
 import useWindowDimensions from './useWindowDimensions';
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
 import './Map.css'
 
 export const heatmapLayer: LayerProps = {
@@ -174,12 +175,20 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
 
             >
                 <div>
-
-                    {currentFeature.properties?.cap}<br />
+                    {/*{currentFeature.properties?.cap}<br />
                     {currentFeature.properties?.name}<br />
                     {currentFeature.properties?.province}<br />
-                    {currentFeature.properties?.state}<br />
-                    {currentFeature.properties?.city}<br />
+                    {currentFeature.properties?.state}<br /> */}
+                    <strong>{currentFeature.properties?.city}<br /></strong>
+                    <strong>10000 </strong>
+                    Check-in <p>
+                        fai registrare i tuoi amici
+                    </p>
+                    <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza e coloriamo l'italia, insieme!" url={window.location.href}><FacebookIcon size={30} round={true} />
+            </FacebookShareButton>
+            <WhatsappShareButton url={window.location.href}><WhatsappIcon size={30} round={true} />
+            </WhatsappShareButton>
+
                 </div>
             </Popup>}
             {geojson && <Source type="geojson" id="earthquakes" data={geojson}>
