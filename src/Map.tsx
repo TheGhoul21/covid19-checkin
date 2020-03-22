@@ -1,5 +1,8 @@
 import * as React from 'react';
-import ReactMapGL, { Source, Layer, LayerProps } from 'react-map-gl';
+import { Source, Layer, LayerProps, InteractiveMap, Popup, NavigationControl } from 'react-map-gl';
+import useWindowDimensions from './useWindowDimensions';
+import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
+import './Map.css'
 
 export const heatmapLayer: LayerProps = {
     'id': 'earthquakes-heat',
@@ -119,41 +122,94 @@ const layer: LayerProps = {
     }
 }
 
+type MarkerProps = { name: String, lat: string, long: string, province: string, cap: string, city: string }
+function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<MarkerProps> }) {
 
+    const { height, width } = useWindowDimensions();
 
-function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<{ name: String, lat: string, long: string, province: string }> }) {
-
-
-    const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
+    const [viewport, setViewport] = React.useState({ width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
 
     //if (!props.coords) return <Segment loading></Segment>
     const [geojson, setGeojson] = React.useState<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
+    const [showPopup, setShowPopup] = React.useState(false);
+    const [currentFeature, setCurrentFeature] = React.useState<GeoJSON.Feature<GeoJSON.Point>>()
 
     React.useEffect(() => {
-
         const provinces = Object.keys(props.currentProvinces);
         const geojson: GeoJSON.FeatureCollection<GeoJSON.Geometry> = {
             type: "FeatureCollection",
             features:
-                props.markers.filter(({ province }) => provinces.length === 0 || provinces.indexOf(province) >= 0).map(({ lat, long }) => ({ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [parseFloat(long), parseFloat(lat)] } }))
+                Object.values(props.markers.filter(({ province }) => provinces.length === 0 || provinces.indexOf(province) >= 0)
+
+
+                    .reduce<{ [key: string]: { count: number } & MarkerProps }>((acc, { city, ...item }) => {
+
+                        if (!acc[city]) {
+                            acc[city] = { count: 1, city, ...item }
+                        } else {
+                            acc[city] = { count: acc[city].count + 1, city, ...item };
+                        }
+                        return acc
+
+                    }, {}))
+
+                    .map(({ lat, long, cap, city, ...rest }) => {
+                        return ({
+
+
+                            type: 'Feature', properties: {
+                                cap, city, ...rest
+                            }, geometry: { type: 'Point', coordinates: [parseFloat(long), parseFloat(lat)] }
+                        })
+                    })
 
         };
         setGeojson(geojson)
 
     }, [props.markers, props.currentProvinces])
     return (
-        <ReactMapGL
+        <InteractiveMap
             {...viewport}
-            width="100vw"
-            height="50vh"
+            onClick={(evt) => {
+                setCurrentFeature(evt.features[0]);
+                setShowPopup(true);
+            }}
+            getCursor={({ isHovering, isDragging }) => {
+                return isHovering ? 'pointer' : 'default';
+            }}
+            interactiveLayerIds={['earthquakes-point', 'earthquakes-heat']}
             onViewportChange={setViewport}
             mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
         >
-            {geojson && <Source type="geojson" data={geojson}>
+            {showPopup && currentFeature && <Popup
+                latitude={currentFeature.geometry.coordinates[1]}
+                longitude={currentFeature.geometry.coordinates[0]}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => setShowPopup(false)}
+
+            >
+                <div>
+                    <strong>{currentFeature.properties?.city}<br /></strong>
+                    <strong>{currentFeature.properties?.count} </strong>
+                    Check-in <p>
+                        fai registrare i tuoi amici
+                    </p>
+                    <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza e coloriamo l'italia, insieme!" url={window.location.href}><FacebookIcon size={30} round={true} />
+                    </FacebookShareButton>
+                    <WhatsappShareButton url={window.location.href}><WhatsappIcon size={30} round={true} />
+                    </WhatsappShareButton>
+
+                </div>
+            </Popup>}
+            {geojson && <Source type="geojson" id="earthquakes" data={geojson}>
                 <Layer {...heatmapLayer} />
                 <Layer {...layer} />
             </Source>}
-        </ReactMapGL>
+            <div style={{ position: 'absolute', right: "3vw", top: "3vw" }}>
+                <NavigationControl />
+            </div>
+        </InteractiveMap>
 
     );
 }
