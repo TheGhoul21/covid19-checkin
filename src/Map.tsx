@@ -1,5 +1,7 @@
 import * as React from 'react';
-import ReactMapGL, { Source, Layer, LayerProps } from 'react-map-gl';
+import { Source, Layer, LayerProps, InteractiveMap, Popup } from 'react-map-gl';
+import useWindowDimensions from './useWindowDimensions';
+import './Map.css'
 
 export const heatmapLayer: LayerProps = {
     'id': 'earthquakes-heat',
@@ -120,14 +122,16 @@ const layer: LayerProps = {
 }
 
 
+function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<{ name: String, lat: string, long: string, province: string, cap: String, city: string }> }) {
 
-function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<{ name: String, lat: string, long: string, province: string }> }) {
+    const { height, width } = useWindowDimensions();
 
-
-    const [viewport, setViewport] = React.useState({ width: 400, height: 600, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
+    const [viewport, setViewport] = React.useState({ width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
 
     //if (!props.coords) return <Segment loading></Segment>
     const [geojson, setGeojson] = React.useState<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
+    const [showPopup, setShowPopup] = React.useState(false);
+    const [currentFeature, setCurrentFeature] = React.useState<GeoJSON.Feature<GeoJSON.Point>>()
 
     React.useEffect(() => {
 
@@ -135,25 +139,55 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
         const geojson: GeoJSON.FeatureCollection<GeoJSON.Geometry> = {
             type: "FeatureCollection",
             features:
-                props.markers.filter(({ province }) => provinces.length === 0 || provinces.indexOf(province) >= 0).map(({ lat, long }) => ({ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [parseFloat(long), parseFloat(lat)] } }))
+                props.markers.filter(({ province }) => provinces.length === 0 || provinces.indexOf(province) >= 0).map(({ lat, long, cap, city, ...rest }) => ({
+
+
+                    type: 'Feature', properties: {
+                        cap, city, ...rest
+                    }, geometry: { type: 'Point', coordinates: [parseFloat(long), parseFloat(lat)] }
+                }))
 
         };
         setGeojson(geojson)
 
     }, [props.markers, props.currentProvinces])
     return (
-        <ReactMapGL
+        <InteractiveMap
             {...viewport}
-            width="100vw"
-            height="50vh"
+            onClick={(evt) => {
+                setCurrentFeature(evt.features[0]);
+                setShowPopup(true);
+            }}
+            getCursor={({ isHovering, isDragging }) => {
+                return isHovering ? 'pointer' : 'default';
+            }}
+            interactiveLayerIds={['earthquakes-point', 'earthquakes-heat']}
             onViewportChange={setViewport}
             mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
         >
-            {geojson && <Source type="geojson" data={geojson}>
+            {showPopup && currentFeature && <Popup
+                latitude={currentFeature.geometry.coordinates[1]}
+                longitude={currentFeature.geometry.coordinates[0]}
+                closeButton={true}
+                closeOnClick={false}
+                onClose={() => setShowPopup(false)}
+
+            >
+                <div>
+
+                    {currentFeature.properties?.cap}<br />
+                    {currentFeature.properties?.name}<br />
+                    {currentFeature.properties?.province}<br />
+                    {currentFeature.properties?.state}<br />
+                    {currentFeature.properties?.city}<br />
+                </div>
+            </Popup>}
+            {geojson && <Source type="geojson" id="earthquakes" data={geojson}>
                 <Layer {...heatmapLayer} />
                 <Layer {...layer} />
             </Source>}
-        </ReactMapGL>
+
+        </InteractiveMap>
 
     );
 }
