@@ -122,8 +122,8 @@ const layer: LayerProps = {
     }
 }
 
-
-function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<{ name: String, lat: string, long: string, province: string, cap: String, city: string }> }) {
+type MarkerProps = { name: String, lat: string, long: string, province: string, cap: string, city: string }
+function Map(props: { currentProvinces: { [key: string]: number }, markers: Array<MarkerProps> }) {
 
     const { height, width } = useWindowDimensions();
 
@@ -135,18 +135,32 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
     const [currentFeature, setCurrentFeature] = React.useState<GeoJSON.Feature<GeoJSON.Point>>()
 
     React.useEffect(() => {
-
         const provinces = Object.keys(props.currentProvinces);
         const geojson: GeoJSON.FeatureCollection<GeoJSON.Geometry> = {
             type: "FeatureCollection",
             features:
-                props.markers.filter(({ province }) => provinces.length === 0 || provinces.indexOf(province) >= 0).map(({ lat, long, cap, city, ...rest }) => ({
+                Object.values(props.markers.filter(({ province }) => provinces.length === 0 || provinces.indexOf(province) >= 0)
 
 
-                    type: 'Feature', properties: {
-                        cap, city, ...rest
-                    }, geometry: { type: 'Point', coordinates: [parseFloat(long), parseFloat(lat)] }
-                }))
+                    .reduce<{ [key: string]: { count: number } & MarkerProps }>((acc, { cap, ...item }) => {
+                        if (!acc[cap]) {
+                            acc[cap] = { count: 1, cap, ...item }
+                        } else {
+                            acc[cap] = { count: acc[cap].count + 1, cap, ...item };
+                        }
+                        return acc
+
+                    }, {}))
+
+                    .map(({ lat, long, cap, city, ...rest }) => {
+                        return ({
+
+
+                            type: 'Feature', properties: {
+                                cap, city, ...rest
+                            }, geometry: { type: 'Point', coordinates: [parseFloat(long), parseFloat(lat)] }
+                        })
+                    })
 
         };
         setGeojson(geojson)
@@ -175,19 +189,15 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
 
             >
                 <div>
-                    {/*{currentFeature.properties?.cap}<br />
-                    {currentFeature.properties?.name}<br />
-                    {currentFeature.properties?.province}<br />
-                    {currentFeature.properties?.state}<br /> */}
                     <strong>{currentFeature.properties?.city}<br /></strong>
-                    <strong>10000 </strong>
+                    <strong>{currentFeature.properties?.count} </strong>
                     Check-in <p>
                         fai registrare i tuoi amici
                     </p>
                     <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza e coloriamo l'italia, insieme!" url={window.location.href}><FacebookIcon size={30} round={true} />
-            </FacebookShareButton>
-            <WhatsappShareButton url={window.location.href}><WhatsappIcon size={30} round={true} />
-            </WhatsappShareButton>
+                    </FacebookShareButton>
+                    <WhatsappShareButton url={window.location.href}><WhatsappIcon size={30} round={true} />
+                    </WhatsappShareButton>
 
                 </div>
             </Popup>}
