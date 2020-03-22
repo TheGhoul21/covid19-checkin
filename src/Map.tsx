@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Source, Layer, LayerProps, InteractiveMap, Popup } from 'react-map-gl';
+import { Source, Layer, LayerProps, InteractiveMap, Popup, NavigationControl } from 'react-map-gl';
 import useWindowDimensions from './useWindowDimensions';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon } from 'react-share';
 import './Map.css'
@@ -205,7 +205,9 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
                 <Layer {...heatmapLayer} />
                 <Layer {...layer} />
             </Source>}
-
+            <div style={{ position: 'absolute', right: "3vw", top: "3vw" }}>
+                <NavigationControl />
+            </div>
         </InteractiveMap>
 
     );
