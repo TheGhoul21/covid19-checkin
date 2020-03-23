@@ -498,7 +498,7 @@ function App(props: {}) {
       </Sidebar.Pusher>
     </Sidebar.Pushable>
     <Sticky>
-      <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "91vh", left: 0, width: "100vw" }} vertical>
+      <Segment inverted style={{ position: "fixed", height: "6vh", zIndex: 99999, top: "94vh", left: 0, width: "100vw" }} vertical>
         <Label as='a' color='black' image>
           <img alt='love' src={love} />
           <Label.Detail>Made with love by</Label.Detail>
