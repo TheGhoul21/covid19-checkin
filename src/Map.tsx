@@ -127,11 +127,13 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
 
     const { height, width } = useWindowDimensions();
 
-    const [viewport, setViewport] = React.useState({ width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
-    
-    /*React.useEffect(() => {
-        setViewport({ ...viewport, width: .9 * width })
-    }, [width])*/
+    const [viewport, setViewport] = React.useState({ width: .9 * width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
+    React.useEffect(() => {
+        const tmpViewport = { ...viewport, width: .9 * width }
+        if (tmpViewport.width !== viewport.width)
+            setTimeout(() => setViewport(tmpViewport), 500);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [width])
 
     //if (!props.coords) return <Segment loading></Segment>
     const [geojson, setGeojson] = React.useState<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
@@ -183,6 +185,7 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
             }}
             interactiveLayerIds={['earthquakes-point', 'earthquakes-heat']}
             onViewportChange={setViewport}
+            style={{ margin: 'auto' }}
             mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
         >
             {showPopup && currentFeature && <Popup
@@ -211,7 +214,7 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
                 <Layer {...layer} />
             </Source>}
             <div style={{ position: 'absolute', right: "3vw", top: "3vw" }}>
-                <NavigationControl />
+                <NavigationControl onViewportChange={setViewport} />
             </div>
         </InteractiveMap>
 
