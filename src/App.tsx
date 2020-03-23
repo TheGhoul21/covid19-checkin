@@ -135,21 +135,21 @@ function App(props: {}) {
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
-                <Grid columns={2} divided centered >
-                  <Grid.Column textAlign='center'>
+                <Grid columns={1} divided centered >
+                 {/* <Grid.Column textAlign='center'>
                     <Statistic>
                       <Statistic.Value>
                         {counters[0]}
                       </Statistic.Value>
                       <Statistic.Label>a casa oggi</Statistic.Label>
                     </Statistic>
-                  </Grid.Column>
+                   </Grid.Column> */}
                   <Grid.Column textAlign='center'>
-                    <Statistic>
+                    <Statistic size='large'>
                       <Statistic.Value>
                         {counters[1]}
                       </Statistic.Value>
-                      <Statistic.Label>a casa in totale</Statistic.Label>
+                      <Statistic.Label>Check-in effettuati</Statistic.Label>
                     </Statistic>
                   </Grid.Column>
                 </Grid>
@@ -232,11 +232,11 @@ function App(props: {}) {
                 </Modal>
               </Form>
             </Segment>
-            <Grid.Row align='center'>
-              <Map markers={markers} currentProvinces={currentProvinces} />
-            </Grid.Row>
-          </Dimmer.Dimmable>
-          <Button color='grey' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
+            <Segment>
+               <Map markers={markers} currentProvinces={currentProvinces} />
+               <Button color='grey' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
+               </Segment>
+              </Dimmer.Dimmable>
           <Divider horizontal />
           <Grid.Row Align='center'>
             <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza e coloriamo l'italia, insieme!" url={window.location.href}><FacebookIcon size={50} round={true} />
@@ -498,7 +498,7 @@ function App(props: {}) {
       </Sidebar.Pusher>
     </Sidebar.Pushable>
     <Sticky>
-      <Segment inverted style={{ position: "fixed", height: "9vh", zIndex: 99999, top: "91vh", left: 0, width: "100vw" }} vertical>
+      <Segment inverted style={{ position: "fixed", height: "6vh", zIndex: 99999, top: "94vh", left: 0, width: "100vw" }} vertical>
         <Label as='a' color='black' image>
           <img alt='love' src={love} />
           <Label.Detail>Made with love by</Label.Detail>
