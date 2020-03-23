@@ -127,11 +127,11 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
 
     const { height, width } = useWindowDimensions();
 
-    const [viewport, setViewport] = React.useState({ width: .9 * width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
-
-    React.useEffect(() => {
+    const [viewport, setViewport] = React.useState({ width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
+    
+    /*React.useEffect(() => {
         setViewport({ ...viewport, width: .9 * width })
-    }, [width, viewport])
+    }, [width])*/
 
     //if (!props.coords) return <Segment loading></Segment>
     const [geojson, setGeojson] = React.useState<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
@@ -181,7 +181,6 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
             getCursor={({ isHovering, isDragging }) => {
                 return isHovering ? 'pointer' : 'default';
             }}
-            style={{ margin: 'auto' }}
             interactiveLayerIds={['earthquakes-point', 'earthquakes-heat']}
             onViewportChange={setViewport}
             mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
