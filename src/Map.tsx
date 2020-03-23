@@ -183,7 +183,6 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
             getCursor={({ isHovering, isDragging }) => {
                 return isHovering ? 'pointer' : 'default';
             }}
-            style={{ margin: 'auto' }}
             interactiveLayerIds={['earthquakes-point', 'earthquakes-heat']}
             onViewportChange={setViewport}
             mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
