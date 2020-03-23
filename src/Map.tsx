@@ -131,7 +131,7 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
     React.useEffect(() => {
         const tmpViewport = { ...viewport, width: .9 * width }
         if (tmpViewport.width !== viewport.width)
-            setViewport(tmpViewport)
+            setTimeout(() => setViewport(tmpViewport), 500);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [width])
 
@@ -185,6 +185,7 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
             }}
             interactiveLayerIds={['earthquakes-point', 'earthquakes-heat']}
             onViewportChange={setViewport}
+            style={{ margin: 'auto' }}
             mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
         >
             {showPopup && currentFeature && <Popup
