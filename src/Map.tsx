@@ -128,9 +128,11 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
     const { height, width } = useWindowDimensions();
 
     const [viewport, setViewport] = React.useState({ width: .9 * width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
-
     React.useEffect(() => {
-        setViewport({ ...viewport, width: .9 * width })
+        const tmpViewport = { ...viewport, width: .9 * width }
+        if (tmpViewport.width !== viewport.width)
+            setViewport(tmpViewport)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [width])
 
     //if (!props.coords) return <Segment loading></Segment>
@@ -212,7 +214,7 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
                 <Layer {...layer} />
             </Source>}
             <div style={{ position: 'absolute', right: "3vw", top: "3vw" }}>
-                <NavigationControl />
+                <NavigationControl onViewportChange={setViewport} />
             </div>
         </InteractiveMap>
 
