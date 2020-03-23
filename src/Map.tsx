@@ -129,9 +129,9 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
 
     const [viewport, setViewport] = React.useState({ width, height: height / 2, latitude: 41.89193, longitude: 12.51133, zoom: 4 });
     
-    {/*React.useEffect(() => {
+    /*React.useEffect(() => {
         setViewport({ ...viewport, width: .9 * width })
-    }, [width, viewport])*/}
+    }, [width])*/
 
     //if (!props.coords) return <Segment loading></Segment>
     const [geojson, setGeojson] = React.useState<GeoJSON.FeatureCollection<GeoJSON.Geometry>>();
