@@ -190,7 +190,7 @@ function App(props: {}) {
               <Progress progress='value' value={counters[1]} total={20000} label='Prossimo obiettivo: 20.000' active color='green' />
             </Segment>
             <Segment>
-             <strong> AAA. Gli amici di Radio deejay ci hanno mandato tanti utenti e il sito non era preprato :) torneremo su presto! </strong> <p> Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa, <strong>#iorestoacasa e non da solo  </strong></p>
+             <strong> AAA. Gli amici di Radio deejay ci hanno mandato tanti utenti e il sito potrebbe essere un pò lentino :) risolviamo presto! </strong> <p> Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa, <strong>#iorestoacasa e non da solo  </strong></p>
             </Segment>
             <Segment>
 
