@@ -8,7 +8,7 @@ import fitness from './fitness.png';
 import phone from './phone.png'
 import './App.css';
 import Map from './Map';
-import { Progress, Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, Modal, Divider, Sticky, Popup, Statistic } from 'semantic-ui-react'
+import { Progress, Button, Icon, Container, Sidebar, Segment, Grid, Header, Image, Card, Dimmer, Form, Label, Modal, Divider, Sticky, Popup, Statistic, Loader } from 'semantic-ui-react'
 import CheckinDimmer from './CheckinDimmer';
 import Cookies from 'universal-cookie';
 import { FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon, TwitterShareButton, TwitterIcon } from 'react-share'
@@ -23,6 +23,7 @@ function App(props: {}) {
   const [visible, setVisible] = React.useState(false);
   const [active, setActive] = React.useState(false);
   const [nextTick, setNextTick] = React.useState(0);
+  const [loading, setLoading] = React.useState(true);
 
   const [markers, setMarkers] = React.useState([]);
 
@@ -31,6 +32,7 @@ function App(props: {}) {
   const COOKIE_NAME = 'Checkin';
   React.useEffect(() => {
     axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
+      setLoading(false);
       setMarkers(resp.data.sort((a: any, b: any) => {
         if (a.createdAt > b.createdAt) return -1;
         if (a.createdAt < b.createdAt) return 1;
@@ -172,6 +174,7 @@ function App(props: {}) {
       </Sidebar>
       <Sidebar.Pusher style={{ overflowY: visible ? 'none' : 'auto', height: '100vh', paddingBottom: '10vh' }}>
         <Container style={{ width: '100vw', overflow: 'none' }} >
+          <Dimmer active={loading}><Loader /></Dimmer>
           <Divider horizontal />
           <Header textAlign='center' color='green' as='h1'> #IoRestoaCasa
             {currentName && <Label textAlign='center' color='green' pointing='left' > <Icon name='home' /> {currentName} è a casa</Label>}
