@@ -136,7 +136,7 @@ function App(props: {}) {
               </Grid.Row>
               <Grid.Row>
                 <Grid columns={1} divided centered >
-                 {/* <Grid.Column textAlign='center'>
+                  {/* <Grid.Column textAlign='center'>
                     <Statistic>
                       <Statistic.Value>
                         {counters[0]}
@@ -191,7 +191,7 @@ function App(props: {}) {
             </Segment>
             <Segment>
               Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa, <strong>#iorestoacasa e non da solo  </strong>
-              </Segment>
+            </Segment>
             <Segment>
 
               <Form onSubmit={() => {
@@ -232,11 +232,9 @@ function App(props: {}) {
                 </Modal>
               </Form>
             </Segment>
-            <Segment>
-               <Map markers={markers} currentProvinces={currentProvinces} />
-               <Button color='grey' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
-               </Segment>
-              </Dimmer.Dimmable>
+            <Map markers={markers} currentProvinces={currentProvinces} />
+            <Button color='grey' fluid onClick={() => setVisible(true)}><Icon name='arrow up' /> Clicca e guarda in quanti siamo! <Icon name='arrow up' /></Button>
+          </Dimmer.Dimmable>
           <Divider horizontal />
           <Grid.Row Align='center'>
             <FacebookShareButton quote="Io sono a casa! Registrate anche voi la vostra presenza e coloriamo l'italia, insieme!" url={window.location.href}><FacebookIcon size={50} round={true} />
@@ -292,7 +290,7 @@ function App(props: {}) {
             </Grid.Row>
             <Divider horizontal />
             <Card.Group centered>
-            <Card>
+              <Card>
                 <Card.Content>
                   <Image
                     floated='right'
