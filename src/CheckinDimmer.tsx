@@ -123,7 +123,6 @@ function CheckinDimmer(props: ICheckinDimmerProps) {
                     <Form onSubmit={() => {
 
                         const url = "https://api.acasainsieme.it/user";
-
                         if (email.trim().length > 0 && !validateEmail(email)) {
 
                             setModalMessage('Email non valida');
