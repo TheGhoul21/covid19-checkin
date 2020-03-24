@@ -174,7 +174,7 @@ function App(props: {}) {
       </Sidebar>
       <Sidebar.Pusher style={{ overflowY: visible ? 'none' : 'auto', height: '100vh', paddingBottom: '10vh' }}>
         <Container style={{ width: '100vw', overflow: 'none' }} >
-          <Dimmer active={loading}><Loader>Un attimo, carichiamo tutti i check-in</Loader></Dimmer>
+          <Dimmer active={loading}><Loader>Un attimo, carichiamo tutti i check-in (siete tantissimi, ci vorrà qualche secondo :) ) </Loader></Dimmer>
           <Divider horizontal />
           <Header textAlign='center' color='green' as='h1'> #IoRestoaCasa
             {currentName && <Label textAlign='center' color='green' pointing='left' > <Icon name='home' /> {currentName} è a casa</Label>}
@@ -459,7 +459,7 @@ function App(props: {}) {
               <Divider horizontal />
               <Header as='h2' color="green">Ringraziamenti</Header>
               <p>
-                L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href="https://www.instagram.com/dajeluchino/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto.</p>
+                L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href="https://www.instagram.com/dajeluchino/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto. Grazie a <a href="https://www.nohup.it/">Nohup Srl.</a> srl per offrirci l'hosting gratuito. </p>
               <p> Speriamo possa essere utile in qualche modo, </p>
               <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
               <Header as='h3'>Condividi con i tuoi amici:</Header>
