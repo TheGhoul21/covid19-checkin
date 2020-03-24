@@ -31,7 +31,7 @@ function App(props: {}) {
 
   const COOKIE_NAME = 'Checkin';
   React.useEffect(() => {
-    axios.get('http://35.241.241.164/user').then((resp: any) => {
+    axios.get('https://api.acasainsieme.it/user').then((resp: any) => {
       setLoading(false);
       setMarkers(resp.data.sort((a: any, b: any) => {
         if (a.createdAt > b.createdAt) return -1;
@@ -193,7 +193,7 @@ function App(props: {}) {
               <Progress progress='value' value={counters[1]} total={20000} label='Prossimo obiettivo: 20.000' active color='green' />
             </Segment>
             <Segment>
-             <strong> AAA: Stiamo ricevendo tantissime visite <strong>(Grazie) </strong>e il sito potrebbe essere un pò lentino :) risolviamo presto! </strong> <p> Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa, <strong>#iorestoacasa e non da solo  </strong></p>
+              <strong> AAA: Stiamo ricevendo tantissime visite <strong>(Grazie) </strong>e il sito potrebbe essere un pò lentino :) risolviamo presto! </strong> <p> Facciamo squadra, sosteniamoci, attraverso questa iniziativa. Condividiamo questa esperienza per renderla più leggera: <strong> non sei l’unico a fare uno sforzo</strong> per il bene di tutti. Registra ora la tua presenza a casa, <strong>#iorestoacasa e non da solo  </strong></p>
             </Segment>
             <Segment>
 
