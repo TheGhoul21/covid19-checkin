@@ -31,7 +31,7 @@ function App(props: {}) {
 
   const COOKIE_NAME = 'Checkin';
   React.useEffect(() => {
-    axios.get('https://checkin-covid19-stage.herokuapp.com/user').then((resp: any) => {
+    axios.get('http://35.241.241.164/user').then((resp: any) => {
       setLoading(false);
       setMarkers(resp.data.sort((a: any, b: any) => {
         if (a.createdAt > b.createdAt) return -1;

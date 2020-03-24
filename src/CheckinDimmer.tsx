@@ -122,7 +122,7 @@ function CheckinDimmer(props: ICheckinDimmerProps) {
                     <Header inverted as='h2'>Inserisci i tuoi dati e partecipa!</Header>
                     <Form onSubmit={() => {
 
-                        const url = "https://checkin-covid19-stage.herokuapp.com/user";
+                        const url = "http://35.241.241.164/user";
 
                         if (email.trim().length > 0 && !validateEmail(email)) {
 
