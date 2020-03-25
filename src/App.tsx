@@ -84,26 +84,26 @@ function App(props: {}) {
     }}>
     {countersPerRegion[regionName] ? `(${countersPerRegion[regionName]}) ` : ''}{regionName}</Button>
 
-  React.useEffect(() => {
-    if (markers.length > 0 && currentCounter > markers.length - 1) {
-      setCurrentCounter(0)
-    } else if (markers.length > 0 && markers[currentCounter]) {
+  const confirmedMarkes = React.useMemo(() => {
+    return markers.filter(marker => marker['confirmed']);
+  }, [markers])
 
-      if (markers[currentCounter]['confirmed']) {
-        setCurrentName(markers[currentCounter]['name']);
+  React.useEffect(() => {
+    if (confirmedMarkes.length > 0 && currentCounter > confirmedMarkes.length - 1) {
+      setCurrentCounter(0)
+    } else if (confirmedMarkes.length > 0 && confirmedMarkes[currentCounter]) {
+      if (confirmedMarkes[currentCounter]['confirmed']) {
+        setCurrentName(confirmedMarkes[currentCounter]['name']);
         setTimeout(() => setCurrentCounter(currentCounter + 1), 1200)
-      } else {
-        setCurrentCounter(currentCounter + 1);
       }
     }
-  }, [currentCounter, markers])
+  }, [currentCounter, confirmedMarkes])
 
   const [modalOpen, setModalOpen] = React.useState(false);
 
   const [counters, setCounters] = React.useState([0, 0]);
 
   React.useEffect(() => {
-
     setCounters([markers.filter((item) => {
       return item['createdAt'] > todayAtMidnight
     }).length, markers.length])
