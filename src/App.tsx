@@ -288,7 +288,58 @@ function App(props: {}) {
           </Grid.Row>
           <Segment>
             <Divider horizontal />
-            <Grid.Row textAlign="center">
+
+            <Segment padded>
+            <Container fluid centered>
+              <Header as='h2' color="green">Perchè?</Header>
+              <p>
+                Il Covid-19 ci sta facendo vivere qualcosa di nuovo e di temuto, portando ansia e insicurezza. Questo progetto è stato pensato per lanciare un messaggio: "Non sei solo!". Tutti insieme possiamo contribuire ad alleggerire la tensione per trascorrere più serenamente questo periodo. Le mappe che riguardano il Covid-19, giustamente, ci aggiornano su decessi, nuovi contagi, mortalità; è per questo abbiamo pensato che sarebbe stato bello avere una mappa alternativa che mostri dati che ci aiutino a farci coraggio e ad allietare la complessa situazione che stiamo vivendo: chi sta a casa e come trascorre il proprio tempo. Creiamo un’unica grande casa virtuale! Facendo check-in diventi parte della comunità; facciamo crescere quanto più velocemente possibile il numero di check-in e alleggeriamo questo momento!
+      </p>
+              <Divider horizontal />
+              <Header as='h2' color="green">Come?</Header>
+              <p>
+                Il progetto è semplice, l’abbiamo creato prima e dopo il lavoro (da casa, ovviamente): inserendo dei semplici dati - nome, email e CAP - registri la tua presenza su insiemeacasa.it. I dati non verranno utilizzati per nessun altro scopo: quando il sito non avrà più ragione d’esistere (speriamo presto) verrà cancellato, ti invieremo una mail per fartelo sapere. Tutto il codice è open source e lo <a href="https://github.com/TheGhoul21/covid19-checkin">trovi qui;</a> se pensi di poter contribuire aggiungendo o migliorando funzionalità: fai pure!
+      </p>
+              <Divider horizontal />
+              <Header as='h2' color="green">Ringraziamenti</Header>
+              <p>
+                L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href="https://www.instagram.com/dajeluchino/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto. Grazie a <a href="https://www.nohup.it/">Nohup</a> per offrirci l'hosting gratuito. </p>
+              <p> Speriamo possa essere utile in qualche modo, </p>
+              <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
+              <Header as='h3'>Condividi con i tuoi amici:</Header>
+              <Button.Group>
+                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
+                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
+                <CopyToClipboard
+                  text={window.location.href}
+                ><Button style={{
+                  width: '50px', height: '50px',
+                  padding: "0px",
+                  cursor: "pointer"
+
+                }} ><Popup trigger={<Icon
+                  style={{
+                    width: '50px', height: '50px',
+                    padding: "0px",
+                    cursor: "pointer",
+                    textAlign: 'center',
+                    display: 'inline'
+                  }}
+
+                  size={'big'} name="linkify" fluid />}
+                  pinned={true}
+                  openOnTriggerClick={true}
+                  openOnTriggerFocus={false}
+                  openOnTriggerMouseEnter={false}
+                  content={'Copiato!'}
+
+                    /></Button>
+                </CopyToClipboard>
+              </Button.Group>
+            </Container>
+          </Segment>
+          <Divider horizontal />
+          <Grid.Row textAlign="center">
               <Header textAlign='center' color='green'>Cosa si può fare a casa? Qualche idea </Header>
             </Grid.Row>
             <Divider horizontal />
@@ -445,55 +496,7 @@ function App(props: {}) {
               </Card>
             </Card.Group>
           </Segment>
-          <Segment padded>
-            <Container fluid centered>
-              <Header as='h2' color="green">Perchè?</Header>
-              <p>
-                Il Covid-19 ci sta facendo vivere qualcosa di nuovo e di temuto, portando ansia e insicurezza. Questo progetto è stato pensato per lanciare un messaggio: "Non sei solo!". Tutti insieme possiamo contribuire ad alleggerire la tensione per trascorrere più serenamente questo periodo. Le mappe che riguardano il Covid-19, giustamente, ci aggiornano su decessi, nuovi contagi, mortalità; è per questo abbiamo pensato che sarebbe stato bello avere una mappa alternativa che mostri dati che ci aiutino a farci coraggio e ad allietare la complessa situazione che stiamo vivendo: chi sta a casa e come trascorre il proprio tempo. Creiamo un’unica grande casa virtuale! Facendo check-in diventi parte della comunità; facciamo crescere quanto più velocemente possibile il numero di check-in e alleggeriamo questo momento!
-      </p>
-              <Divider horizontal />
-              <Header as='h2' color="green">Come?</Header>
-              <p>
-                Il progetto è semplice, l’abbiamo creato prima e dopo il lavoro (da casa, ovviamente): inserendo dei semplici dati - nome, email e CAP - registri la tua presenza su insiemeacasa.it. I dati non verranno utilizzati per nessun altro scopo: quando il sito non avrà più ragione d’esistere (speriamo presto) verrà cancellato, ti invieremo una mail per fartelo sapere. Tutto il codice è open source e lo <a href="https://github.com/TheGhoul21/covid19-checkin">trovi qui;</a> se pensi di poter contribuire aggiungendo o migliorando funzionalità: fai pure!
-      </p>
-              <Divider horizontal />
-              <Header as='h2' color="green">Ringraziamenti</Header>
-              <p>
-                L’idea è nata al mattino, intorno alle 06:50; alle 07:15 <a href="https://www.instagram.com/dajeluchino/">Luca S.</a> <strong>(GRAZIE!)</strong> aveva già risposto “Facciamolo” e ha iniziato a programmarlo, poi <a href="https://www.linkedin.com/in/caterina-marzolla-b5a575a3">Caterina</a> ci ha aiutato a immaginarlo graficamente e con <a href="https://www.instagram.com/andreaferraroyo/">Andrea</a>  abbiamo messo insieme quello che mancava, grazie anche <a href="https://www.linkedin.com/in/lucalorenzinivittorio/">Luca L.</a> per il supporto. Grazie a <a href="https://www.nohup.it/">Nohup</a> per offrirci l'hosting gratuito. </p>
-              <p> Speriamo possa essere utile in qualche modo, </p>
-              <Header as='h2' color="green"><a href=" https://www.linkedin.com/in/frastab/">Francesco</a></Header>
-              <Header as='h3'>Condividi con i tuoi amici:</Header>
-              <Button.Group>
-                <FacebookShareButton url={window.location.href}><FacebookIcon size={50} /></FacebookShareButton>
-                <WhatsappShareButton url={window.location.href}><WhatsappIcon size={50} /></WhatsappShareButton>
-                <CopyToClipboard
-                  text={window.location.href}
-                ><Button style={{
-                  width: '50px', height: '50px',
-                  padding: "0px",
-                  cursor: "pointer"
-
-                }} ><Popup trigger={<Icon
-                  style={{
-                    width: '50px', height: '50px',
-                    padding: "0px",
-                    cursor: "pointer",
-                    textAlign: 'center',
-                    display: 'inline'
-                  }}
-
-                  size={'big'} name="linkify" fluid />}
-                  pinned={true}
-                  openOnTriggerClick={true}
-                  openOnTriggerFocus={false}
-                  openOnTriggerMouseEnter={false}
-                  content={'Copiato!'}
-
-                    /></Button>
-                </CopyToClipboard>
-              </Button.Group>
-            </Container>
-          </Segment>
+          
         </Container>
 
       </Sidebar.Pusher>
