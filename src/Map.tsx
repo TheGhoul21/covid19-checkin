@@ -186,7 +186,7 @@ function Map(props: { currentProvinces: { [key: string]: number }, markers: Arra
             interactiveLayerIds={['earthquakes-point', 'earthquakes-heat']}
             onViewportChange={setViewport}
             style={{ margin: 'auto' }}
-            mapStyle="https://api.maptiler.com/maps/825e764f-c6e2-4abb-af65-66e334cc727d/style.json?key=ldf4BjnANURHPfgDqq9l"
+            mapStyle="https://api.maptiler.com/maps/4e804565-5c39-47e1-aa0a-9df78f13eb14/style.json?key=VeuZFAacXdZGpGGIg8PD"
         >
             {showPopup && currentFeature && <Popup
                 latitude={currentFeature.geometry.coordinates[1]}
